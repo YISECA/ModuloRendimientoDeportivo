@@ -1,0 +1,87 @@
+<?php
+
+namespace App\Http\Requests;
+
+use App\Http\Requests\Request;
+
+class RegistroDeportista extends Request
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        $validaciones = [
+             'Resolucion' => 'required',
+             'Deberes' => 'required',
+             'Persona' => 'required',
+             'ClasificacionDeportista' => 'required',
+             'Agrupacion' => 'required',
+             'Deporte' => 'required',
+             'Club' => 'required',
+             'Modalidad' => 'required',             
+             'LugarExpedicion' => 'required',
+             'FechaExpedicion' => 'required|date',
+             'Pasaporte' => 'required|numeric',
+             'FechaVigenciaPasaporte' => 'required|date',
+             'EstadoCivil' => 'required',
+             'Estrato' => 'required',
+             'DepartamentoNac' => 'required',
+             'LibretaPreg' => 'required',
+             'Libreta' => array('required_if:LibretaPreg,1', 'numeric'),
+             'Distrito' => array('required_if:LibretaPreg,1', 'numeric'),
+             'NombreContacto' => 'required|min:3|regex:/^[(a-zA-Z\s)]+$/u',
+             'Parentesco' => 'required',
+             'FijoContacto' => 'required|numeric|digits_between:7,10',
+             'CelularContacto' => 'required|numeric|digits:10',
+             'TipoCuenta' => 'required',
+             'Banco' => 'required',
+             'NumeroCuenta' => 'required|numeric|digits_between:1,20',
+             'NumeroHijos' => 'required|numeric|digits_between:1,3',
+             'DepartamentoLoc' => 'required',
+             'MunicipioLoc' => 'required',
+             'Direccion' => 'required|min:3|regex:/^[(a-zA-Z0-9\s\#\-\°)]+$/u',
+             'Barrio' => 'required|min:3|regex:/^[(a-zA-Z\s)]+$/u',
+             'Localidad' => 'required',
+             'FijoLoc' => 'required|numeric|digits_between:7,10',
+             'CelularLoc' => 'required|numeric|digits:10',
+             'Correo' => 'required|email|min:7|max:40',
+             'Regimen' => 'required',
+             'FechaAfiliacion' => 'required|date',
+             'FechaAfiliacion' => 'required|date',
+             'TipoAfiliacion' => 'required',
+             'MedicinaPrepago' => 'required',
+             'NombreMedicinaPrepago' => array('required_if:MedicinaPrepago,1'),
+             'Eps' => array('required_if:MedicinaPrepago,2'),
+             'NivelRegimen' => 'required',
+             'RiesgosLaborales' => 'required',
+             'Arl' => 'required',
+             'FondoPensionPreg' => 'required',
+             'FondoPension' => array('required_if:FondoPensionPreg,1'),             
+             'Sudadera' => 'required',
+             'Camiseta' => 'required',
+             'Pantaloneta' => 'required',
+             'Tenis' => 'required',
+             'GrupoSanguineo' => 'required',
+             'Medicamento' => 'required',
+             'CualMedicamento' => array('required_if:Medicamento,1'),
+             'TiempoMedicamento' => array('required_if:Medicamento,1'),
+             'OtroMedicoPreg' => 'required',
+             'OtroMedico' => array('required_if:OtroMedicoPreg,1'),
+            ];
+       
+        return $validaciones;
+    }
+}

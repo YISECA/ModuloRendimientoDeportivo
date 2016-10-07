@@ -162,6 +162,7 @@ $(function(e){
 				setTimeout(Reset_Rud, 2000);
             },
             error: function (xhr){
+            	console.log(xhr.responseJSON);
 				validador_errores(xhr.responseJSON);
             }
         });
@@ -187,72 +188,6 @@ $(function(e){
 			$("#"+i).closest('.form-group').addClass('has-error');
       	});
 	}
-
-	$("#seccion_uno_ver").on('click', function(e){
-		var role = $(this).data('role');               
-		if(role == 'ver'){
-			$("#seccion_uno").show("slow");
-			$(this).data('role', 'ocultar');
-			$('#seccion_uno_ver').removeClass('glyphicon-resize-full').addClass('glyphicon-resize-small');
-		}else if(role == 'ocultar'){
-			$("#seccion_uno").hide("slow");
-			$(this).data('role', 'ver');
-			$('#seccion_uno_ver').removeClass('glyphicon-resize-small').addClass('glyphicon-resize-full');
-		}
-	});	
-
-	$("#seccion_dos_ver").on('click', function(e){
-		var role = $(this).data('role');               
-		if(role == 'ver'){
-			$("#seccion_dos").show("slow");
-			$(this).data('role', 'ocultar');
-			$('#seccion_dos_ver').removeClass('glyphicon-resize-full').addClass('glyphicon-resize-small');
-		}else if(role == 'ocultar'){
-			$("#seccion_dos").hide("slow");
-			$(this).data('role', 'ver');
-			$('#seccion_dos_ver').removeClass('glyphicon-resize-small').addClass('glyphicon-resize-full');
-		}				
-	});
-
-	$("#seccion_tres_ver").on('click', function(e){
-		var role = $(this).data('role');               
-		if(role == 'ver'){
-			$("#seccion_tres").show("slow");
-			$(this).data('role', 'ocultar');
-			$('#seccion_tres_ver').removeClass('glyphicon-resize-full').addClass('glyphicon-resize-small');
-		}else if(role == 'ocultar'){
-			$("#seccion_tres").hide("slow");
-			$(this).data('role', 'ver');
-			$('#seccion_tres_ver').removeClass('glyphicon-resize-small').addClass('glyphicon-resize-full');
-		}				
-	});
-
-	$("#seccion_cuatro_ver").on('click', function(e){
-		var role = $(this).data('role');               
-		if(role == 'ver'){
-			$("#seccion_cuatro").show("slow");
-			$(this).data('role', 'ocultar');
-			$('#seccion_cuatro_ver').removeClass('glyphicon-resize-full').addClass('glyphicon-resize-small');
-		}else if(role == 'ocultar'){
-			$("#seccion_cuatro").hide("slow");
-			$(this).data('role', 'ver');
-			$('#seccion_cuatro_ver').removeClass('glyphicon-resize-small').addClass('glyphicon-resize-full');
-		}				
-	});
-
-	$("#seccion_cinco_ver").on('click', function(e){
-		var role = $(this).data('role');               
-		if(role == 'ver'){
-			$("#seccion_cinco").show("slow");
-			$(this).data('role', 'ocultar');
-			$('#seccion_cinco_ver').removeClass('glyphicon-resize-full').addClass('glyphicon-resize-small');
-		}else if(role == 'ocultar'){
-			$("#seccion_cinco").hide("slow");
-			$(this).data('role', 'ver');
-			$('#seccion_cinco_ver').removeClass('glyphicon-resize-small').addClass('glyphicon-resize-full');
-		}				
-	});
-
 
 	$("#seccion_compromiso_ver").on('click', function(e){
 		var role = $(this).data('role');               

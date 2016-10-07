@@ -37,20 +37,19 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('welcome', 'MainController@welcome');
 	Route::get('/personaDeportista/{id}','PersonaDeportistaController@obtener');
 	Route::get('/personaBuscarDeportista/{id}','PersonaDeportistaController@buscar');
-
+	/****RUD****/
 	Route::get('getTallas/{id_genero}/{id_tipo}', 'DeportistaController@Tallas');  
 	Route::get('deportista/{id}','DeportistaController@datos');
 	Route::post('AddDeportista', 'DeportistaController@RegistrarDeportista');
 	Route::post('EditDeportista', 'DeportistaController@ModificarDeportista');
-
 	Route::get('getAgrupacion/{id}', 'DeportistaController@Agrupaciones');
 	Route::get('getDeporte/{id}', 'DeportistaController@Deportes');
 	Route::get('getModalidad/{id}', 'DeportistaController@Modalidades');
-
 	Route::get('getDeportistaDeporte/{id}', 'DeportistaController@DeportistaDeporte');
 
+	/****Valoracion Psico****/
 	Route::get('psico','ValoracionPsicoController@index');
-
+	Route::post('AddDeportista', 'ValoracionPsicoController@RegistrarValoracion');
 	/*************************************************/
 
 	

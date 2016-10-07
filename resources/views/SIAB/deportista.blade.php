@@ -65,7 +65,7 @@
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         <label><h4>SECCIÓN UNO:</h4></label>
                         <label><p>Identificación del deportista</p></label>                         
-                        <span data-role="ver" id="seccion_uno_ver" class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+                        <span data-role="ver" id="seccion_uno_ver" class="glyphicon glyphicon-resize-full btn-lg" aria-hidden="true"></span>
                     </div>
                 </div>                 
                 <ul class="list-group" id="seccion_uno" name="seccion_uno" style="display: none">
@@ -432,15 +432,15 @@
                     </li> 
                 </ul>
             </div>
-        <!-- ------------------------------------------SECCION DOS---------------------------------------- -->
-        <div class="panel">
+            <!-- ------------------------------------------SECCION DOS---------------------------------------- -->
+            <div class="panel">
                 <!-- Default panel contents -->
                 <div class="panel-heading">
                     <div class="bs-callout bs-callout-info">
                         <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                         <label><h4>SECCIÓN DOS:</h4></label>
                         <label><p>Localización</p></label> 
-                        <span data-role="ver" id="seccion_dos_ver" class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+                        <span data-role="ver" id="seccion_dos_ver" class="glyphicon glyphicon-resize-full btn-lg" aria-hidden="true"></span>
                     </div>
                 </div>                
                 <ul class="list-group" id="seccion_dos" name="seccion_dos" style="display: none">
@@ -539,7 +539,7 @@
                     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                     <label><h4>SECCIÓN TRES:</h4></label>
                     <label><p>Seguridad Social</p></label> 
-                    <span data-role="ver" id="seccion_tres_ver" class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+                    <span data-role="ver" id="seccion_tres_ver" class="glyphicon glyphicon-resize-full btn-lg" aria-hidden="true"></span>
                 </div>
             </div>                
             <ul class="list-group" id="seccion_tres" name="seccion_tres" style="display: none">
@@ -698,7 +698,7 @@
                     <span class="glyphicon glyphicon-knight" aria-hidden="true"></span>
                     <label><h4>SECCIÓN CUATRO:</h4></label>
                     <label><p>Información deportiva</p></label> 
-                    <span data-role="ver" id="seccion_cuatro_ver" class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+                    <span data-role="ver" id="seccion_cuatro_ver" class="glyphicon glyphicon-resize-full btn-lg" aria-hidden="true"></span>
                 </div>
             </div>                
             <ul class="list-group" id="seccion_cuatro" name="seccion_cuatro" style="display: none">
@@ -752,7 +752,7 @@
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     <label><h4>SECCIÓN CINCO:</h4></label>
                     <label><p>Información médica</p></label> 
-                    <span data-role="ver" id="seccion_cinco_ver" class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+                    <span data-role="ver" id="seccion_cinco_ver" class="glyphicon glyphicon-resize-full btn-lg" aria-hidden="true"></span>
                 </div>
             </div>                 
             <ul class="list-group" id="seccion_cinco" name="seccion_cinco" style="display: none">
@@ -833,7 +833,7 @@
                 <div class="bs-callout bs-callout-info">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                     <label><h4>COMPROMISO ATLETA:</h4></label>
-                    <span data-role="ver" id="seccion_compromiso_ver" class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+                    <span data-role="ver" id="seccion_compromiso_ver" class="glyphicon glyphicon-resize-full btn-lg" aria-hidden="true"></span>
                 </div>
             </div>            
             <ul class="list-group" id="seccion_compromiso" name="seccion_compromiso" style="display: none">

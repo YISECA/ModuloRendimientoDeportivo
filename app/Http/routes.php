@@ -31,8 +31,8 @@ session_start();
 //rutas con filtro de autenticación
 Route::group(['middleware' => ['web']], function () {
 
-
 	/********************SIAB***************************/
+	
 	Route::get('rud','DeportistaController@index');
 	Route::get('welcome', 'MainController@welcome');
 	Route::get('/personaDeportista/{id}','PersonaDeportistaController@obtener');
@@ -48,12 +48,18 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('getModalidad/{id}', 'DeportistaController@Modalidades');
 
 	Route::get('getDeportistaDeporte/{id}', 'DeportistaController@DeportistaDeporte');
-
 	Route::get('psico','ValoracionPsicoController@index');
 
 	/*************************************************/
 
-	
+	/********************Tecnico****************************/
+	Route::get('configuracion','configuracion@inicio');
+	Route::post('/configuracion/crear','configuracion@guardar');
+	Route::post('/configuracion/modificar','configuracion@modificar');
+	Route::get('/configuracion/IdAgrupacion/{id}','configuracion@agrupacion');
+	Route::get('/configuracion/eliminarAgrupacion/{id}','configuracion@agrupacionEliminar');
 
+
+	Route::get('deporte','configuracion@deporte');
+	/*************************************************/
 });
-/*

@@ -66,12 +66,25 @@
                 </ul>
               </li>
               <li>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">TÉCNICO <span class="caret"></span></a>
-                <ul class="dropdown-menu" aria-labelledby="themes">
-                  <li><a href="#">Default</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Sub-Item 1</a></li>
-                </ul>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">TÉCNICO <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li class="divider"></li>
+                      <li><a href="#">Configuración</a></li>
+                      <li class="divider"></li>
+                      <li class=”{{ Request::is( 'agrupacion') ? 'active' : '' }}”>
+                        <a href="{{ URL::to( 'configuracion') }}">Agrupación</a>
+                      </li>
+                      <li class=”{{ Request::is( 'agrupacion') ? 'active' : '' }}”>
+                        <a href="{{ URL::to( 'deporte') }}">Deporte</a>
+                      </li>
+                      <li><a href="#">Modalidad</a></li>
+                      <li><a href="#">Ramas</a></li>
+                      <li><a href="#">Categoria</a></li>
+                      <li><a href="#">Prueba/División</a></li>
+                    </ul>
+                </li>
               </li>
               <li>
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">UCAD <span class="caret"></span></a>

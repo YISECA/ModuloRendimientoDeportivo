@@ -61,5 +61,18 @@ Route::group(['middleware' => ['web']], function () {
 
 
 	Route::get('deporte','configuracion@deporte');
+	Route::post('/configuracion/crear_dpt','configuracion@crear_dpt');
+	Route::post('/configuracion/modificar_dpt','configuracion@modificar_dpt');
+	Route::get('/configuracion/ver_deporte/{id}','configuracion@ver_deporte');
+	Route::get('/configuracion/eliminarDeporte/{id}','configuracion@deporteEliminar');
+
+
+	Route::get('modalidad','configuracion@modalidad');
+	Route::post('/configuracion/crear_mdl','configuracion@crear_mdl');
+	Route::post('/configuracion/modificar_mdl','configuracion@modificar_mdl');
+	Route::get('/configuracion/ver_modalidad/{id}','configuracion@ver_modalidad');
+	Route::get('/configuracion/eliminarModalidad/{id}','configuracion@eliminarModalidad');
+
+	
 	/*************************************************/
 });

@@ -73,13 +73,16 @@
                       <li class="divider"></li>
                       <li><a href="#">Configuración</a></li>
                       <li class="divider"></li>
-                      <li class=”{{ Request::is( 'agrupacion') ? 'active' : '' }}”>
+                      <li class=”{{ Request::is( 'configuracion') ? 'active' : '' }}”>
                         <a href="{{ URL::to( 'configuracion') }}">Agrupación</a>
                       </li>
-                      <li class=”{{ Request::is( 'agrupacion') ? 'active' : '' }}”>
+                      <li class=”{{ Request::is( 'deporte') ? 'active' : '' }}”>
                         <a href="{{ URL::to( 'deporte') }}">Deporte</a>
                       </li>
-                      <li><a href="#">Modalidad</a></li>
+                      <li class=”{{ Request::is( 'modalidad') ? 'active' : '' }}”>
+                        <a href="{{ URL::to( 'modalidad') }}">Modalidad</a>
+                      </li>
+
                       <li><a href="#">Ramas</a></li>
                       <li><a href="#">Categoria</a></li>
                       <li><a href="#">Prueba/División</a></li>

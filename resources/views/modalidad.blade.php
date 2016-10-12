@@ -3,14 +3,14 @@
 @section('script')
     @parent
 
-    <script src="{{ asset('public/Js/Tecnico/deporte.js') }}"></script> 
+    <script src="{{ asset('public/Js/Tecnico/modalidad.js') }}"></script> 
 @stop
 
 @section('content')
     <div class="content">
         <div class="panel panel-primary">
             <div class="panel-heading">
-              <h3 class="panel-title">DEPORTE: Configuración de los deportes.</h3>
+              <h3 class="panel-title">MODALIDAD: Configuración de modalidad.</h3>
             </div>
             <div class="panel-body">
                 
@@ -18,11 +18,11 @@
                    
                     <div class="col-xs-6 col-sm-8">
                         <div class="form-group">
-                            <label class="control-label" for="Id_TipoDocumento">Deporte</label>
-                            <select name="Id_Deporte" id="Id_Deporte" class="form-control">
+                            <label class="control-label" for="Id_TipoDocumento">Modalidad</label>
+                            <select name="Id_mdl" id="Id_mdl" class="form-control">
                                 <option value="">Seleccionar</option>
-                                @foreach($deporte as $deportes)
-                                    <option value="{{ $deportes['Id'] }}">{{ $deportes['Nombre_Deporte'] }}</option>
+                                @foreach($modalidad as $modalidades)
+                                    <option value="{{ $modalidades['Id'] }}">{{ $modalidades['Nombre_Modalidad'] }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -44,7 +44,7 @@
 
 
 
-                <div class="alert alert-danger" role="alert" style="display: none"id="div_mensaje">Debe elejir un deporte.</div>
+                <div class="alert alert-danger" role="alert" style="display: none"id="div_mensaje">Debe elejir una modalidad.</div>
 
 
 
@@ -60,19 +60,19 @@
                         </div> 
 
                         <div class="col-xs-6 col-sm-4">
-                            <label class="control-label" for="Id_TipoDocumento">Agrupación:</label>
-                            <select name="Id_Agrupa" id="Id_Agrupa" class="form-control">
+                            <label class="control-label" for="Id_TipoDocumento">Deporte:</label>
+                            <select name="Id_Dept" id="Id_Dept" class="form-control">
                                      <option value="">Seleccionar</option>
-                                    @foreach($agrupacion as $agrupaciones)
-                                        <option value="{{ $agrupaciones['Id'] }}">{{ $agrupaciones['Nombre_Agrupacion'] }}</option>
+                                    @foreach($deporte as $deportes)
+                                        <option value="{{ $deportes['Id'] }}">{{ $deportes['Nombre_Deporte'] }}</option>
                                     @endforeach
                             </select>
                         </div>
                         
                         <div class="col-xs-6 col-sm-4">
-                            <label class="control-label" for="Id_TipoDocumento">Deporte:</label>
-                            <input type="text" class="form-control"  placeholder="Agrupación" id="nom_depot" name="nom_depot">
-                            <input type="hidden" placeholder="Deporte" id="id_Dpt" name="id_Dpt">
+                            <label class="control-label" for="Id_TipoDocumento">Modalidad:</label>
+                            <input type="text" class="form-control"  placeholder="Modalidad" id="nom_modl" name="nom_modl">
+                            <input type="hidden" placeholder="Deporte" id="id_Mdl" name="id_Mdl">
                         </div> 
                         <div class="col-xs-6 col-sm-4">
                             <label class="control-label" for="Id_TipoDocumento">Acción:</label><br>
@@ -102,7 +102,7 @@
             
                     <div class="col-xs-6 col-sm-4">
                         <label class="control-label" for="Id_TipoDocumento">Acción:</label><br>
-                        <button type="button" class="btn btn-danger" id="btn_eliminar_dpt">Eliminar</button>
+                        <button type="button" class="btn btn-danger" id="btn_eliminar_mdl">Eliminar</button>
                     </div> 
                     
                 </div>
@@ -121,31 +121,27 @@
                         </div> 
                     
                         <div class="col-xs-6 col-sm-4">
-                            <label class="control-label" for="Id_TipoDocumento">Agrupación:</label>
-                            <select name="Id_Agrupacion" id="Id_Agrupacion" class="form-control">
+                            <label class="control-label" for="Id_TipoDocumento">Deporte:</label>
+                            <select name="Id_Deporte" id="Id_Deporte" class="form-control">
                                      <option value="">Seleccionar</option>
-                                    @foreach($agrupacion as $agrupaciones)
-                                        <option value="{{ $agrupaciones['Id'] }}">{{ $agrupaciones['Nombre_Agrupacion'] }}</option>
+                                    @foreach($deporte as $deportes)
+                                        <option value="{{ $deportes['Id'] }}">{{ $deportes['Nombre_Deporte'] }}</option>
                                     @endforeach
                             </select>
                         </div>
                         
                         <div class="col-xs-6 col-sm-4">
-                            <label class="control-label" for="Nom_Deporte">Nombre deporte:</label>
-                            <input type="text" class="form-control"  placeholder="Agrupación" name="Nom_Deporte">
+                            <label class="control-label" for="Nom_Deporte">Nombre modalidad:</label>
+                            <input type="text" class="form-control"  placeholder="Modalidad" name="Nom_Modalidad">
                         </div> 
                         <div class="col-xs-6 col-sm-4">
                             <label class="control-label" for="Id_TipoDocumento">Acción:</label><br>
-                            <button type="button" class="btn btn-success" id="btn_crear_dpt">Crear</button>
+                            <button type="button" class="btn btn-success" id="btn_crear_mdl">Crear</button>
                         </div> 
                     </form>  
                 </div>
 
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-xs-6 col-sm-12">
-                        </div>
-                </div>
+
                 <div class="row">
                     <div class="form-group">
                         <div class="col-xs-12">

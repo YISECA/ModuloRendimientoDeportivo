@@ -83,8 +83,12 @@
                         <a href="{{ URL::to( 'modalidad') }}">Modalidad</a>
                       </li>
 
-                      <li><a href="#">Ramas</a></li>
-                      <li><a href="#">Categoria</a></li>
+                      <li class=”{{ Request::is('rama') ? 'active' : '' }}”>
+                        <a href="{{ URL::to( 'rama') }}">Rama</a>
+                      </li>
+
+                      <li class=”{{ Request::is('categoria') ? 'active' : '' }}”>
+                        <a href="{{ URL::to( 'categoria') }}">Categoria</a></li>
                       <li><a href="#">Prueba/División</a></li>
                     </ul>
                 </li>

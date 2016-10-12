@@ -73,6 +73,20 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/configuracion/ver_modalidad/{id}','configuracion@ver_modalidad');
 	Route::get('/configuracion/eliminarModalidad/{id}','configuracion@eliminarModalidad');
 
+
+	Route::get('rama','configuracion@rama');
+	Route::post('/configuracion/crear_rm','configuracion@crear_rm');
+    Route::post('/configuracion/modificar_rm','configuracion@modificar_rm');
+	Route::get('/configuracion/ver_rama/{id}','configuracion@ver_rama');
+	Route::get('/configuracion/eliminarRama/{id}','configuracion@eliminarRama');
+
+
+	Route::get('categoria','configuracion@categoria');
+	Route::post('/configuracion/crear_ct','configuracion@crear_ct');
+	Route::post('/configuracion/modificar_ct','configuracion@modificar_ct');
+	Route::get('/configuracion/ver_categoria/{id}','configuracion@ver_categoria');
+	Route::get('/configuracion/eliminarCategoria/{id}','configuracion@eliminarCategoria');
+
 	
 	/*************************************************/
 });

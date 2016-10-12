@@ -5,8 +5,8 @@ $(function()
 	$('#a_edicar').on('click', function(e)
 	{
 			
-			var Id_mdl=$('select[name="Id_mdl"]').val();
-			if(Id_mdl==""){
+			var Id_rm=$('select[name="Id_rm"]').val();
+			if(Id_rm==""){
 				$('#div_mensaje').fadeIn(20);
 				$('#div_editar').fadeOut(20);
 				$('#div_eliminar').fadeOut(20);
@@ -14,15 +14,14 @@ $(function()
 			}else{
 
 				$.get(
-		            '/ModuloRendimientoDeportivo/configuracion/ver_modalidad/'+Id_mdl,
+		            '/ModuloRendimientoDeportivo/configuracion/ver_rama/'+Id_rm,
 		            {},
 		            function(data)
 		            {
 		                if(data)
 		                {
-		                   $('#Id_Dept').val(data.Deporte_Id);
-		                   $('#nom_modl').val(data.Nombre_Modalidad);
-		                   $('#id_Mdl').val(data.Id);
+		                   $('#nom_ra').val(data.Nombre_Rama);
+		                   $('#id_Rm').val(data.Id);
 		                }
 		            },
 		            'json'
@@ -39,8 +38,8 @@ $(function()
 	$('#a_eliminar').on('click', function(e)
 	{
 			
-			var Id_mdl=$('select[name="Id_mdl"]').val();
-			if(Id_mdl==""){
+			var Id_rm=$('select[name="Id_rm"]').val();
+			if(Id_rm==""){
 				$('#div_mensaje').fadeIn(20);
 				$('#div_eliminar').fadeOut(20);
 				$('#div_nuevo').fadeOut(20);
@@ -48,14 +47,14 @@ $(function()
 			}else{
 
 				$.get(
-		            '/ModuloRendimientoDeportivo/configuracion/ver_modalidad/'+Id_mdl,
+		            '/ModuloRendimientoDeportivo/configuracion/ver_rama/'+Id_rm,
 		            {},
 		            function(data)
 		            {
 		                if(data)
 		                {
-		                   $('#id_moalidad').val(data.Id);
-		                   $('#label_eliminar').html("¿Desea eliminar la modalidad <ins>"+data.Nombre_Modalidad+"</ins> de forma permanente del sistema?. <br>Tenga en cuenta que si elimina una modalidad se eliminara por defecto todos los datos relacionados ha este deporte. Si no esta seguro de este cambio por favor diríjase al administrador del sistema.");
+		                   $('#id_rama').val(data.Id);
+		                   $('#label_eliminar').html("¿Desea eliminar la rama <ins>"+data.Nombre_Rama+"</ins> de forma permanente del sistema?. <br>Tenga en cuenta que si elimina una rama se eliminara por defecto todos los datos relacionados ha esta rama. Si no esta seguro de este cambio por favor diríjase al administrador del sistema.");
 		                }
 		            },
 		            'json'
@@ -72,7 +71,7 @@ $(function()
 	$('#a_nuevo').on('click', function(e)
 	{
 			
-			    $('#Id_mdl').val('');
+			    $('#Id_rm').val('');
 				$('#div_mensaje').fadeOut(20);
 				$('#div_nuevo').show(20);
 				$('#div_eliminar').fadeOut(20);
@@ -81,12 +80,12 @@ $(function()
 			return false;
 	});
 
-	$('#btn_crear_mdl').on('click', function(e)
+	$('#btn_crear_rm').on('click', function(e)
 	{
 		
 			$.ajax({
 	            type: 'POST',
-	            url: '/ModuloRendimientoDeportivo/configuracion/crear_mdl',
+	            url: '/ModuloRendimientoDeportivo/configuracion/crear_rm',
 	            data: $('#form_nuevo').serialize(),
 	            success: function(data){
 
@@ -105,7 +104,7 @@ $(function()
 						
 					    $("#div_mensaje2").removeClass("alert alert-danger");		
 						$("#div_mensaje2").addClass("alert alert-success");			
-						$("#div_mensaje2").html("<strong>Se ha registrado exitosamente la modalidad: </strong> "+data.Nombre_Modalidad); 
+						$("#div_mensaje2").html("<strong>Se ha registrado exitosamente la rama: </strong> "+data.Nombre_Modalidad); 
 						$('#div_mensaje2').fadeIn();
 						setTimeout(function(){
 							$('#div_mensaje2').fadeOut(); 
@@ -119,11 +118,11 @@ $(function()
 
 	});
 
-	$('#btn_eliminar_mdl').on('click', function(e)
+	$('#btn_eliminar_rm').on('click', function(e)
 	{
-			var id=$('#id_moalidad').val();
+			var id=$('#id_rama').val();
 			    $.get(
-		            '/ModuloRendimientoDeportivo/configuracion/eliminarModalidad/'+id,
+		            '/ModuloRendimientoDeportivo/configuracion/eliminarRama/'+id,
 		            {},
 		            function(data)
 		            {
@@ -132,7 +131,7 @@ $(function()
 		                	$('#div_eliminar').fadeOut();
 		                    $("#div_mensaje2").removeClass("alert alert-danger");
 							$("#div_mensaje2").addClass("alert alert-success");	
-							$("#div_mensaje2").html("<strong>Modalidad eliminada con exíto."); 
+							$("#div_mensaje2").html("<strong>Rama eliminada con exíto."); 
 							$('#div_mensaje2').fadeIn();
 							setTimeout(function(){
 								$('#div_mensaje2').fadeOut(); 
@@ -143,7 +142,7 @@ $(function()
 		                	$('#div_eliminar').fadeOut();
 		                    $("#div_mensaje2").removeClass("alert alert-success");
 							$("#div_mensaje2").addClass("alert alert-danger");	
-							$("#div_mensaje2").html("<strong>No se elimino la modalidad, por favor averiguar con el encargado del sistema."); 
+							$("#div_mensaje2").html("<strong>No se elimino la rama, por favor averiguar con el encargado del sistema."); 
 							setTimeout(function(){
 								$('#div_mensaje2').fadeOut(); 
 							}, 2500) 
@@ -158,7 +157,7 @@ $(function()
 	{
 			$.ajax({
 	            type: 'POST',
-	            url: '/ModuloRendimientoDeportivo/configuracion/modificar_mdl',
+	            url: '/ModuloRendimientoDeportivo/configuracion/modificar_rm',
 	            data: $('#form_edit').serialize(),
 	            success: function(data)
 	            {
@@ -178,7 +177,7 @@ $(function()
 						
 					    $("#div_mensaje2").removeClass("alert alert-danger");		
 						$("#div_mensaje2").addClass("alert alert-success");			
-						$("#div_mensaje2").html("<strong>Se ha modificado exitosamente la modalidad: </strong> "+data.Nombre_Modalidad); 
+						$("#div_mensaje2").html("<strong>Se ha modificado exitosamente la rama: </strong> "+data.Nombre_Rama); 
 						$('#div_mensaje2').fadeIn();
 						setTimeout(function(){
 							$('#div_mensaje2').fadeOut(); 

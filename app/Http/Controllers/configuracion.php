@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Models\Agrupacion;
 use App\Models\Deporte;
 use App\Models\Modalidad;
+use App\Models\Rama;
+use App\Models\Categoria;
 use App\Models\ClasificacionDeportista;
 
 class configuracion extends Controller
@@ -303,6 +305,183 @@ class configuracion extends Controller
 		}
 
 	}
+
+
+
+
+
+
+
+
+	//----------------------RAMA--------------------------------------
+
+    public function rama()
+	{
+
+		$Rama = new Rama;
+
+    	$datos = [
+    		'rama'=>$Rama->all(),
+		];
+	    return view('rama', $datos);
+	}
+
+	public function crear_rm(Request $input)
+	{
+		$model_A = new Rama;
+		return $this->crear_rama($model_A, $input);
+	}
+
+	public function crear_rama($model_A, $input)
+	{
+
+		$validator = Validator::make($input->all(),
+		    [
+				'Nom_Rama' => 'required',
+        	]
+        );
+
+        if ($validator->fails()){
+            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+        }else{
+			$model_A['Nombre_Rama'] = $input['Nom_Rama'];	
+			$model_A->save();
+			return $model_A;
+		}
+	}
+
+	public function ver_rama(Request $input , $id)
+	{
+		$model_A = Rama::find($id);
+		return $model_A;
+	}
+
+	public function eliminarRama(Request $input , $id)
+	{
+
+		$model_A = Rama::find($id);
+
+		if($model_A->delete()){
+			return response()->json(array('status' => 'True'));
+		}else{
+			return response()->json(array('status' => 'False'));
+		}
+		
+	}
+
+
+	public function modificar_rm(Request $input)
+	{
+		$modelo=Rama::find($input["id_Rm"]);
+
+		return $this->modificar_rama($modelo, $input);
+	}
+	public function modificar_rama($modelo, $input)
+	{
+
+		$validator = Validator::make($input->all(),
+		    [
+				'nom_ra' => 'required'
+        	]
+        );
+
+        if ($validator->fails()){
+            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+        }else{
+			$modelo['Nombre_Rama'] = $input['nom_ra'];	
+			$modelo->save();
+			return $modelo;
+		}
+
+	}
+
+
+
+   //----------------------CATEGORIA--------------------------------------
+
+    public function categoria()
+	{
+
+		$Categoria = new Categoria;
+
+    	$datos = [
+    		'categoria'=>$Categoria->all(),
+		];
+	    return view('categoria', $datos);
+	}
+
+	public function crear_ct(Request $input)
+	{
+		$model_A = new Categoria;
+		return $this->crear_categoria($model_A, $input);
+	}
+
+	public function crear_categoria($model_A, $input)
+	{
+
+		$validator = Validator::make($input->all(),
+		    [
+				'Nom_Categoria' => 'required',
+        	]
+        );
+
+        if ($validator->fails()){
+            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+        }else{
+			$model_A['Nombre_Categoria'] = $input['Nom_Categoria'];	
+			$model_A->save();
+			return $model_A;
+		}
+	}
+
+
+	public function ver_categoria(Request $input , $id)
+	{
+		$model_A = Categoria::find($id);
+		return $model_A;
+	}
+
+
+	public function eliminarCategoria(Request $input , $id)
+	{
+
+		$model_A = Categoria::find($id);
+
+		if($model_A->delete()){
+			return response()->json(array('status' => 'True'));
+		}else{
+			return response()->json(array('status' => 'False'));
+		}
+		
+	}
+
+
+
+	public function modificar_ct(Request $input)
+	{
+		$modelo=Categoria::find($input["id_Ct"]);
+
+		return $this->modificar_categoria($modelo, $input);
+	}
+	public function modificar_categoria($modelo, $input)
+	{
+
+		$validator = Validator::make($input->all(),
+		    [
+				'nom_ct' => 'required'
+        	]
+        );
+
+        if ($validator->fails()){
+            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+        }else{
+			$modelo['Nombre_Categoria'] = $input['nom_ct'];	
+			$modelo->save();
+			return $modelo;
+		}
+
+	}
+
 
 
 

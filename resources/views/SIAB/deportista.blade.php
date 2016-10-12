@@ -51,8 +51,8 @@
             </div>
         </div>
 <!-- ------------------------------------------------------------------------------------ -->
-<div id="camposRegistro" style="display:none;">
-<form id="registro" name="registro" class="panel panel-default">
+<form id="registro" name="registro">
+  <div id="camposRegistro" style="display:none;">
     <div class="content" id="RUD" style="display: none;">
         <div class="content">
             <div style="text-align:center;">
@@ -860,10 +860,7 @@
                     <br>
                 </li>
             </ul>
-        </div>
-        <div class="form-group"  id="mensaje_actividad" style="display: none;">
-            <div id="alert_actividad"></div>
-        </div>
+        </div>        
         <div id="Botonera" >
             <center>
                 <button type="button" class="btn btn-primary" name="Enviar" id="Registrar">Registrar</button>
@@ -874,7 +871,9 @@
             </div>
         </div>
     </div>
-    
-</form>  
-</div>          
+  </div>   
+  <div class="form-group"  id="mensaje_actividad" style="display: none;">
+    <div id="alert_actividad"></div>
+  </div> 
+</form>       
 @stop

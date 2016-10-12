@@ -20,6 +20,9 @@ class CrearTablaVPsicosocial extends Migration
             $table->string('Discapacidad');
             $table->string('EdadInicio');
             $table->string('AniosPractica');
+            $table->string('DesplazamientoPreg');
+            $table->string('Desplazamiento')->nullable();
+
             $table->string('P1');
             $table->string('P2');
             $table->string('P3');
@@ -57,7 +60,7 @@ class CrearTablaVPsicosocial extends Migration
             $table->string('P22');
             $table->string('P23');
             $table->string('P24');
-            $table->string('P25');
+            $table->string('P25')->nullable();
             $table->string('P27');
             $table->string('P29');
             $table->string('P34');
@@ -70,6 +73,10 @@ class CrearTablaVPsicosocial extends Migration
             $table->string('P49');
             $table->string('P51');            
             $table->string('ConceptoProfesional');
+
+            $table->foreign('Deportista_Id')->references('Id')->on('deportista');
+
+            $table->timestamps();
         });
     }
 
@@ -80,6 +87,9 @@ class CrearTablaVPsicosocial extends Migration
      */
     public function down()
     {
-        //Schema::drop('valoracion_psicosocial');
+        Schema::table('valoracion_psicosocial', function(Blueprint $table){
+            $table->dropForeign('Deportista_Id');
+        });    
+        Schema::drop('valoracion_psicosocial');
     }
 }

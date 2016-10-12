@@ -94,7 +94,7 @@ class DeportistaController extends Controller
 	}
 
  	public function datos($id){
-        $persona = Persona::with('deportista')->find($id);
+        $persona = Persona::with('deportista', 'deportista.deportistaValoracion', 'deportista.deportistaValoracion.idioma', 'deportista.deportistaValoracion.quien', 'deportista.deportistaValoracion.preguntaA')->find($id);
         return $persona;
     }
 
@@ -107,7 +107,7 @@ class DeportistaController extends Controller
         return($talla_genero);
     }
 
-    public function RegistrarDeportista(RegistroDeportista $request){    	
+    public function RegistrarDeportista(RegistroDeportista $request){             		
     	if ($request->ajax()) { 
 
     		$deportista = new Deportista;

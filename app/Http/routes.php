@@ -49,6 +49,8 @@ Route::group(['middleware' => ['web']], function () {
 
 	/****Valoracion Psico****/
 	Route::get('psico','ValoracionPsicoController@index');
+	Route::post('AddValoracion', 'ValoracionPsicoController@RegistrarValoracion');
+	Route::get('valoracion/{id_deportista}','ValoracionPsicoController@Valoracion_Datos');
 	/*************************************************/
 
 	

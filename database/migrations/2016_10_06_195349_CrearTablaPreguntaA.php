@@ -16,9 +16,9 @@ class CrearTablaPreguntaA extends Migration
 
             $table->increments('Id');
             $table->integer('ValoracionA_Id')->unsigned();
-            $table->integer('PreguntaA_Id');
-            $table->integer('Respuesta_Id');
-            $table->integer('Respuesta');
+            $table->string('PreguntaA_Id');
+            $table->string('Respuesta');
+            $table->string('Descripcion')->nullable();
 
             $table->foreign('ValoracionA_Id')->references('Id')->on('valoracion_psicosocial');
 

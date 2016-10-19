@@ -14,7 +14,7 @@ $(function()
 			}else{
 
 				$.get(
-		            '/ModuloRendimientoDeportivo/configuracion/ver_modalidad/'+Id_mdl,
+		            'configuracion/ver_modalidad/'+Id_mdl,
 		            {},
 		            function(data)
 		            {
@@ -48,7 +48,7 @@ $(function()
 			}else{
 
 				$.get(
-		            '/ModuloRendimientoDeportivo/configuracion/ver_modalidad/'+Id_mdl,
+		            'configuracion/ver_modalidad/'+Id_mdl,
 		            {},
 		            function(data)
 		            {
@@ -86,7 +86,7 @@ $(function()
 		
 			$.ajax({
 	            type: 'POST',
-	            url: '/ModuloRendimientoDeportivo/configuracion/crear_mdl',
+	            url: 'configuracion/crear_mdl',
 	            data: $('#form_nuevo').serialize(),
 	            success: function(data){
 
@@ -123,7 +123,7 @@ $(function()
 	{
 			var id=$('#id_moalidad').val();
 			    $.get(
-		            '/ModuloRendimientoDeportivo/configuracion/eliminarModalidad/'+id,
+		            'configuracion/eliminarModalidad/'+id,
 		            {},
 		            function(data)
 		            {
@@ -158,7 +158,7 @@ $(function()
 	{
 			$.ajax({
 	            type: 'POST',
-	            url: '/ModuloRendimientoDeportivo/configuracion/modificar_mdl',
+	            url: 'configuracion/modificar_mdl',
 	            data: $('#form_edit').serialize(),
 	            success: function(data)
 	            {

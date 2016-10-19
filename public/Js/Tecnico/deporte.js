@@ -14,7 +14,7 @@ $(function()
 			}else{
 
 				$.get(
-		            '/ModuloRendimientoDeportivo/configuracion/ver_deporte/'+Id_Deporte,
+		            'configuracion/ver_deporte/'+Id_Deporte,
 		            {},
 		            function(data)
 		            {
@@ -48,7 +48,7 @@ $(function()
 			}else{
 
 				$.get(
-		            '/ModuloRendimientoDeportivo/configuracion/ver_deporte/'+Id_Deporte,
+		            'configuracion/ver_deporte/'+Id_Deporte,
 		            {},
 		            function(data)
 		            {
@@ -86,7 +86,7 @@ $(function()
 		
 			$.ajax({
 	            type: 'POST',
-	            url: '/ModuloRendimientoDeportivo/configuracion/crear_dpt',
+	            url: 'configuracion/crear_dpt',
 	            data: $('#form_nuevo').serialize(),
 	            success: function(data){
 
@@ -123,7 +123,7 @@ $(function()
 	{
 			var id=$('#id_deport').val();
 			    $.get(
-		            '/ModuloRendimientoDeportivo/configuracion/eliminarDeporte/'+id,
+		            'configuracion/eliminarDeporte/'+id,
 		            {},
 		            function(data)
 		            {
@@ -159,7 +159,7 @@ $(function()
 		
 			$.ajax({
 	            type: 'POST',
-	            url: '/ModuloRendimientoDeportivo/configuracion/modificar_dpt',
+	            url: 'configuracion/modificar_dpt',
 	            data: $('#form_edit').serialize(),
 	            success: function(data){
 

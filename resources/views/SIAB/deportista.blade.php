@@ -4,7 +4,7 @@
     <script src="{{ asset('public/Js/buscar_personas.js') }}"></script>     
     <script src="{{ asset('public/Js/SIAB/rud.js') }}"></script>   
     <script src="{{ asset('public/Js/bootstrap-datepicker.js') }}"></script>   
-    {{Html::style('public/Css/bootstrap-datepicker3.css')}}   
+    {{Html::style('public/Css/bootstrap-datepicker3.css')}}      
 @stop  
 @section('content')
 <!-- ------------------------------------------------------------------------------------ -->
@@ -52,8 +52,11 @@
         </div>
 <!-- ------------------------------------------------------------------------------------ -->
 <form id="registro" name="registro">
-  <div id="camposRegistro" style="display:none;">
-    <div class="content" id="RUD" style="display: none;">
+    <div class="container" id="loading" style="display:none;">
+        <button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Espere...</button>
+    </div>
+    <div id="camposRegistro" style="display:none;">
+     <div class="content" id="RUD" style="display: none;">
         <div class="content">
             <div style="text-align:center;">
                 <h3>Registro Único de Deportistas (RUD)</h3>
@@ -72,6 +75,21 @@
                     <div class="panel-body">
                         <p>DATOS DEPORTIVOS</p>
                     </div>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail" class="control-label"  id="PerteneceL" >El deportista pertence al promgrama de rendimiento deportivo?</label>
+                            </div>
+                            <div class="form-group col-md-10">
+                                <select name="Pertenece" id="Pertenece" class="form-control">
+                                    <option value="">Seleccionar</option>
+                                    <option value="1">Si</option>
+                                    <option value="2">No</option>           
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                    </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="form-group col-md-2">
@@ -129,6 +147,35 @@
                                             <option value="{{ $Club['Id'] }}">{{ $Club['Nombre_Club'] }}</option>
                                     @endforeach                           
                                 </select>
+                            </div>                           
+                        </div>
+                        <br>
+                    </li>
+                    <li class="list-group-item" id="DeportistaEtapas" style="display:none;">
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail" class="control-label"  id="EtapaNacionalL" >Etapa nacional:</label>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input name="EtapaNacionalT" id="EtapaNacionalT"type="hidden">
+                                <select name="EtapaNacional" id="EtapaNacional" class="form-control">
+                                    <option value="">Seleccionar</option>                                                           
+                                </select>
+                            </div> 
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail" class="control-label"  id="EtapaInternacionalL" >Etapa internacional:</label>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input name="EtapaInternacionalT" id="EtapaInternacionalT"type="hidden">
+                                <select name="EtapaInternacional" id="EtapaInternacional" class="form-control">
+                                    <option value="">Seleccionar</option>                                                           
+                                </select>
+                            </div>                           
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail" class="control-label"  id="SmmlvL" >Salario mínimo actual:</label>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" placeholder="Salario mínimo mensual legal vigente" type="text" name="Smmlv" id="Smmlv">
                             </div>                           
                         </div>
                         <br>

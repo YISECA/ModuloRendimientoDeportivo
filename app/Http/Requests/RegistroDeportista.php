@@ -24,9 +24,13 @@ class RegistroDeportista extends Request
     public function rules()
     {
         $validaciones = [
-             'Resolucion' => 'required',
-             'Deberes' => 'required',
+             'Resolucion' => array('required_if:Pertenece,1'),
+             'Deberes' => array('required_if:Pertenece,1'),
              'Persona' => 'required',
+             'Pertenece' => 'required',
+             'EtapaNacional' => array('required_if:Pertenece,1'),
+             'EtapaInternacional' => array('required_if:Pertenece,1'),
+             'Smmlv' =>array('required_if:Pertenece,1', 'numeric'),
              'ClasificacionDeportista' => 'required',
              'Agrupacion' => 'required',
              'Deporte' => 'required',

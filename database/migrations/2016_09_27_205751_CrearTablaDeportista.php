@@ -16,6 +16,7 @@ class CrearTablaDeportista extends Migration
 
             $table->increments('Id');
             $table->integer('Persona_Id')->unsigned();
+            $table->integer('Pertenece');
             $table->integer('Lugar_Expedicion_Id')->unsigned();
             $table->integer('Clasificacion_Deportista_Id')->unsigned();
             $table->integer('Parentesco_Id')->unsigned();

@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+    <div id="main_persona" class="row" data-url="{{ url(config('usuarios.prefijo_ruta')) }}"> </div>
     <div class="content">
         <div class="panel panel-primary">
             <div class="panel-heading">

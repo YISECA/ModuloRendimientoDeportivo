@@ -13,6 +13,17 @@
           <link rel="stylesheet" href="{{ asset('public/Css/jquery-ui.css') }}" media="screen">    
           <link rel="stylesheet" href="{{ asset('public/Css/bootstrap.min.css') }}" media="screen">   
           <link rel="stylesheet" href="{{ asset('public/Css/sticky-footer.css') }}" media="screen">    
+           <style type="text/css">
+              .glyphicon-refresh-animate {
+                  -animation: spin .7s infinite linear;
+                  -webkit-animation: spin2 .7s infinite linear;
+              }
+
+              @-webkit-keyframes spin2 {
+                  from { -webkit-transform: rotate(0deg);}
+                  to { -webkit-transform: rotate(360deg);}
+              }
+          </style>
       @show
       @section('script')
           <script src="{{ asset('public/Js/jquery.js') }}"></script>
@@ -63,6 +74,7 @@
                   <li class="divider"></li>
                   <li><a href="rud">Registro único de deportistas</a></li>
                   <li><a href="psico">Valoración psicosocial</a></li>
+                  <li><a href="domicilio">Visita domiciliaria</a></li>
                 </ul>
               </li>
               <li>

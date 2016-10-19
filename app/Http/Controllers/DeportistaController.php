@@ -9,6 +9,7 @@ use Validator;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RegistroDeportista;
+use Mail;
 
 use App\Models\Banco;
 use App\Models\Ciudad;
@@ -36,6 +37,9 @@ use App\Models\Agrupacion;
 use App\Models\Deporte;
 use App\Models\DeportistaDeporte;
 use App\Models\Club;
+use App\Models\Etapa;
+use App\Models\TipoEtapa;
+use App\Models\DeportistaEtapa;
 
 class DeportistaController extends Controller
 {
@@ -94,7 +98,13 @@ class DeportistaController extends Controller
 	}
 
  	public function datos($id){
-        $persona = Persona::with('deportista', 'deportista.deportistaValoracion', 'deportista.deportistaValoracion.idioma', 'deportista.deportistaValoracion.quien', 'deportista.deportistaValoracion.preguntaA')->find($id);
+        $persona = Persona::with('deportista', 
+        						 'deportista.deportistaValoracion', 
+        						 'deportista.deportistaValoracion.idioma', 
+        						 'deportista.deportistaValoracion.quien', 
+        						 'deportista.deportistaValoracion.preguntaA',
+        						 'deportista.deportistaValoracion.valoracionRiesgo'
+        					)->find($id);
         return $persona;
     }
 
@@ -107,11 +117,11 @@ class DeportistaController extends Controller
         return($talla_genero);
     }
 
-    public function RegistrarDeportista(RegistroDeportista $request){             		
+    public function RegistrarDeportista(RegistroDeportista $request){ 
     	if ($request->ajax()) { 
-
     		$deportista = new Deportista;
     		$deportista->Persona_Id = $request->Persona;
+    		$deportista->Pertenece = $request->Pertenece;
     		$deportista->Lugar_Expedicion_Id = $request->LugarExpedicion;
     		$deportista->Clasificacion_Deportista_Id = $request->ClasificacionDeportista;
     		$deportista->Departamento_Id_Nac = $request->DepartamentoNac;
@@ -172,6 +182,23 @@ class DeportistaController extends Controller
 			 	$deportistaDeporte->Club_Id = $request->Club;
 			 	$deportistaDeporte->save();
 
+			 	if($request->Pertenece == 1){
+			 		$sueldo = $request->Smmlv;
+				 	$deportistaEtapaN = new deportistaEtapa;
+				 	$deportistaEtapaN->Deportista_Id = $deportista->Id;
+				 	$deportistaEtapaN->Etapa_Id = $request->EtapaNacional;
+				 	$deportistaEtapaN->Smmlv = $sueldo;
+				 	$deportistaEtapaN->save();
+
+				 	$deportistaEtapaI = new deportistaEtapa;
+				 	$deportistaEtapaI->Deportista_Id = $deportista->Id;
+				 	$deportistaEtapaI->Etapa_Id = $request->EtapaInternacional;
+				 	$deportistaEtapaI->Smmlv = $sueldo;
+				 	$deportistaEtapaI->save();
+				 }
+
+				$this->sendEmail($request->Correo, 'Novice', 'SIAB.correo');
+				
 			 	return response()->json(["Mensaje" => "Deportista registrado con éxito."]);                	
 		 	}else{
 		 		return response()->json(["Mensaje" => "Se presento una falla, intentelo de nuevo."]);                	
@@ -179,7 +206,7 @@ class DeportistaController extends Controller
     	}
     }
 
-    public function ModificarDeportista(RegistroDeportista $request){    	
+    public function ModificarDeportista(RegistroDeportista $request){    
     	if ($request->ajax()) { 
 
     		$DeportistaDeporte = Deportista::with('deportistaDeporte')->find($request->Deportista);
@@ -197,6 +224,7 @@ class DeportistaController extends Controller
 
     		$deportista = Deportista::find($request->Deportista);
     		$deportista->Persona_Id = $request->Persona;
+    		$deportista->Pertenece = $request->Pertenece;
     		$deportista->Lugar_Expedicion_Id = $request->LugarExpedicion;
     		$deportista->Clasificacion_Deportista_Id = $request->ClasificacionDeportista;
     		$deportista->Departamento_Id_Nac = $request->DepartamentoNac;
@@ -247,6 +275,23 @@ class DeportistaController extends Controller
 		 	$deportista->Arl_Id = $request->Arl;
 		 	$deportista->save();
 
+		 	if($request->Pertenece == 1 ){		 		
+		 		if(($request->EtapaNacional != $request->EtapaNacionalT) || ($request->EtapaInternacional != $request->EtapaInternacionalT)){
+		 			$sueldo = $request->Smmlv;
+				 	$deportistaEtapaN = new deportistaEtapa;
+				 	$deportistaEtapaN->Deportista_Id = $deportista->Id;
+				 	$deportistaEtapaN->Etapa_Id = $request->EtapaNacional;
+				 	$deportistaEtapaN->Smmlv = $sueldo;
+				 	$deportistaEtapaN->save();
+
+				 	$deportistaEtapaI = new deportistaEtapa;
+				 	$deportistaEtapaI->Deportista_Id = $deportista->Id;
+				 	$deportistaEtapaI->Etapa_Id = $request->EtapaInternacional;
+				 	$deportistaEtapaI->Smmlv = $sueldo;
+				 	$deportistaEtapaI->save();
+				 }
+			}
+
 		 	return response()->json(["Mensaje" => "Deportista modificado con éxito."]);                
     	}
     }
@@ -279,5 +324,27 @@ class DeportistaController extends Controller
 	    }
     }
 
-}
+    public function Etapas(Request $request, $id_clasificacion){
+    	if ($request->ajax()) { 
+	    	$Etapas = ClasificacionDeportista::with('tipoEtapa.etapa')->find($id_clasificacion);
+	    	return response()->json(["Nacional" => $Etapas->tipoEtapa[0]->etapa, "Internacional" => $Etapas->tipoEtapa[1]->etapa]);
+	    }
+    }
 
+    public function getDeportistaEtapas(Request $request, $id_deportista){
+    	$Etapas = Deportista::with('deportistaEtapa')->find($id_deportista);
+    	$Nacional = $Etapas->deportistaEtapa()->whereIn('Tipo_Etapa_id', [1, 3])->orderBy('deportista_etapa.created_at', 'desc')->first();
+    	$Internacional = $Etapas->deportistaEtapa()->whereIn('Tipo_Etapa_id', [2, 4])->orderBy('deportista_etapa.created_at', 'desc')->first();
+    	return response()->json(["Nacional" => $Nacional, "Internacional" => $Internacional]);   	
+    }
+
+    public function sendEmail($correo, $nombre, $plantilla)
+    {
+    	$datos[0] = $correo;
+    	$datos[1] = $nombre;
+    	$datos[2] = $plantilla;
+    	Mail::send($datos[2], ['name' => $datos[1]], function($message) use ($datos){			
+		    $message->to($datos[0], 'IDRD')->subject('Registro de deportista exitoso!');
+		});
+    }   
+}

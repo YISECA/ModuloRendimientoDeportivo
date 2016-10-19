@@ -19,10 +19,10 @@
                     <div class="col-xs-6 col-sm-8">
                         <div class="form-group">
                             <label class="control-label" for="Id_TipoDocumento">Modalidad</label>
-                            <select name="Id_mdl" id="Id_mdl" class="form-control">
+                            <select class="form-control selectpicker" name="Id_mdl" id="Id_mdl" data-live-search="true">
                                 <option value="">Seleccionar</option>
                                 @foreach($modalidad as $modalidades)
-                                    <option value="{{ $modalidades['Id'] }}">{{ $modalidades['Nombre_Modalidad'] }}</option>
+                                    <option value="{{ $modalidades['Id'] }}">{{ $modalidades['Id']." - ".$modalidades['Nombre_Modalidad'] }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -152,5 +152,48 @@
 
             </div>
         </div>		    
+    </div>
+
+
+    <div class="content">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Listado de modalidades</h3>
+            </div>
+            <div class="panel-body">
+                    <table id="example" class="display nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Modalidad</th>
+                                <th>Deporte</th>
+                                <th>Agrupación</th>
+                                <th>Clase</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Id</th>
+                                <th>Modalidad</th>
+                                <th>Deporte</th>
+                                <th>Agrupación</th>
+                                <th>Clase</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach($modalidad as $modalidades)
+                                <tr>
+                                    <td>{{ $modalidades['Id'] }}</td>
+                                    <td>{{ $modalidades['Nombre_Modalidad'] }}</td>
+                                    <td>{{ $modalidades->deporte['Nombre_Deporte'] }}</td>
+                                    <td>{{ $modalidades->deporte->agrupacion['Nombre_Agrupacion'] }}</td>
+                                    <td>{{ $modalidades->deporte->agrupacion->ClasificacionDeportista['Nombre_Clasificacion_Deportista'] }}</td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+            </div>
+        </div>
     </div>
 @stop

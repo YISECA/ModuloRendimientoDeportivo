@@ -197,5 +197,13 @@ $(function()
 		vector_acompañantes.length=0;
     }); 
 
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+
+
 
 });

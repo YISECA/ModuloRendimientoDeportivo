@@ -71,4 +71,8 @@ class Deportista extends Model
     public function deportistaDeporte(){
         return $this->hasMany('App\Models\DeportistaDeporte', 'Deportista_Id');
     }
+
+    public function deportistaValoracion(){
+        return $this->hasMany('App\Models\ValoracionPsico', 'Deportista_Id');
+    }
 }

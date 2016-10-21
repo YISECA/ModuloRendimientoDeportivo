@@ -14,7 +14,7 @@ $(function()
 			}else{
 
 				$.get(
-		            '/ModuloRendimientoDeportivo/configuracion/ver_rama/'+Id_rm,
+		            'configuracion/ver_rama/'+Id_rm,
 		            {},
 		            function(data)
 		            {
@@ -47,7 +47,7 @@ $(function()
 			}else{
 
 				$.get(
-		            '/ModuloRendimientoDeportivo/configuracion/ver_rama/'+Id_rm,
+		            'configuracion/ver_rama/'+Id_rm,
 		            {},
 		            function(data)
 		            {
@@ -85,7 +85,7 @@ $(function()
 		
 			$.ajax({
 	            type: 'POST',
-	            url: '/ModuloRendimientoDeportivo/configuracion/crear_rm',
+	            url: 'configuracion/crear_rm',
 	            data: $('#form_nuevo').serialize(),
 	            success: function(data){
 
@@ -122,7 +122,7 @@ $(function()
 	{
 			var id=$('#id_rama').val();
 			    $.get(
-		            '/ModuloRendimientoDeportivo/configuracion/eliminarRama/'+id,
+		            'configuracion/eliminarRama/'+id,
 		            {},
 		            function(data)
 		            {
@@ -157,7 +157,7 @@ $(function()
 	{
 			$.ajax({
 	            type: 'POST',
-	            url: '/ModuloRendimientoDeportivo/configuracion/modificar_rm',
+	            url: 'configuracion/modificar_rm',
 	            data: $('#form_edit').serialize(),
 	            success: function(data)
 	            {

@@ -52,7 +52,6 @@ $(function(e){
             break;
             case 'reset':                 
                 $('#buscar span').removeClass('glyphicon-remove').addClass('glyphicon-refresh glyphicon-refresh-animate');
-                $('#buscar span').append(' Cargando...');
                 document.getElementById("buscar").disabled = true;
                 document.getElementById("buscador").disabled = true;
                 $(this).data('role', 'buscar');

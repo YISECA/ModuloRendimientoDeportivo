@@ -49,10 +49,11 @@
             </div>
         </div>
 <!-- ------------------------------------------------------------------------------------ -->
-        <form id="psico" name="psico" >
-            <div id="camposRegistro" >
+        <form id="visitaF" name="visitaF" >            
+            <div id="camposRegistro" style="display:none;" >                
                 <input type="hidden" name="persona" id="persona" value=""/>
                 <input type="hidden" name="deportista" id="deportista" value=""/>
+                <input type="hidden" name="visita" id="visita" value=""/>
                 <div class="content">
                     <div class="content">
                         <div style="text-align:center;">
@@ -74,20 +75,25 @@
                                             <label for="inputEmail" class="control-label" id="DeporteL" >Deporte:</label>
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <input class="form-control" placeholder="Deporte" type="text" name="Deporte" id="Deporte">
+                                            <select name="Deporte" id="Deporte" class="form-control" disabled="disabled">
+                                                <option value="">Seleccionar</option>
+                                                @foreach($Deporte as $Deporte)
+                                                    <option value="{{ $Deporte['Id'] }}">{{ $Deporte['Nombre_Deporte'] }}</option>
+                                                @endforeach                                                           
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-1">
                                             <label for="inputEmail" class="control-label" id="DeportistaL">Deportista:</label>
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <input class="form-control" placeholder="Nombre del deportista" type="text" name="Deportista" id="Deportista">
+                                            <input class="form-control" placeholder="Nombre del deportista" type="text" name="Deportista" id="Deportista" readonly>
                                         </div>
                                         <div class="form-group col-md-1">
                                             <label for="inputEmail" class="control-label" id="FechaIntervencionL">Fecha de intervención:</label>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <div class="input-group date form-control" id="FechaIntervencionDate" style="border: none;">
-                                                <input id="FechaIntervencion" class="form-control " type="text" value="" name="fechaNacL" default="" data-date="" data-behavior="FechaIntervencion">
+                                                <input id="FechaIntervencion" class="form-control " type="text" value="" name="FechaIntervencion" default="" data-date="" data-behavior="FechaIntervencion">
                                             <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
                                             </div>    
                                         </div> 
@@ -144,30 +150,35 @@
                                         <div class="form-group col-md-2">
                                            <h4>Vivienda</h4>
                                         </div>
-                                        <div class="form-group col-md-2">
-                                            <label for="inputEmail" class="control-label">Vivienda</label>
-                                        </div>
                                         <div class="form-group col-md-10">
-                                            <table class="table">
-                                                <tr>
-                                                    <td><div class="radio"><label><input type="radio" name="op1" id="p1o1" value="Casa">Casa</label></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op1" id="p1o2" value="Apartamento">Apartamento</label></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op1" id="p1o3" value="Habitación">Habitación</label></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op1" id="p1o4" value="Lote">Lote</label></div></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="radio"><label><input type="radio" name="op2" id="p2o1" value="Propia">Propia</label></div>
-                                                        <div id="OP2o1" style="display:none;">
-                                                            <div class="radio"><label><input type="radio" name="op2o1" id="p2o11" value="Sin deuda">Sin deuda</label></div>
-                                                            <div class="radio"><label><input type="radio" name="op2o1" id="p2o12" value="Con deuda">Con deuda</label></div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="radio"><label><input type="radio" name="op2" id="p2o2" value="Arriendo">Arriendo</label></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op2" id="p2o3" value="Familiar">Familiar</label></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op2" id="p2o4" value="Usufructo">Usufructo</label></div></td>
-                                                </tr>
-                                            </table>                                        
+                                            <div class="radio">
+                                                <label class="col-md-3"><input type="radio" name="op1" id="p1o1" value="Casa">Casa</label>
+                                                <label class="col-md-3"><input type="radio" name="op1" id="p1o2" value="Apartamento">Apartamento</label>
+                                                <label class="col-md-3"><input type="radio" name="op1" id="p1o3" value="Habitación">Habitación</label>
+                                                <label class="col-md-3"><input type="radio" name="op1" id="p1o4" value="Lote">Lote</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">                  
+                                    <div class="form-group col-md-2"></div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-2"></div>
+                                        <div class="form-group col-md-10">
+                                            <div class="radio">
+                                                <label class="col-md-3"><input type="radio" name="op2" id="p2o1" value="Propia">Propia</label>
+                                                <label class="col-md-3"><input type="radio" name="op2" id="p2o2" value="Arriendo">Arriendo</label>
+                                                <label class="col-md-3"><input type="radio" name="op2" id="p2o3" value="Familiar">Familiar</label>
+                                                <label class="col-md-3"><input type="radio" name="op2" id="p2o4" value="Usufructo">Usufructo</label>
+                                            </div>                                                                        
+                                        </div>                                        
+                                    </div>
+                                    <div class="row" id="OP2o1" style="display:none;">
+                                        <div class="form-group col-md-2"></div>
+                                        <div class="form-group col-md-10">                                               
+                                            <div class="radio"><label><input type="radio" name="op2o1" id="p2o11" value="Sin deuda">Sin deuda</label></div>
+                                            <div class="radio"><label><input type="radio" name="op2o1" id="p2o12" value="Con deuda">Con deuda</label></div>
                                         </div>                                        
                                     </div>
                                  </li>
@@ -192,14 +203,12 @@
                                             <label for="inputEmail" class="control-label">Material de la construcción</label>
                                         </div>
                                         <div class="form-group col-md-8">
-                                            <table class="table">
-                                                <tr>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op4[]" id="p4o1" value="Bloque o ladrillo">Bloque o ladrillo</label></div></td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op4[]" id="p4o2" value="Madera">Madera</label></div></td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op4[]" id="p4o3" value="Tejas de zinc">Tejas de zinc</label></div> </td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op4[]" id="p4o4" value="Desechable">Desechable</label></div></td>
-                                                </tr>
-                                            </table>
+                                            <div class="radio">
+                                                <label class=" col-md-3"><input type="checkbox" name="op4[]" id="p4o1" value="Bloque o ladrillo">Bloque o ladrillo</label>
+                                                <label class=" col-md-3"><input type="checkbox" name="op4[]" id="p4o2" value="Madera">Madera</label>
+                                                <label class=" col-md-3"><input type="checkbox" name="op4[]" id="p4o3" value="Tejas de zinc">Tejas de zinc</label>
+                                                <label class=" col-md-3"><input type="checkbox" name="op4[]" id="p4o4" value="Desechable">Desechable</label>
+                                            </div>
                                         </div>                                        
                                     </div>
                                 </li>
@@ -212,12 +221,11 @@
                                             <label for="inputEmail" class="control-label">Material de la construcción pisos</label>
                                         </div>
                                         <div class="form-group col-md-8">
-                                            <table class="table">
-                                                <tr>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op5[]" id="p5o1" value="Cemento">Cemento</label></div></td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op5[]" id="p5o2" value="Cerámica">Cerámica</la<bel></div></td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op5[]" id="p5o3" value="Tierra">Tierra</label></div></td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op5[]" id="p5o4" value="Madera">Madera</label></div></td>
+                                            <div class="radio">
+                                                <label class="col-md-3"><input type="checkbox" name="op5[]" id="p5o1" value="Cemento">Cemento</label>
+                                                <label class="col-md-3"><input type="checkbox" name="op5[]" id="p5o2" value="Cerámica">Cerámica</label class="col-md-3">
+                                                <label class="col-md-3"><input type="checkbox" name="op5[]" id="p5o3" value="Tierra">Tierra</label class="col-md-3">
+                                                <label class="col-md-3"><input type="checkbox" name="op5[]" id="p5o4" value="Madera">Madera</label></div></td>
                                                 </tr>
                                             </table>
                                         </div>                                        
@@ -232,29 +240,23 @@
                                             <label for="inputEmail" class="control-label">Servicios</label>
                                         </div>
                                         <div class="form-group col-md-8">
-                                            <table class="table">
-                                                <tr>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op6[]" id="p6o1" value="Agua">Agua</label></div></td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op6[]" id="p6o2" value="Energía">Energía</la<bel></div></td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op6[]" id="p6o3" value="Teléfono">Teléfono</label></div></td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op6[]" id="p6o4" value="Alcantarillado">Alcantarillado</label></div></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="radio"><label><input type="checkbox" name="op6[]" id="p6o5" value="Gas">Gas</label></div>
-                                                        <div class="col-md-8">
-                                                            <div class="radio" id="" style="display:none;">
-                                                                <label><input type="radio" name="op6o5" id="p6o11" value="Natural">Natural</label>&nbsp;&nbsp;&nbsp;
-                                                                <label><input type="radio" name="op6o5" id="p6o12" value="Propano">Propano</label>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op6[]" id="p6o6" value="Otros">Otros</label></div></td>
-                                                    <td id="OP6o6">
-                                                        <input class="form-control" placeholder="Otro" type="text" name="otro6o6" id="otro6o6">
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                            <div class="radio">
+                                                <label class="col-md-3"><input type="checkbox" name="op6[]" id="p6o1" value="Agua">Agua</label>
+                                                <label class="col-md-3"><input type="checkbox" name="op6[]" id="p6o2" value="Energía">Energía</label>
+                                                <label class="col-md-3"><input type="checkbox" name="op6[]" id="p6o3" value="Teléfono">Teléfono</label>
+                                                <label class="col-md-3"><input type="checkbox" name="op6[]" id="p6o4" value="Alcantarillado">Alcantarillado</label>
+                                            </div>
+                                            <div class="radio">
+                                                <label class="col-md-3"><input type="checkbox" name="op6[]" id="p6o5" value="Gas">Gas</label>
+                                                <div class="col-md-3" id="OP6o5" style="display:none;">
+                                                    <label><input type="radio" name="op6o5" id="p6o11" value="Natural">Natural</label>
+                                                    <label><input type="radio" name="op6o5" id="p6o12" value="Propano">Propano</label>
+                                                </div>
+                                                <label class="col-md-3"><input type="checkbox" name="op6[]" id="p6o6" value="Otros">Otros</label>
+                                                <div class="col-md-3" id="OP6o6" style="display:none;">
+                                                    <input class="form-control" placeholder="Otro" type="text" name="otro6o6" id="otro6o6">
+                                                </div>
+                                            </div>
                                         </div>                                        
                                     </div>
                                 </li>
@@ -374,14 +376,12 @@
                                             <label for="inputEmail" class="control-label">Problematicas</label>
                                         </div>
                                         <div class="form-group col-md-8">
-                                            <table class="table">
-                                                <tr>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op7[]" id="p7o1" value="Delincuencia">Delincuencia</label></div></td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op7[]" id="p7o2" value="Pandillas">Pandillas</la<bel></div></td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op7[]" id="p7o3" value="Drogadicción">Drogadicción</label></div></td>
-                                                    <td><div class="radio"><label><input type="checkbox" name="op7[]" id="p7o4" value="Prostitución">Prostitución</label></div></td>
-                                                </tr>
-                                            </table>
+                                            <div class="radio">
+                                                <label class="col-md-3"><input type="checkbox" name="op7[]" id="p7o1" value="Delincuencia">Delincuencia</label>
+                                                <label class="col-md-3"><input type="checkbox" name="op7[]" id="p7o2" value="Pandillas">Pandillas</label>
+                                                <label class="col-md-3"><input type="checkbox" name="op7[]" id="p7o3" value="Drogadicción">Drogadicción</label>
+                                                <label class="col-md-3"><input type="checkbox" name="op7[]" id="p7o4" value="Prostitución">Prostitución</label>
+                                            </div>
                                         </div>                                        
                                     </div>
                                 </li>  
@@ -397,7 +397,7 @@
                                             <table class="table">
                                                 <tr>
                                                     <td><div class="radio"><label><input type="radio" name="op8" id="p8o1" value="Adecuado">Adecuado</label></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op8" id="p8o2" value="Medianamente adecuado">Medianamente adecuado</la<bel></div></td>
+                                                    <td><div class="radio"><label><input type="radio" name="op8" id="p8o2" value="Medianamente adecuado">Medianamente adecuado</label></div></td>
                                                     <td><div class="radio"><label><input type="radio" name="op8" id="p8o3" value="Inadecuado">Inadecuado</label></div></td>                                                    
                                                 </tr>
                                             </table>
@@ -410,7 +410,7 @@
                                             <table class="table">
                                                 <tr>
                                                     <td><div class="radio"><label><input type="radio" name="op9" id="p9o1" value="Adecuado">Adecuado</label></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op9" id="p9o2" value="Medianamente adecuado">Medianamente adecuado</la<bel></div></td>
+                                                    <td><div class="radio"><label><input type="radio" name="op9" id="p9o2" value="Medianamente adecuado">Medianamente adecuado</label></div></td>
                                                     <td><div class="radio"><label><input type="radio" name="op9" id="p9o3" value="Inadecuado">Inadecuado</label></div></td>                                                    
                                                 </tr>
                                             </table>
@@ -424,7 +424,7 @@
                                             <table class="table">
                                                 <tr>
                                                     <td><div class="radio"><label><input type="radio" name="op10" id="p10o1" value="Adecuado">Adecuado</label></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op10" id="p10o2" value="Medianamente adecuado">Medianamente adecuado</la<bel></div></td>
+                                                    <td><div class="radio"><label><input type="radio" name="op10" id="p10o2" value="Medianamente adecuado">Medianamente adecuado</label></div></td>
                                                     <td><div class="radio"><label><input type="radio" name="op10" id="p10o3" value="Inadecuado">Inadecuado</label></div></td>                                                    
                                                 </tr>
                                             </table>
@@ -438,7 +438,7 @@
                                             <table class="table">
                                                 <tr>
                                                     <td><div class="radio"><label><input type="radio" name="op11" id="p11o1" value="Adecuado">Adecuado</label></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op11" id="p11o2" value="Medianamente adecuado">Medianamente adecuado</la<bel></div></td>
+                                                    <td><div class="radio"><label><input type="radio" name="op11" id="p11o2" value="Medianamente adecuado">Medianamente adecuado</label></div></td>
                                                     <td><div class="radio"><label><input type="radio" name="op11" id="p11o3" value="Inadecuado">Inadecuado</label></div></td>                                                    
                                                 </tr>
                                             </table>
@@ -457,7 +457,7 @@
                                             <table class="table">
                                                 <tr>
                                                     <td><div class="radio"><label><input type="radio" name="op12" id="p12o1" value="Obra blanca">Obra blanca</label></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op12" id="p12o2" value="Obra girs">Obra gris</la<bel></div></td>
+                                                    <td><div class="radio"><label><input type="radio" name="op12" id="p12o2" value="Obra girs">Obra gris</label></div></td>
                                                     <td><div class="radio"><label><input type="radio" name="op12" id="p12o3" value="Obra negra">Obra negra</label></div></td>                                                    
                                                 </tr>
                                             </table>
@@ -466,18 +466,18 @@
                                 </li>   
                             </ul>                            
                         </div>
-                        <!-- ---------------------------PASO 3--------------------------- -->
+                        <!-- ---------------------------PASO 4--------------------------- -->
                         <div class="panel">                            
                             <div class="panel-heading">                
                                 <div class="bs-callout bs-callout-info">                    
                                     <span class="glyphicon glyphicon-heart-empty " aria-hidden="true"></span>
                                     <label><p>SALUD FAMILIAR</p></label>                         
-                                    <span data-role="ver" id="seccion_tres_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
+                                    <span data-role="ver" id="seccion_cuatro_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
                                 </div>
                             </div>                 
-                            <ul class="list-group" id="seccion_tres" name="seccion_tres">
-                               <li class="list-group-item">
-                                <div class="row">
+                            <ul class="list-group" id="seccion_cuatro" name="seccion_cuatro">
+                               <li class="list-group-item" id="MiembrosLi">
+                                <div class="row" id="Li1">
                                         <div class="form-group col-md-2">
                                             <label for="inputEmail" class="control-label">Miembro de la familia afiliado a salud</label>
                                         </div>
@@ -492,7 +492,7 @@
                                             <input class="form-control" placeholder="Nombre el régimen subsidiado" type="text" name="NombreSubsidiado" id="NombreSubsidiado">
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row"  id="Li2">
                                         <div class="form-group col-md-2">
                                             <label for="inputEmail" class="control-label">Régimen contributivo</label>
                                         </div>
@@ -525,53 +525,51 @@
                                         <div class="form-group col-md-12">
                                             <center><button type="button" class="btn btn-info" name="Add_Salud" id="Add_Salud">Agregar salud familiar</button></center>
                                         </div>                                    
-                                        <div id="SaludFamiliarT" class="form-group col-md-12">
+                                        <div id="MiembrosT" class="form-group col-md-12">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-12">
-                                            <div class="form-group"  id="mensaje_salud" style="display: none;">
-                                                <div id="alert_salud"></div>
+                                            <div class="form-group"  id="mensaje_miembro" style="display: none;">
+                                                <div id="alert_miembro"></div>
                                             </div>
                                         </div>
                                     </div>
                                </li>
                            </ul>
                        </div>
-                       <!-- ---------------------------PASO  4--------------------------- -->
+                       <!-- ---------------------------PASO  5--------------------------- -->
                         <div class="panel">                            
                             <div class="panel-heading">                
                                 <div class="bs-callout bs-callout-info">                    
                                     <span class="glyphicon glyphicon-usd " aria-hidden="true"></span>
                                     <label><p>ASPECTO ECONÓMICO (Opcional)</p></label>                         
-                                    <span data-role="ver" id="seccion_cuatro_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
+                                    <span data-role="ver" id="seccion_cinco_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
                                 </div>
                             </div>                 
-                            <ul class="list-group" id="seccion_cuatro" name="seccion_cuatro">
+                            <ul class="list-group" id="seccion_cinco" name="seccion_cinco">
                                <li class="list-group-item">
                                     <div class="row">
                                         <div class="form-group col-md-2">
                                             <h4>Ingresos familiares</h4>
                                         </div>
                                         <div class="form-group col-md-7">
-                                            <table class="table">
-                                                <tr>
-                                                    <td><div class="radio"><label><input type="radio" name="op13" id="p13o1" value="Saliario(s)">Saliario(s)</label></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op13" id="p13o2" value="Renta(s)">Renta(s)</la<bel></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op13" id="p13o3" value="Pensión(es)">Pensión(es)</label></div></td>
-                                                    <td><div class="radio"><label><input type="radio" name="op13" id="p13o4" value="Otro">Otro</label></div></td>
-                                                    <td id="OP13o4">
-                                                        <input class="form-control" placeholder="Otro" type="text" name="otro13o4" id="otro13o4">
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                            <div class="radio">
+                                                <label class="col-md-3"><input type="radio" name="op13" id="p13o1" value="Saliario(s)">Saliario(s)</label>
+                                                <label class="col-md-2"><input type="radio" name="op13" id="p13o2" value="Renta(s)">Renta(s)</label>
+                                                <label class="col-md-3"><input type="radio" name="op13" id="p13o3" value="Pensión(es)">Pensión(es)</label>
+                                                <label class="col-md-2"><input type="radio" name="op13" id="p13o4" value="Otro">Otro</label>
+                                                <div class="col-md-2" id="OP13o4" style="display:none;">
+                                                    <input class="form-control" placeholder="Otro" type="text" name="otro13o4" id="otro13o4">
+                                                </div>
+                                            </div>
                                         </div>                                        
                                         <div class="form-group col-md-3">
                                             <div class="form-group col-md-2">                                            
                                                 <label for="inputEmail" class="control-label">Total: $</label>
                                             </div>
                                             <div class="form-group col-md-8">                                            
-                                                <input class="form-control" placeholder="Otro" type="text" name="otro13o4" id="otro13o4">
+                                                <input class="form-control" placeholder="Total de ingresos" type="text" name="TotalIngreso" id="TotalIngreso">
                                             </div>
                                         </div>                                        
                                     </div>
@@ -693,16 +691,16 @@
                                </li>
                            </ul>
                        </div>
-                       <!-- ---------------------------PASO  5--------------------------- -->
+                       <!-- ---------------------------PASO  6--------------------------- -->
                         <div class="panel">                            
                             <div class="panel-heading">                
                                 <div class="bs-callout bs-callout-info">                    
                                     <span class="glyphicon glyphicon-picture " aria-hidden="true"></span>
                                     <label><p>TIEMPO LIBRE/RECREACIÓN</p></label>                         
-                                    <span data-role="ver" id="seccion_cinco_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
+                                    <span data-role="ver" id="seccion_seis_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
                                 </div>
                             </div>                 
-                            <ul class="list-group" id="seccion_cinco" name="seccion_cinco">
+                            <ul class="list-group" id="seccion_seis" name="seccion_seis">
                                <li class="list-group-item">
                                     <div class="row">
                                         <div class="form-group col-md-12">
@@ -767,16 +765,16 @@
                                </li>
                            </ul>
                        </div>  
-                       <!-- ---------------------------PASO  6--------------------------- -->
+                       <!-- ---------------------------PASO  7--------------------------- -->
                         <div class="panel">                            
                             <div class="panel-heading">                
                                 <div class="bs-callout bs-callout-info">                    
                                     <span class="glyphicon glyphicon-heart " aria-hidden="true"></span>
                                     <label><p>RELACIONES FAMILIARES</p></label>                         
-                                    <span data-role="ver" id="seccion_seis_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
+                                    <span data-role="ver" id="seccion_siete_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
                                 </div>
                             </div>                 
-                            <ul class="list-group" id="seccion_seis" name="seccion_seis">
+                            <ul class="list-group" id="seccion_siete" name="seccion_siete">
                                <li class="list-group-item">     
                                     <div class="row">
                                         <div class="form-group col-md-12">
@@ -829,16 +827,16 @@
                                </li>
                            </ul>
                        </div>
-                       <!-- ---------------------------PASO  7--------------------------- -->
+                       <!-- ---------------------------PASO  8--------------------------- -->
                         <div class="panel">                            
                             <div class="panel-heading">                
                                 <div class="bs-callout bs-callout-info">                    
                                     <span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span>
                                     <label><p>CONCEPTO PROFESIONAL</p></label>                         
-                                    <span data-role="ver" id="seccion_siete_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
+                                    <span data-role="ver" id="seccion_ocho_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
                                 </div>
                             </div>                 
-                            <ul class="list-group" id="seccion_siete" name="seccion_siete">
+                            <ul class="list-group" id="seccion_ocho" name="seccion_ocho">
                                <li class="list-group-item">     
                                     <div class="row">
                                         <div class="form-group col-md-12">
@@ -852,7 +850,18 @@
                            </ul>
                        </div>
                     </div>
+                    <!-- ----------------------BOTONERA------------------- -->
+                    <div id="Botonera" >
+                        <center>
+                            <button type="button" class="btn btn-primary" name="Enviar" id="Registrar">Registrar vista domiciliaria</button>
+                        </center>
+                    </div>
+                    <!-- ----------------------FIN DE BOTONERA------------------- -->
+                    <br><br><br><br><br> 
                 </div>
+            </div>
+            <div class="form-group"  id="mensaje_actividad" style="display: none;">
+                <div id="alert_actividad"></div>
             </div>
         </form>
     </div>

@@ -59,6 +59,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	/****Visitia domiciliaria****/
 	Route::get('domicilio','VisitaController@index');
+	Route::post('AddVisita', 'VisitaController@RegistrarVisita');
 	/*************************************************/
 
 	/********************Tecnico****************************/

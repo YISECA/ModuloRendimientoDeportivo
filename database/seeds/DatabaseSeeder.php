@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
          $this->call(Club::class);
          $this->call(TipoEtapa::class);
          $this->call(Etapa::class);
+         $this->call(TipoActividad::class);
     }
 }

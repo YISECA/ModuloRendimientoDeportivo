@@ -61,6 +61,14 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('domicilio','VisitaController@index');
 	/*************************************************/
 
+	/****Actividades de intervención****/
+	Route::get('actividad','ActividadController@index');	
+	Route::post('AddActividad', 'ActividadController@RegistrarActividad');
+	Route::post('EditActividad', 'ActividadController@ModificarActividad');	
+	Route::get('TraeActividad/{id}','ActividadController@ActividadTraer');		
+
+	/*************************************************/
+
 	/********************Tecnico****************************/
 	Route::get('configuracion','configuracion@inicio');
 	Route::post('configuracion/crear','configuracion@guardar');

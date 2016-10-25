@@ -176,7 +176,7 @@ $(function(e){
   }
 
 });
-/*
+
 $(document).ready(function () {
     TablaActividades();
 });
@@ -192,4 +192,4 @@ function TablaActividades() {
             searchPlaceholder: "Buscar"
         }
     });
-}*/
+}

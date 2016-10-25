@@ -9,9 +9,7 @@
 @section('content')
 <!-- ------------------------------------------------------------------------------------ -->
 <center><h3>VALORACIÓN PSICOSOCIAL</h3></center>
- <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"/>
- <input type="hidden" name="persona" id="persona" value=""/>
- <input type="hidden" name="deportista" id="deportista" value=""/>
+ <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"/> 
     <div id="main_persona" class="row" data-url="{{ url(config('usuarios.prefijo_ruta')) }}">  
         <div class="content">
             <div class="panel panel-primary">
@@ -51,8 +49,10 @@
             </div>
         </div>
 <!-- ------------------------------------------------------------------------------------ -->
-        <div id="camposRegistro" style="display:none;">
-            <form id="psico" name="psico" class="panel panel-default">
+        <form id="psico" name="psico" >
+            <div id="camposRegistro" style="display:none;">
+                <input type="hidden" name="persona" id="persona" value=""/>
+                <input type="hidden" name="deportista" id="deportista" value=""/>
                 <div class="content">
                     <div class="content">
                         <div style="text-align:center;">
@@ -63,7 +63,6 @@
                             <div class="panel-heading">                
                                 <div class="bs-callout bs-callout-info">                    
                                     <span class="glyphicon glyphicon-user " aria-hidden="true"></span>
-                                    <!--<label><h4>SECCIÓN UNO:</h4></label>-->
                                     <label><p>DATOS DE IDENTIFICACIÓN</p></label>                         
                                     <span data-role="ver" id="seccion_uno_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
                                 </div>
@@ -85,8 +84,6 @@
                                         </div>
                                     </div>
                                     <br>
-                                <!--</li>
-                                <li class="list-group-item">-->
                                     <div class="row">
                                         <div class="form-group col-md-2">
                                             <label for="inputEmail" class="control-label" id="fechaNacL" >Fecha nacimiento:</label>
@@ -237,6 +234,7 @@
                                             <label for="inputEmail" class="control-label" id="LibretaPregL" >Situación militar resuelta:</label>
                                         </div>
                                         <div class="form-group col-md-4">
+                                            <input type="hidden" value="" name="lp" id="lp" >
                                             <select name="LibretaPreg" id="LibretaPreg" class="form-control">
                                                 <option value="">Seleccionar</option>                  
                                                 <option value="1">Si</option>                  
@@ -396,16 +394,16 @@
                                         <label for="inputEmail" class="control-label">4. Con quién vive actualmente? <small>(Puede marcar más de una opción)</small></label>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <div class="radio"><label><input type="checkbox" name="op4" id="p4o1" value="Madre">Madre</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op4" id="p4o2" value="Padre">Padre</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op4" id="p4o3" value="Hermano(s)">Hermano(s)</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op4" id="p4o4" value="Hermana(s)">Hermana(s)</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op4" id="p4o5" value="Abuel@s">Abuel@s</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op4" id="p4o6" value="Amig@s">Amig@s</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op4" id="p4o7" value="Pareja">Pareja</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op4" id="p4o8" value="Hijos">Hijos</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op4" id="p4o9" value="Solo">Solo</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op4" id="p4o10" value="Otros">Otros</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op4[]" id="p4o1" value="Madre">Madre</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op4[]" id="p4o2" value="Padre">Padre</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op4[]" id="p4o3" value="Hermano(s)">Hermano(s)</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op4[]" id="p4o4" value="Hermana(s)">Hermana(s)</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op4[]" id="p4o5" value="Abuel@s">Abuel@s</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op4[]" id="p4o6" value="Amig@s">Amig@s</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op4[]" id="p4o7" value="Pareja">Pareja</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op4[]" id="p4o8" value="Hijos">Hijos</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op4[]" id="p4o9" value="Solo">Solo</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op4[]" id="p4o10" value="Otros">Otros</label></div>
                                         <div id="porqueOP4" style="display:none;">
                                             <label for="inputEmail" class="control-label">Otros:</label>
                                             <textarea class="form-control" placeholder="Otros" type="text" name="otro4" id="otro4"></textarea>
@@ -439,12 +437,12 @@
                                         <label for="inputEmail" class="control-label">7. La responsabilidades familiares <small>(ej. Cuidado hermanos, limpieza hogar, etc)</small> recaen:</label>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <div class="radio"><label><input type="checkbox" name="op7" id="p7o1" value="Atleta">Atleta</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op7" id="p7o2" value="Madre">Madre</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op7" id="p7o3" value="Padre">Padre</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op7" id="p7o4" value="Pareja">Pareja</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op7" id="p7o5" value="Otros miembros de la familia">Otros miembros de la familia</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op7" id="p7o6" value="Empleada">Empleada</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op7[]" id="p7o1" value="Atleta">Atleta</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op7[]" id="p7o2" value="Madre">Madre</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op7[]" id="p7o3" value="Padre">Padre</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op7[]" id="p7o4" value="Pareja">Pareja</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op7[]" id="p7o5" value="Otros miembros de la familia">Otros miembros de la familia</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op7[]" id="p7o6" value="Empleada">Empleada</label></div>
                                     </div>
                                 </div>
                            </li>
@@ -634,7 +632,54 @@
                                     <div class="form-group col-md-12">
                                         <label for="inputEmail" class="control-label">18. Especifique los idiomas diferentes al español que: habla, lee, escribe de forma Regular(R), Bien (B) o Muy Bien (MB)</label>
                                     </div>
-                                    <div class="form-group col-md-14">                                        
+                                    <div class="form-group col-md-14">    
+                                        <table class="table">
+                                            <th>IDIOMA</th>
+                                            <th>HABLA</th>
+                                            <th>LEE</th>
+                                            <th>ESCRIBE</th>
+                                            <th>ACCIÓN</th>
+                                            <tr>
+                                                <td>
+                                                    <input class="form-control" placeholder="Idioma" type="text" name="Idioma" id="Idioma">
+                                                </td>
+                                                <td>
+                                                    <select name="Habla" id="Habla" class="form-control">
+                                                        <option value="">Seleccionar</option>
+                                                        <option value="1">Muy Bien (MB)</option>
+                                                        <option value="2">Bien (B)"</option>
+                                                        <option value="3">Regular (R)</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="Lee" id="Lee" class="form-control">
+                                                        <option value="">Seleccionar</option>
+                                                        <option value="1">Muy Bien (MB)</option>
+                                                        <option value="2">Bien (B)"</option>
+                                                        <option value="3">Regular (R)</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="Escribe" id="Escribe" class="form-control">
+                                                        <option value="">Seleccionar</option>
+                                                        <option value="1">Muy Bien (MB)</option>
+                                                        <option value="2">Bien (B)"</option>
+                                                        <option value="3">Regular (R)</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info" name="Add_Idioma" id="Add_Idioma">Agregar Idioma</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group"  id="mensaje_idioma" style="display: none;">
+                                                        <div id="alert_idioma"></div>
+                                                    </div>
+                                                </td>                                            
+                                            </tr>
+                                        </table>
+                                        <center><div id="IdiomasT" class="form-group col-md-10"></div></center>
                                     </div>
                                 </div>
                            </li>
@@ -808,72 +853,159 @@
                                     <div class="form-group col-md-12">
                                         <label for="inputEmail" class="control-label">28. Sus relaciones personales son:</label>
                                     </div>
-                                    <div class="form-group col-md-12">
-                                        <table class="table form-group col-md-12">
-                                            <th>Vinculo</th>
-                                            <th>BUENA</th>
-                                            <th>REGULAR</th>
-                                            <th>MALA</th>
-                                            <th>CAUSA</th>
-                                            <tr>
-                                                <td>MADRE</td>
-                                                <td><input type="radio" name="op281" id="p281o1" value="Buena"></td>
-                                                <td><input type="radio" name="op281" id="p281o2" value="Regular"></td>
-                                                <td><input type="radio" name="op281" id="p281o3" value="Mala"></td>
-                                                <td><textarea class="form-control" placeholder="Causa" type="text" name="p281o4" id="p281o4"></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td>PADRE</td>
-                                                <td><input type="radio" name="op282" id="p282o1" value="Buena"></td>
-                                                <td><input type="radio" name="op282" id="p282o2" value="Regular"></td>
-                                                <td><input type="radio" name="op282" id="p282o3" value="Mala"></td>
-                                                <td><textarea class="form-control" placeholder="Causa" type="text" name="p282o4" id="p282o4"></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td>HERMANOS(AS)</td>
-                                                <td><input type="radio" name="op283" id="p283o1" value="Buena"></td>
-                                                <td><input type="radio" name="op283" id="p283o2" value="Regular"></td>
-                                                <td><input type="radio" name="op283" id="p283o3" value="Mala"></td>
-                                                <td><textarea class="form-control" placeholder="Causa" type="text" name="p283o4" id="p283o4"></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td>PAREJA/NOVIO(A)</td>
-                                                <td><input type="radio" name="op284" id="p284o1" value="Buena"></td>
-                                                <td><input type="radio" name="op284" id="p284o2" value="Regular"></td>
-                                                <td><input type="radio" name="op284" id="p284o3" value="Mala"></td>
-                                                <td><textarea class="form-control" placeholder="Causa" type="text" name="p284o4" id="p284o4"></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td>ENTRENADOR(A)</td>
-                                                <td><input type="radio" name="op285" id="p285o1" value="Buena"></td>
-                                                <td><input type="radio" name="op285" id="p285o2" value="Regular"></td>
-                                                <td><input type="radio" name="op285" id="p285o3" value="Mala"></td>
-                                                <td><textarea class="form-control" placeholder="Causa" type="text" name="p285o4" id="p285o4"></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td>COMPAÑEROS DE EQUIPO</td>
-                                                <td><input type="radio" name="op286" id="p286o1" value="Buena"></td>
-                                                <td><input type="radio" name="op286" id="p286o2" value="Regular"></td>
-                                                <td><input type="radio" name="op286" id="p286o3" value="Mala"></td>
-                                                <td><textarea class="form-control" placeholder="Causa" type="text" name="p286o4" id="p286o4"></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td>AMIGOS</td>
-                                                <td><input type="radio" name="op287" id="p281o7" value="Buena"></td>
-                                                <td><input type="radio" name="op287" id="p281o7" value="Regular"></td>
-                                                <td><input type="radio" name="op287" id="p281o7" value="Mala"></td>
-                                                <td><textarea class="form-control" placeholder="Causa" type="text" name="p287o4" id="p287o4"></textarea></td>
-                                            </tr>
-                                            <tr>
-                                                <td>EQUIPO MULTIDISCIPLINARIO</td>
-                                                <td><input type="radio" name="op288" id="p288o1" value="Buena"></td>
-                                                <td><input type="radio" name="op288" id="p288o2" value="Regular"></td>
-                                                <td><input type="radio" name="op288" id="p288o3" value="Mala"></td>
-                                                <td><textarea class="form-control" placeholder="Causa" type="text" name="p288o4" id="p288o4"></textarea></td>
-                                            </tr>
-                                        </table>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">MADRE</label>
                                     </div>
-                               </div>
+                                    <div class="form-group col-md-10">
+                                        <div class="radio">
+                                            <table class="table">
+                                                <tr>                                                    
+                                                    <td>
+                                                        <label><input type="radio" name="op281" id="p281o1" value="Buena">Buena</label>&nbsp;
+                                                        <label><input type="radio" name="op281" id="p281o2" value="Regular">Regular</label>&nbsp;
+                                                        <label><input type="radio" name="op281" id="p281o3" value="Mala">Mala</label>&nbsp;
+                                                    </td>
+                                                    <td>                                                    
+                                                        <textarea class="form-control" placeholder="Causa" type="text" name="otro281" id="otro281"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">PADRE</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <div class="radio">
+                                            <table class="table">
+                                                <tr>                                                    
+                                                    <td>
+                                                        <label><input type="radio" name="op282" id="p282o1" value="Buena">Buena</label>&nbsp;
+                                                        <label><input type="radio" name="op282" id="p282o2" value="Regular">Regular</label>&nbsp;
+                                                        <label><input type="radio" name="op282" id="p282o3" value="Mala">Mala</label>&nbsp;
+                                                    </td>
+                                                    <td>                                                    
+                                                        <textarea class="form-control" placeholder="Causa" type="text" name="otro282" id="otro282"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">HERMANOS(AS)</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <div class="radio">
+                                            <table class="table">
+                                                <tr>                                                    
+                                                    <td>
+                                                        <label><input type="radio" name="op283" id="p283o1" value="Buena">Buena</label>&nbsp;
+                                                        <label><input type="radio" name="op283" id="p283o2" value="Regular">Regular</label>&nbsp;
+                                                        <label><input type="radio" name="op283" id="p283o3" value="Mala">Mala</label>&nbsp;
+                                                    </td>
+                                                    <td>                                                    
+                                                        <textarea class="form-control" placeholder="Causa" type="text" name="otro283" id="otro283"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">PAREJA/NOVIO(A)</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <div class="radio">
+                                            <table class="table">
+                                                <tr>                                                    
+                                                    <td>
+                                                        <label><input type="radio" name="op284" id="p284o1" value="Buena">Buena</label>&nbsp;
+                                                        <label><input type="radio" name="op284" id="p284o2" value="Regular">Regular</label>&nbsp;
+                                                        <label><input type="radio" name="op284" id="p284o3" value="Mala">Mala</label>&nbsp;
+                                                    </td>
+                                                    <td>                                                    
+                                                        <textarea class="form-control" placeholder="Causa" type="text" name="otro284" id="otro284"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">ENTRENADOR(A)</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <div class="radio">
+                                            <table class="table">
+                                                <tr>                                                    
+                                                    <td>
+                                                        <label><input type="radio" name="op285" id="p285o1" value="Buena">Buena</label>&nbsp;
+                                                        <label><input type="radio" name="op285" id="p285o2" value="Regular">Regular</label>&nbsp;
+                                                        <label><input type="radio" name="op285" id="p285o3" value="Mala">Mala</label>&nbsp;
+                                                    </td>
+                                                    <td>                                                    
+                                                        <textarea class="form-control" placeholder="Causa" type="text" name="otro285" id="otro285"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">COMPAÑEROS DE EQUIPO</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <div class="radio">
+                                            <table class="table">
+                                                <tr>                                                    
+                                                    <td>
+                                                        <label><input type="radio" name="op286" id="p286o1" value="Buena">Buena</label>&nbsp;
+                                                        <label><input type="radio" name="op286" id="p286o2" value="Regular">Regular</label>&nbsp;
+                                                        <label><input type="radio" name="op286" id="p286o3" value="Mala">Mala</label>&nbsp;
+                                                    </td>
+                                                    <td>                                                    
+                                                        <textarea class="form-control" placeholder="Causa" type="text" name="otro286" id="otro286"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">AMIGOS</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <div class="radio">
+                                            <table class="table">
+                                                <tr>                                                    
+                                                    <td>
+                                                        <label><input type="radio" name="op287" id="p287o1" value="Buena">Buena</label>&nbsp;
+                                                        <label><input type="radio" name="op287" id="p287o2" value="Regular">Regular</label>&nbsp;
+                                                        <label><input type="radio" name="op287" id="p287o3" value="Mala">Mala</label>&nbsp;
+                                                    </td>
+                                                    <td>                                                    
+                                                        <textarea class="form-control" placeholder="Causa" type="text" name="otro287" id="otro287"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">EQUIPO MULTIDISCIPLINARIO</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <div class="radio">
+                                            <table class="table">
+                                                <tr>                                                    
+                                                    <td>
+                                                        <label><input type="radio" name="op288" id="p288o1" value="Buena">Buena</label>&nbsp;
+                                                        <label><input type="radio" name="op288" id="p288o2" value="Regular">Regular</label>&nbsp;
+                                                        <label><input type="radio" name="op288" id="p288o3" value="Mala">Mala</label>&nbsp;
+                                                    </td>
+                                                    <td>                                                    
+                                                        <textarea class="form-control" placeholder="Causa" type="text" name="otro288" id="otro288"></textarea>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>                                        
+                                    </div>
+                                </div>
                            </li>
                            <li class="list-group-item">   
                                <div class="row">
@@ -888,13 +1020,29 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <table class="table form-group col-md-12">
-                                            <th>DE QUIENES</th>
+                                            <th>DE QUIENES?</th>
                                             <th>EXPLIQUE</th>
+                                            <th>ACCIÓN</th>
                                             <tr>
-                                                <td>EJM</td>
-                                                <td>EJM</td>
+                                                <td>
+                                                    <input class="form-control" placeholder="¿De quienes?" type="text" name="Quien29" id="Quien29">
+                                                </td>
+                                                <td>
+                                                   <textarea class="form-control" placeholder="¿Explique?" type="text" name="Razon29" id="Razon29"></textarea>
+                                                </td>                                                
+                                                <td>
+                                                    <button type="button" class="btn btn-info" name="Add_Idioma" id="Add_Quien">Agregar persona</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group"  id="mensaje_quien" style="display: none;">
+                                                        <div id="alert_quien"></div>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         </table>
+                                        <center><div id="QuienT" class="form-group col-md-10"></div></center>
                                     </div>
                                 </div>
                             </li>
@@ -934,96 +1082,140 @@
                                             Finalmente, ¿cúal es la prioridad que tiene cada ámbito en su vida?. Seleccione Baja, Mediana o Alta
                                         </label>
                                     </div>
-                                    <div class="form-group col-md-12">
-                                        <table class="table form-group col-md-12">
-                                            <th>ACTIVIDAD</th>
+                                    <div class="form-group col-md-2"></div>
+                                    <div class="form-group col-md-10">
+                                        <table class="table">
                                             <th>INTENSIDAD HORARIA SEMANAL</th>
                                             <th>PRIORIDAD</th>
-                                            <tr>
-                                                <td>Deporte</td>
-                                                <td><input class="form-control"  type="text" name="op311" id="op311"></td>
+                                        </table>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">Deporte</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <table class="table">
+                                            <tr>                                                    
                                                 <td>
-                                                    <select name="op312" id="op312" class="form-control">
+                                                    <input class="form-control"  type="text" name="op311a" id="op311a">
+                                                </td>
+                                                <td>                                                    
+                                                    <select name="op311b" id="op311b" class="form-control">
                                                         <option value="">Seleccionar</option>
-                                                        <option value="Buena">Buena</option>
-                                                        <option value="Mediana">Mediana</option>
-                                                        <option value="Alta">Alta</option>                                                        
+                                                        <option value="1">Alta</option>
+                                                        <option value="2">Mediana</option>
+                                                        <option value="3">Baja</option>                                                        
                                                     </select>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Estudios</td>
-                                                <td><input class="form-control"  type="text" name="op311" id="op311"></td>
+                                        </table>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">Estudios</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <table class="table">
+                                            <tr>                                                    
+                                                <td><input class="form-control"  type="text" name="op312a" id="op312a"></td>
                                                 <td>
-                                                    <select name="op313" id="op313" class="form-control">
+                                                    <select name="op312b" id="op312b" class="form-control">
                                                         <option value="">Seleccionar</option>
-                                                        <option value="Buena">Buena</option>
-                                                        <option value="Mediana">Mediana</option>
-                                                        <option value="Alta">Alta</option>                                                        
+                                                        <option value="1">Alta</option>
+                                                        <option value="2">Mediana</option>
+                                                        <option value="3">Baja</option>                                                        
                                                     </select>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Trabajo</td>
-                                                <td><input class="form-control"  type="text" name="op311" id="op311"></td>
+                                        </table>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">Trabajo</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <table class="table">
+                                            <tr>                                                    
+                                                <td><input class="form-control"  type="text" name="op313a" id="op313a"></td>
                                                 <td>
-                                                    <select name="op314" id="op314" class="form-control">
+                                                    <select name="op313b" id="op313b" class="form-control">
                                                         <option value="">Seleccionar</option>
-                                                        <option value="Buena">Buena</option>
-                                                        <option value="Mediana">Mediana</option>
-                                                        <option value="Alta">Alta</option>                                                        
+                                                        <option value="1">Alta</option>
+                                                        <option value="2">Mediana</option>
+                                                        <option value="3">Baja</option>                                                        
                                                     </select>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Familia</td>
-                                                <td><input class="form-control"  type="text" name="op311" id="op311"></td>
+                                        </table>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">Familia</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <table class="table">
+                                            <tr>                                                    
+                                                <td><input class="form-control"  type="text" name="op314a" id="op314a"></td>
                                                 <td>
-                                                    <select name="op315" id="op315" class="form-control">
+                                                    <select name="op314b" id="op314b" class="form-control">
                                                         <option value="">Seleccionar</option>
-                                                        <option value="Buena">Buena</option>
-                                                        <option value="Mediana">Mediana</option>
-                                                        <option value="Alta">Alta</option>                                                        
+                                                        <option value="1">Alta</option>
+                                                        <option value="2">Mediana</option>
+                                                        <option value="3">Baja</option>                                                        
                                                     </select>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Pareja</td>
-                                                <td><input class="form-control"  type="text" name="op311" id="op311"></td>
+                                        </table>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">Pareja</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <table class="table">
+                                            <tr>                                                    
+                                                <td><input class="form-control"  type="text" name="op315a" id="op315a"></td>
                                                 <td>
-                                                    <select name="op316" id="op316" class="form-control">
+                                                    <select name="op315b" id="op315b" class="form-control">
                                                         <option value="">Seleccionar</option>
-                                                        <option value="Buena">Buena</option>
-                                                        <option value="Mediana">Mediana</option>
-                                                        <option value="Alta">Alta</option>                                                        
+                                                        <option value="1">Alta</option>
+                                                        <option value="2">Mediana</option>
+                                                        <option value="3">Baja</option>                                                        
                                                     </select>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Amigos</td>
-                                                <td><input class="form-control"  type="text" name="op311" id="op311"></td>
+                                        </table>                                        
+                                    </div>
+                                     <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">Amigos</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <table class="table">
+                                            <tr>                                                    
+                                                <td><input class="form-control"  type="text" name="op316a" id="op316a"></td>
                                                 <td>
-                                                    <select name="op317" id="op317" class="form-control">
+                                                    <select name="op316b" id="op316b" class="form-control">
                                                         <option value="">Seleccionar</option>
-                                                        <option value="Buena">Buena</option>
-                                                        <option value="Mediana">Mediana</option>
-                                                        <option value="Alta">Alta</option>                                                        
+                                                        <option value="1">Alta</option>
+                                                        <option value="2">Mediana</option>
+                                                        <option value="3">Baja</option>                                                        
                                                     </select>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Recuperación</td>
-                                                <td><input class="form-control"  type="text" name="op311" id="op311"></td>
+                                        </table>                                        
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">Recuperación</label>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <table class="table">
+                                            <tr>                                                    
+                                                <td><input class="form-control"  type="text" name="op317a" id="op317a"></td>
                                                 <td>
-                                                    <select name="op318" id="op318" class="form-control">
+                                                    <select name="op317b" id="op317b" class="form-control">
                                                         <option value="">Seleccionar</option>
-                                                        <option value="Buena">Buena</option>
-                                                        <option value="Mediana">Mediana</option>
-                                                        <option value="Alta">Alta</option>                                                        
+                                                        <option value="1">Alta</option>
+                                                        <option value="2">Mediana</option>
+                                                        <option value="3">Baja</option>                                                        
                                                     </select>
                                                 </td>
                                             </tr>
-                                        </table>
+                                        </table>                                        
                                     </div>
                                 </div>
                             </li>
@@ -1172,17 +1364,17 @@
                                         <label for="inputEmail" class="control-label">41. ¿Cúales serían o son sus motivos de retiro? (Puede señalar más de una opción)</label>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <div class="radio"><label><input type="checkbox" name="op41" id="p41o1" value="Edad">Edad</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op41" id="p41o2" value="Estudios">Estudios</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op41" id="p41o3" value="Trabajo">Trabajo</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op41" id="p41o4" value="Familia">Familia</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op41" id="p41o5" value="Económico">Económico</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op41" id="p41o6" value="Lesiones">Lesiones</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op41" id="p41o7" value="Enfermedades">Enfermedades</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op41" id="p41o8" value="Rendimiento">Rendimiento</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op41" id="p41o9" value="Malas relaciones con el entrenador">Malas relaciones con el entrenador</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op41" id="p41o10" value="Malas relaciones con los compañeros">Malas relaciones con los compañeros</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op41" id="p41o11" value="Otros">Otros</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op41[]" id="p41o1" value="Edad">Edad</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op41[]" id="p41o2" value="Estudios">Estudios</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op41[]" id="p41o3" value="Trabajo">Trabajo</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op41[]" id="p41o4" value="Familia">Familia</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op41[]" id="p41o5" value="Económico">Económico</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op41[]" id="p41o6" value="Lesiones">Lesiones</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op41[]" id="p41o7" value="Enfermedades">Enfermedades</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op41[]" id="p41o8" value="Rendimiento">Rendimiento</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op41[]" id="p41o9" value="Malas relaciones con el entrenador">Malas relaciones con el entrenador</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op41[]" id="p41o10" value="Malas relaciones con los compañeros">Malas relaciones con los compañeros</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op41[]" id="p41o11" value="Otros">Otros</label></div>
                                         <div id="porqueOP41" style="display:none;">
                                             <label for="inputEmail" class="control-label">Otros:</label>
                                             <textarea class="form-control" placeholder="Otros" type="text" name="otro41" id="otro41"></textarea>
@@ -1196,13 +1388,13 @@
                                         <label for="inputEmail" class="control-label">42. ¿Que proyecta hacer cuando finalice su carrera deportiva?</label>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input class="form-control" placeholder="Descripción" type="text" name="op42" id="op42">
+                                        <textarea class="form-control" placeholder="Descripción" type="text" name="op42" id="op42"></textarea>
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label for="inputEmail" class="control-label">43. ¿Que le preocupa de su futuro?</label>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input class="form-control" placeholder="Descripción" type="text" name="op43" id="op43">
+                                        <textarea class="form-control" placeholder="Descripción" type="text" name="op43" id="op43"></textarea>
                                     </div>
                                 </div>
                             </li>
@@ -1212,7 +1404,7 @@
                                         <label for="inputEmail" class="control-label">44. ¿Como ha pensado solucionarlo?</label>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input class="form-control" placeholder="Descripción" type="text" name="op44" id="op44">
+                                        <textarea class="form-control" placeholder="Descripción" type="text" name="op44" id="op44"></textarea>
                                     </div>
                                 </div>
                             </li>
@@ -1257,14 +1449,14 @@
                                         <div class="radio"><label><input type="radio" name="op47" id="p47o1" value="Si">Si</label></div>
                                         <div class="radio"><label><input type="radio" name="op47" id="p47o2" value="No">No</label></div>
                                         <div id="porqueOP47" style="display:none;">
-                                            <div class="radio"><label><input type="checkbox" name="op472" id="p472o1" value="Económica">Económica</label></div>
-                                            <div class="radio"><label><input type="checkbox" name="op472" id="p472o2" value="Personal">Personal</label></div>
-                                            <div class="radio"><label><input type="checkbox" name="op472" id="p472o3" value="Académica">Académica</label></div>
-                                            <div class="radio"><label><input type="checkbox" name="op472" id="p472o4" value="Tiempo">Tiempo</label></div>
-                                            <div class="radio"><label><input type="checkbox" name="op472" id="p472o5" value="Otras">Otras</label></div>
-                                            <div id="porqueOP472o5" style="display:none;">
+                                            <div class="radio"><label><input type="checkbox" name="op472[]" id="p472o1" value="Económica">Económica</label></div>
+                                            <div class="radio"><label><input type="checkbox" name="op472[]" id="p472o2" value="Personal">Personal</label></div>
+                                            <div class="radio"><label><input type="checkbox" name="op472[]" id="p472o3" value="Académica">Académica</label></div>
+                                            <div class="radio"><label><input type="checkbox" name="op472[]" id="p472o4" value="Tiempo">Tiempo</label></div>
+                                            <div class="radio"><label><input type="checkbox" name="op472[]" id="p472o5" value="Otras">Otras</label></div>
+                                            <div id="porqueOP472" style="display:none;">
                                                 <label for="inputEmail" class="control-label">EXPLIQUE:</label>
-                                                <textarea class="form-control" placeholder="Porque" type="text" name="otro472o5" id="otro472o5"></textarea>
+                                                <textarea class="form-control" placeholder="Porque" type="text" name="otro472" id="otro472"></textarea>
                                             </div>
                                         </div>                                    
                                     </div>
@@ -1332,13 +1524,13 @@
                                         <div class="radio"><label><input type="radio" name="op52" id="p52o1" value="Si">Si</label></div>
                                         <div class="radio"><label><input type="radio" name="op52" id="p52o2" value="No">No</label></div>
                                         <div id="porqueOP52" style="display:none;">
-                                            <div class="radio"><label><input type="checkbox" name="op522" id="p522o1" value="Derecho de familia">Derecho de familia</label></div>
-                                            <div class="radio"><label><input type="checkbox" name="op522" id="p522o2" value="Derecho comercial">Derecho comercial</label></div>
-                                            <div class="radio"><label><input type="checkbox" name="op522" id="p522o3" value="Legislación deportiva">Legislación deportiva</label></div>
-                                            <div class="radio"><label><input type="checkbox" name="op522" id="p522o4" value="Otra">Otra</label></div>
-                                            <div id="porqueOP522o4" style="display:none;">
+                                            <div class="radio"><label><input type="checkbox" name="op522[]" id="p522o1" value="Derecho de familia">Derecho de familia</label></div>
+                                            <div class="radio"><label><input type="checkbox" name="op522[]" id="p522o2" value="Derecho comercial">Derecho comercial</label></div>
+                                            <div class="radio"><label><input type="checkbox" name="op522[]" id="p522o3" value="Legislación deportiva">Legislación deportiva</label></div>
+                                            <div class="radio"><label><input type="checkbox" name="op522[]" id="p522o4" value="Otra">Otra</label></div>
+                                            <div id="porqueOP522" style="display:none;">
                                                 <label for="inputEmail" class="control-label">¿CÚAL?:</label>
-                                                <textarea class="form-control" placeholder="Porque" type="text" name="otro522o4" id="otro522o4"></textarea>
+                                                <textarea class="form-control" placeholder="Porque" type="text" name="otro522" id="otro522"></textarea>
                                             </div>
                                         </div>      
                                     </div>
@@ -1351,23 +1543,23 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputEmail" class="control-label">SERVICIOS</label>
-                                        <div class="radio"><label><input type="checkbox" name="op53" id="p53o1" value="Asesoría educativa">Asesoría educativa</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op53" id="p53o2" value="Asesoría laboral">Asesoría laboral</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op53" id="p53o3" value="Asesoría jurídica">Asesoría jurídica</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op53" id="p53o4" value="Asesoría para planificación de carrera">Asesoría para planificación de carrera</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op53" id="p53o5" value="Asesoría, apoyos y estímulos IDRD">Asesoría, apoyos y estímulos IDRD</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op53[]" id="p53o1" value="Asesoría educativa">Asesoría educativa</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op53[]" id="p53o2" value="Asesoría laboral">Asesoría laboral</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op53[]" id="p53o3" value="Asesoría jurídica">Asesoría jurídica</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op53[]" id="p53o4" value="Asesoría para planificación de carrera">Asesoría para planificación de carrera</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op53[]" id="p53o5" value="Asesoría, apoyos y estímulos IDRD">Asesoría, apoyos y estímulos IDRD</label></div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label for="inputEmail" class="control-label">ACTIVIDADES</label>
-                                        <div class="radio"><label><input type="checkbox" name="op54" id="p54o1" value="Becas y ayudas académicas por ser deportista de alto rendimiento">Becas y ayudas académicas por ser deportista de alto rendimiento</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op54" id="p54o2" value="¿Cómo hacer mi hoja de vida?">¿Cómo hacer mi hoja de vida?</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op54" id="p54o3" value="Tips para desempeñarme en una entrevista de trabjo">Tips para desempeñarme en una entrevista de trabjo</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op54" id="p54o4" value="Información sobre el proceso de retiro de la carrera deportiva">Información sobre el proceso de retiro de la carrera deportiva</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op54" id="p54o5" value="¿Cómo crear mi propia empresa?">¿Cómo crear mi propia empresa?</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op54" id="p54o6" value="¿Cómo desempeñarme en una entrevista con los medio de comunicación?">¿Cómo desempeñarme en una entrevista con los medio de comunicación?</label></div>
-                                        <div class="radio"><label><input type="checkbox" name="op54" id="p54o7" value="¿Cómo crear mi portafolio de patrocinios deportivos?">¿Cómo crear mi portafolio de patrocinios deportivos?</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op54[]" id="p54o1" value="Becas y ayudas académicas por ser deportista de alto rendimiento">Becas y ayudas académicas por ser deportista de alto rendimiento</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op54[]" id="p54o2" value="¿Cómo hacer mi hoja de vida?">¿Cómo hacer mi hoja de vida?</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op54[]" id="p54o3" value="Tips para desempeñarme en una entrevista de trabjo">Tips para desempeñarme en una entrevista de trabjo</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op54[]" id="p54o4" value="Información sobre el proceso de retiro de la carrera deportiva">Información sobre el proceso de retiro de la carrera deportiva</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op54[]" id="p54o5" value="¿Cómo crear mi propia empresa?">¿Cómo crear mi propia empresa?</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op54[]" id="p54o6" value="¿Cómo desempeñarme en una entrevista con los medio de comunicación?">¿Cómo desempeñarme en una entrevista con los medio de comunicación?</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op54[]" id="p54o7" value="¿Cómo crear mi portafolio de patrocinios deportivos?">¿Cómo crear mi portafolio de patrocinios deportivos?</label></div>
                                 </div>
                             </li>
                         </ul>
@@ -1412,19 +1604,18 @@
                         </ul>
                     </div>
                 </div>
-                <!-- ----------------------BOTONERA------------------- -->
-                <div class="form-group"  id="mensaje_actividad" style="display: none;">
-                    <div id="alert_actividad"></div>
-                </div>
                 <div id="Botonera" >
                     <center>
                         <button type="button" class="btn btn-primary" name="Enviar" id="Registrar">Registrar valoración</button>
-                        <!--<button type="button" class="btn btn-info" name="Reenviar" id="Modificar">Modificar</button>-->
                     </center>
                 </div>
                 <!-- ----------------------FIN DE BOTONERA------------------- -->
                 <br><br><br><br><br> 
-            </form>
-        </div>
+                </div>
+                <!-- ----------------------BOTONERA------------------- -->
+                <div class="form-group"  id="mensaje_actividad" style="display: none;">
+                    <div id="alert_actividad"></div>
+                </div>
+        </form>        
     </div>
 @stop

@@ -158,8 +158,8 @@ $(function(e){
             success: function (xhr) {  
             	$('#alert_actividad').html('<div class="alert alert-dismissible alert-success" ><strong>Exito!</strong>'+xhr.Mensaje+'</div>');
 				$('#mensaje_actividad').show(60);
-				$('#mensaje_actividad').delay(1500).hide(600);				
-				setTimeout(Reset_Rud, 2000);
+				$('#mensaje_actividad').delay(2000).hide(600);				
+				Reset_campos();
             },
             error: function (xhr){
             	console.log(xhr.responseJSON);
@@ -483,7 +483,7 @@ function ShowZapatos(id_genero, id_tipo, tenis){
     });
 }
 
-function Reset(e){
+function Reset_campos(e){
 	$('#personas').html( '');
 	$("#camposRegistro").hide('slow');
 

@@ -31,8 +31,8 @@ session_start();
 //rutas con filtro de autenticación
 Route::group(['middleware' => ['web']], function () {
 
-
 	/********************SIAB***************************/
+	
 	Route::get('rud','DeportistaController@index');
 	Route::get('welcome', 'MainController@welcome');
 	Route::get('/personaDeportista/{id}','PersonaDeportistaController@obtener');
@@ -49,9 +49,45 @@ Route::group(['middleware' => ['web']], function () {
 
 	/****Valoracion Psico****/
 	Route::get('psico','ValoracionPsicoController@index');
+	Route::post('AddValoracion', 'ValoracionPsicoController@RegistrarValoracion');
+	Route::get('valoracion/{id_deportista}','ValoracionPsicoController@Valoracion_Datos');
 	/*************************************************/
 
-	
+	/********************Tecnico****************************/
+	Route::get('configuracion','configuracion@inicio');
+	Route::post('/configuracion/crear','configuracion@guardar');
+	Route::post('/configuracion/modificar','configuracion@modificar');
+	Route::get('/configuracion/IdAgrupacion/{id}','configuracion@agrupacion');
+	Route::get('/configuracion/eliminarAgrupacion/{id}','configuracion@agrupacionEliminar');
 
+
+	Route::get('deporte','configuracion@deporte');
+	Route::post('/configuracion/crear_dpt','configuracion@crear_dpt');
+	Route::post('/configuracion/modificar_dpt','configuracion@modificar_dpt');
+	Route::get('/configuracion/ver_deporte/{id}','configuracion@ver_deporte');
+	Route::get('/configuracion/eliminarDeporte/{id}','configuracion@deporteEliminar');
+
+
+	Route::get('modalidad','configuracion@modalidad');
+	Route::post('/configuracion/crear_mdl','configuracion@crear_mdl');
+	Route::post('/configuracion/modificar_mdl','configuracion@modificar_mdl');
+	Route::get('/configuracion/ver_modalidad/{id}','configuracion@ver_modalidad');
+	Route::get('/configuracion/eliminarModalidad/{id}','configuracion@eliminarModalidad');
+
+
+	Route::get('rama','configuracion@rama');
+	Route::post('/configuracion/crear_rm','configuracion@crear_rm');
+    Route::post('/configuracion/modificar_rm','configuracion@modificar_rm');
+	Route::get('/configuracion/ver_rama/{id}','configuracion@ver_rama');
+	Route::get('/configuracion/eliminarRama/{id}','configuracion@eliminarRama');
+
+
+	Route::get('categoria','configuracion@categoria');
+	Route::post('/configuracion/crear_ct','configuracion@crear_ct');
+	Route::post('/configuracion/modificar_ct','configuracion@modificar_ct');
+	Route::get('/configuracion/ver_categoria/{id}','configuracion@ver_categoria');
+	Route::get('/configuracion/eliminarCategoria/{id}','configuracion@eliminarCategoria');
+
+	
+	/*************************************************/
 });
-/*

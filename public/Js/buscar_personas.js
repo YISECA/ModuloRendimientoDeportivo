@@ -8,21 +8,14 @@ $(function(e){
         $('input[name="buscador"]').val('');
 
         if($(this).data('buscador', 'buscar-rud')){
-          Reset(e);
+          Reset_campos(e);
         }
 
       //Campos a limpiar
         
-       /* $('#personas').html($personas_actuales);
-        $('#paginador').fadeIn();*/
-        
         $('#buscar span').removeClass('glyphicon-refresh').addClass('glyphicon-search');
         $('#buscar span').empty();
         
-       /* $("#IdNal").val('');
-        $("#IdInterNal").val('');
-        $("#IdDeporte").val('');
-        $("#IdModalidad").val('');*/
         
         document.getElementById("buscar").disabled = false;
         document.getElementById("buscador").disabled = false;

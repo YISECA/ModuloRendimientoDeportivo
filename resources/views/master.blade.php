@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+1019017104
   <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,14 +14,31 @@
           <link rel="stylesheet" href="{{ asset('public/Css/jquery-ui.css') }}" media="screen">    
           <link rel="stylesheet" href="{{ asset('public/Css/bootstrap.min.css') }}" media="screen">   
           <link rel="stylesheet" href="{{ asset('public/Css/sticky-footer.css') }}" media="screen">    
+          <link rel="stylesheet" href="{{ asset('public/Css/jquery.dataTables.min.css') }}" media="screen">    
+          <link rel="stylesheet" href="{{ asset('public/Css/buttons.dataTables.min.css') }}" media="screen">    
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+         
+
+
       @show
       @section('script')
           <script src="{{ asset('public/Js/jquery.js') }}"></script>
           <script src="{{ asset('public/Js/jquery-ui.js') }}"></script>
+          <script src="{{ asset('public/Js/jquery.dataTables.min.js') }}"></script>
+          <script src="{{ asset('public/Js/dataTables.buttons.min.js') }}"></script>
+          <script src="{{ asset('public/Js/buttons.flash.min.js') }}"></script>
+          <script src="{{ asset('public/Js/jszip.min.js') }}"></script>
+          <script src="{{ asset('public/Js/pdfmake.min.js') }}"></script>
+          <script src="{{ asset('public/Js/vfs_fonts.js') }}"></script>
+          <script src="{{ asset('public/Js/buttons.html5.min.js') }}"></script>
+          <script src="{{ asset('public/Js/buttons.print.min.js') }}"></script>
           <script src="{{ asset('public/Js/bootstrap.min.js') }}"></script>
           <script src="{{ asset('public/Js/main.js') }}"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+        
 
           <meta name="csrf-token" content="{{ csrf_token() }}" />
+
           <script type="text/javascript">
               $.ajaxSetup({
                   headers: {

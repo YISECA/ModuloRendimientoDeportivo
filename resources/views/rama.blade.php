@@ -133,4 +133,38 @@
             </div>
         </div>		    
     </div>
+
+
+
+    <div class="content">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Listado rama</h3>
+            </div>
+            <div class="panel-body">
+                    <table id="example" class="display nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Rama</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Id</th>
+                                <th>Rama</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach($rama as $rama)
+                                <tr>
+                                    <td>{{ $rama['Id'] }}</td>
+                                    <td>{{ $rama['Nombre_Rama'] }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
 @stop

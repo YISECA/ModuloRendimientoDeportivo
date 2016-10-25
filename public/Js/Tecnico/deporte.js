@@ -190,6 +190,15 @@ $(function()
 	});
 
 
+	$('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+
+    
+
 	$('#cerrar_actividad').delegate('button[data-funcion="cerrar"]','click',function (e) {   
         $(".form-control").val('');
         vector_datos_actividades.length=0;

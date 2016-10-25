@@ -8,7 +8,7 @@ class Modalidad extends Model
 {
     protected $table = 'modalidad';
     protected $primaryKey = 'Id';
-    protected $fillable = ['Deporte_Id', 'Nombre_Banco'];
+    protected $fillable = ['Deporte_Id', 'Nombre_Modalidad'];
 
     public function deporte(){
         return $this->belongsTo('App\Models\Deporte', 'Deporte_Id');

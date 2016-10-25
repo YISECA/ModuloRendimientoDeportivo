@@ -19,10 +19,10 @@
                     <div class="col-xs-6 col-sm-8">
                         <div class="form-group">
                             <label class="control-label" for="Id_TipoDocumento">Agrupación</label>
-                            <select name="Id_Agrupacion" id="Id_Agrupacion" class="form-control">
+                            <select class="form-control selectpicker" name="Id_Agrupacion" id="Id_Agrupacion" data-live-search="true">
                                 <option value="">Seleccionar</option>
-                                @foreach($agrupacion as $agrupaciones)
-                                    <option value="{{ $agrupaciones['Id'] }}">{{ $agrupaciones['Nombre_Agrupacion'] }}</option>
+                                @foreach($agrupacion_datos as $agrupaciones)
+                                    <option value="{{ $agrupaciones['Id'] }}">{{ $agrupaciones['Id']." ".$agrupaciones['Nombre_Agrupacion'] }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -154,5 +154,43 @@
 
             </div>
         </div>		    
+    </div>
+
+
+    <div class="content">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Listado de agrupaciones</h3>
+            </div>
+            <div class="panel-body">
+                    <table id="example" class="display nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Agrupación</th>
+                                <th>Clase</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Id</th>
+                                <th>Agrupación</th>
+                                <th>Clase</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach($agrupacion_datos as $agrupaciones)
+                                <tr>
+                                    <td>{{ $agrupaciones['Id'] }}</td>
+                                    <td>{{ $agrupaciones['Nombre_Agrupacion'] }}</td>
+                                    <td>{{ $agrupaciones->ClasificacionDeportista['Nombre_Clasificacion_Deportista'] }}</td>
+                                    
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+            </div>
+        </div>
     </div>
 @stop

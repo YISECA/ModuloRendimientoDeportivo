@@ -18,12 +18,12 @@ class configuracion extends Controller
     public function inicio()
 	{
 
-        $Agrupacion = new Agrupacion;
-        $clasificacion_deportista = new ClasificacionDeportista;
+        $Agrupacion =  Agrupacion::with('ClasificacionDeportista')->get();
+        $clasificacion_deportista =  ClasificacionDeportista::all();
 
     	$datos = [
-            'agrupacion' => $Agrupacion->all(),
-            'clasificacion_deportista' => $clasificacion_deportista->all(),
+            'agrupacion_datos' => $Agrupacion,
+            'clasificacion_deportista' => $clasificacion_deportista,
 		];
 	    return view('agrupacion', $datos);
 	}
@@ -76,6 +76,20 @@ class configuracion extends Controller
 	}
 
 
+	public function agrupacionEliminar(Request $input , $id)
+	{
+
+		$model_A = Agrupacion::find($id);
+
+		if($model_A->delete()){
+			return response()->json(array('status' => 'True'));
+		}else{
+			return response()->json(array('status' => 'False'));
+		}
+		
+	}
+
+
 
 	public function modificar(Request $input)
 	{
@@ -83,6 +97,7 @@ class configuracion extends Controller
 
 		return $this->modificar_agrupacion($modelo, $input);
 	}
+
 	public function modificar_agrupacion($modelo, $input)
 	{
 
@@ -109,8 +124,7 @@ class configuracion extends Controller
 
 	public function deporte()
 	{
-
-		$Deporte = new Deporte;
+		$Deporte =  Deporte::with('agrupacion','agrupacion.ClasificacionDeportista')->get();
         $Agrupacion = new Agrupacion;
         $clasificacion_deportista = new ClasificacionDeportista;
 
@@ -221,8 +235,8 @@ class configuracion extends Controller
     public function modalidad()
 	{
 
-		$Deporte = new Deporte;
-        $Modalidad = new Modalidad;
+		$Deporte =  Deporte::with('agrupacion','agrupacion.ClasificacionDeportista')->get();
+        $Modalidad = Modalidad::with('deporte','deporte.agrupacion','deporte.agrupacion.ClasificacionDeportista')->get();
 
     	$datos = [
     		'deporte'=>$Deporte->all(),

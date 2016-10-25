@@ -23,6 +23,12 @@ $(function(e){
 		}
 		var Deportista =  $("#deportista").val();
 		var Persona = $("#persona").val();
+		var Pertenece = $("#Pertenece").val();
+		var EtapaNacional = $("#EtapaNacional").val();
+		var EtapaInternacional = $("#EtapaInternacional").val();
+		var EtapaNacionalT = $("#EtapaNacionalT").val();
+		var EtapaInternacionalT = $("#EtapaInternacionalT").val();
+		var Smmlv = $("#Smmlv").val();
 		var ClasificacionDeportista = $("#ClasificacionDeportista").val();
 		var Agrupacion = $("#Agrupacion").val();
 		var Deporte = $("#Deporte").val();
@@ -92,6 +98,12 @@ $(function(e){
 			 Deberes: Deberes,
 		     Deportista:Deportista,
 			 Persona:Persona,
+			 Pertenece: Pertenece,
+			 EtapaNacional: EtapaNacional,
+			 EtapaInternacional: EtapaInternacional,
+			 EtapaNacionalT: EtapaNacionalT,
+		     EtapaInternacionalT: EtapaInternacionalT,
+			 Smmlv: Smmlv,
 			 ClasificacionDeportista:ClasificacionDeportista,
 			 Agrupacion: Agrupacion,
 			 Deporte:Deporte,
@@ -154,15 +166,27 @@ $(function(e){
             url: url,
             headers: {'X-CSRF-TOKEN': token},
             dataType: 'json',
-            data: datos,        
+            data: datos, 
+            beforeSend: function(){
+            	$("#camposRegistro").hide('slow');
+				$("#seccion_uno").hide("slow");
+				$("#seccion_dos").hide("slow");
+				$("#seccion_tres").hide("slow");
+				$("#seccion_cuatro").hide("slow");
+				$("#seccion_cinco").hide("slow");
+				$("#seccion_compromiso").hide("slow");
+            	$("#loading").show('slow');
+            }, 
             success: function (xhr) {  
+            	$("#loading").hide('slow');
             	$('#alert_actividad').html('<div class="alert alert-dismissible alert-success" ><strong>Exito!</strong>'+xhr.Mensaje+'</div>');
 				$('#mensaje_actividad').show(60);
 				$('#mensaje_actividad').delay(2000).hide(600);				
 				Reset_campos();
             },
-            error: function (xhr){
-            	console.log(xhr.responseJSON);
+            error: function (xhr){            	
+            	$("#camposRegistro").show('slow');
+            	$("#loading").hide('slow');
 				validador_errores(xhr.responseJSON);
             }
         });
@@ -188,7 +212,6 @@ $(function(e){
 			$("#"+i).closest('.form-group').addClass('has-error');
       	});
 	}
-
 	$("#seccion_compromiso_ver").on('click', function(e){
 		var role = $(this).data('role');               
 		if(role == 'ver'){
@@ -270,7 +293,33 @@ $(function(e){
 				$("#Agrupacion").val(agrupacionT).change();
 				agrupacionT = '';
 			});
+			$.get("getEtapas/" + id, function (etapas) {
+				$("#EtapaNacional").empty();
+				$("#EtapaInternacional").empty();
+				$("#EtapaNacional").append("<option value=''>Seleccionar</option>");
+				$("#EtapaInternacional").append("<option value=''>Seleccionar</option>");
+
+				$.each(etapas['Nacional'], function(i, e){
+					$("#EtapaNacional").append("<option value='"+e['Id']+"'>"+e['Nombre_Etapa']+"</option>");
+				});
+
+				$.each(etapas['Internacional'], function(i, e){
+					$("#EtapaInternacional").append("<option value='"+e['Id']+"'>"+e['Nombre_Etapa']+"</option>");
+				});
+			}).done(function (){
+				$("#EtapaNacional").val($("#EtapaNacionalT").val());
+				$("#EtapaInternacional").val($("#EtapaInternacionalT").val());
+			});
 		}		
+	});
+
+	$("#Pertenece").on('change', function(){
+		id = $("#Pertenece").val();
+		if(id == 1){
+			$("#DeportistaEtapas").show('slow');
+		}else if(id == 2){
+			$("#DeportistaEtapas").hide('slow');
+		}
 	});
 
 	$("#Agrupacion").on('change',function (e){
@@ -311,15 +360,13 @@ $(function(e){
 			});
 		}		
 	});
-
-
 });
 
 function Buscar(e){	
 	var key = $('input[name="buscador"]').val(); 
     $.get('personaBuscarDeportista/'+key,{}, function(data){  
-        if(data.length > 0){        	
 
+        if(data.length > 0){       
         	$("#persona").val(data[0]['Id_Persona']);        	
         	$("#Nombres").val(data[0]['Primer_Nombre']+' '+data[0]['Segundo_Nombre']);        	
 			$("#Apellidos").val(data[0]['Primer_Apellido']+' '+data[0]['Segundo_Apellido']);
@@ -359,6 +406,15 @@ function Buscar(e){
               			}).done(function(){
               				$("#ClasificacionDeportista").val(responseDep.deportista['Clasificacion_Deportista_Id']).change();              				
               			});
+
+              			if(responseDep.deportista['Pertenece'] == 1){
+	          				$.get("getEtapasD/" + responseDep.deportista['Id'] + "", function (DeportistaEtapa) {     		
+								$("#EtapaNacionalT").val(DeportistaEtapa.Nacional.pivot['Etapa_Id']);
+								$("#EtapaInternacionalT").val(DeportistaEtapa.Internacional.pivot['Etapa_Id']);
+								$("#Smmlv").val(DeportistaEtapa.Internacional.pivot['Smmlv']);								
+	          				});
+	          			} 
+              			
           			//Cuando Hay deportista    
           				ShowRopa(data[0]['Id_Genero'], 1, responseDep.deportista['Sudadera_Talla_Id'], responseDep.deportista['Camiseta_Talla_Id'], responseDep.deportista['Pantaloneta_Talla_Id']);
 						ShowZapatos(data[0]['Id_Genero'], 2, responseDep.deportista['Tenis_Talla_Id']);
@@ -366,6 +422,7 @@ function Buscar(e){
 						$("#Resolucion").prop('checked', true);
 						$("#Deberes").prop('checked', true);
 
+						$("#Pertenece").val(responseDep.deportista['Pertenece']).change();		
           				$("#deportista").val(responseDep.deportista['Id']);						
 						$("#LugarExpedicion").val(responseDep.deportista['Lugar_Expedicion_Id']);
 						$("#FechaExpedicion").val(responseDep.deportista['Fecha_Expedicion']);
@@ -404,7 +461,7 @@ function Buscar(e){
 						$("#Arl").val(responseDep.deportista['Arl_Id']);
 						$("#FondoPensionPreg").val(responseDep.deportista['Fondo_PensionPreg_Id']).change();
 						$("#FondoPension").val(responseDep.deportista['Fondo_Pension_Id']);
-
+						
 						$("#GrupoSanguineo").val(responseDep.deportista['Grupo_Sanguineo_Id']);
 						$("#Medicamento").val(responseDep.deportista['Uso_Medicamento']).change();
 						$("#CualMedicamento").val(responseDep.deportista['Medicamento']);
@@ -431,14 +488,14 @@ function Buscar(e){
               			
               		}
              	}).done(function (){             		
-                    $('#buscar span').removeClass('glyphicon-refresh').addClass('glyphicon-remove');
+                    $('#buscar span').removeClass('glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon-remove');
                     $('#buscar span').empty();
                  	document.getElementById("buscar").disabled = false;     
                  	$("#camposRegistro").show('slow');            	
       			});
           	});
         }else{    
-            $('#buscar span').removeClass('glyphicon-refresh').addClass('glyphicon-remove');
+            $('#buscar span').removeClass('glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon-remove');
             $('#buscar span').empty();
             document.getElementById("buscar").disabled = false;
             $('#personas').html( '<li class="list-group-item" style="border:0"><div class="row"><h4 class="list-group-item-heading">No se encuentra ninguna persona registrada con estos datos.</h4></dvi><br>');
@@ -496,6 +553,12 @@ function Reset_campos(e){
 
 	$("#Resolucion").prop('checked', false);
 	$("#Deberes").prop('checked', false);
+	$("#Pertenece").val('').change();
+	$("#EtapaNacionalT").val('');
+	$("#EtapaInternacionalT").val('');
+	$("#EtapaNacional").val('');
+	$("#EtapaInternacional").val('');
+	$("#Smmlv").val('');
 	$("#Club").val('');
 	$("#ClasificacionDeportista").val('').change();
 	$("#LugarExpedicion").val('');
@@ -505,7 +568,7 @@ function Reset_campos(e){
 	$("#EstadoCivil").val('');
 	$("#Estrato").val('');
 	$("#DepartamentoNac").val('');
-	$("#LibretaPregL").val('');
+	$("#LibretaPreg").val('');
 	$("#Libreta").val('');
 	$("#Distrito").val('');
 	$("#NombreContacto").val('');

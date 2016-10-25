@@ -31,6 +31,17 @@
                   to { -webkit-transform: rotate(360deg);}
               }
           </style>
+           <style type="text/css">
+              .glyphicon-refresh-animate {
+                  -animation: spin .7s infinite linear;
+                  -webkit-animation: spin2 .7s infinite linear;
+              }
+
+              @-webkit-keyframes spin2 {
+                  from { -webkit-transform: rotate(0deg);}
+                  to { -webkit-transform: rotate(360deg);}
+              }
+          </style>
       @show
       @section('script')
           <script src="{{ asset('public/Js/jquery.js') }}"></script>

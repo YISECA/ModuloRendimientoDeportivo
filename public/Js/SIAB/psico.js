@@ -2,9 +2,6 @@ var idiomas = new Array();
   var quien = new Array();
   var riesgo = new Array();
 $(function(e){ 	
-  /*var idiomas = new Array();
-  var quien = new Array();
-  var riesgo = new Array();*/
   $('#Fecha_InicioDate').datepicker({format: 'yyyy-mm-dd', autoclose: true,});
   $('#Fecha_FinDate').datepicker({format: 'yyyy-mm-dd', autoclose: true,});
 
@@ -248,7 +245,7 @@ $(function(e){
     riesgo.push({ "Factor": Factor, "Objetivo": Objetivo, "Intervencion": Intervencion, "Fecha_Inicio": Fecha_Inicio, 
                  "Fecha_Fin": Fecha_Fin, "Responsable": Responsable,  "Autorizada": Autorizada,  "Seguimiento": Seguimiento, "Observacion": Observacion});
 
-    $('#alert_riesgo').html('<div class="alert alert-dismissible alert-success" ><strong>Exito!</strong>Idioma agregado con éxito!</div>');
+    $('#alert_riesgo').html('<div class="alert alert-dismissible alert-success" ><strong>Exito!</strong>Riesgo agregado con éxito!</div>');
     $('#mensaje_riesgo').show(60);
     $('#mensaje_riesgo').delay(1000).hide(400);     
     $("input[name=Factor]").val('');
@@ -393,9 +390,8 @@ function Reset_campos(e){
   $("#Deporte").val('');
   $("#Modalidad").val('');
 
-	////////////////////
 
-	$("#deportista").val(''); 
+	   $("#deportista").val(''); 
     $('#Discapacidad').val('');
     $("#EdadPreg").val()
     $("#PracticaPreg").val('');
@@ -879,4 +875,5 @@ function OcultarCampos(){
   $("#seccion_diez").hide("slow");
   $("#seccion_once").hide("slow");
   $("#seccion_doce").hide("slow");
+  $("#seccion_trece").hide("slow");
 }

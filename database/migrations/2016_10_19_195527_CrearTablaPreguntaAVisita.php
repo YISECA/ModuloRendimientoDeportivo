@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearTablaPreguntaA extends Migration
+class CrearTablaPreguntaAVisita extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,15 @@ class CrearTablaPreguntaA extends Migration
      */
     public function up()
     {
-         Schema::create('pregunta_a', function (Blueprint $table) {
+         Schema::create('visita_pregunta_a', function (Blueprint $table) {
 
             $table->increments('Id');
-            $table->integer('ValoracionA_Id')->unsigned();
+            $table->integer('Visita_Id')->unsigned();
             $table->string('PreguntaA_Id');
             $table->string('Respuesta');
             $table->string('Descripcion')->nullable();
 
-            $table->foreign('ValoracionA_Id')->references('Id')->on('valoracion_psicosocial');
+            $table->foreign('Visita_Id')->references('Id')->on('visita_domiciliaria');
 
             $table->timestamps();
 
@@ -34,9 +34,9 @@ class CrearTablaPreguntaA extends Migration
      */
     public function down()
     {
-        Schema::table('pregunta_a', function(Blueprint $table){
-            $table->dropForeign('ValoracionA_Id');
+        Schema::table('visita_pregunta_a', function(Blueprint $table){
+            $table->dropForeign('Visita_Id');
         });    
-        Schema::drop('pregunta_a');
+        Schema::drop('visita_pregunta_a');
     }
 }

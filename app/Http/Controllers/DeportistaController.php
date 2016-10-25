@@ -103,7 +103,10 @@ class DeportistaController extends Controller
         						 'deportista.deportistaValoracion.idioma', 
         						 'deportista.deportistaValoracion.quien', 
         						 'deportista.deportistaValoracion.preguntaA',
-        						 'deportista.deportistaValoracion.valoracionRiesgo'
+        						 'deportista.deportistaValoracion.valoracionRiesgo', 
+        						 'deportista.deportistaVisita',
+        						 'deportista.deportistaVisita.preguntaA',
+        						 'deportista.deportistaVisita.miembros'
         					)->find($id);
         return $persona;
     }

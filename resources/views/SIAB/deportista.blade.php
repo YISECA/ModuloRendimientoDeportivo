@@ -53,7 +53,7 @@
 <!-- ------------------------------------------------------------------------------------ -->
 <form id="registro" name="registro">
     <div class="container" id="loading" style="display:none;">
-        <button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Espere...</button>
+        <center><button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Espere...</button></center>
     </div>
     <div id="camposRegistro" style="display:none;">
      <div class="content" id="RUD" style="display: none;">

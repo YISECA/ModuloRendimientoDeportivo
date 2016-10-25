@@ -76,11 +76,11 @@ class Deportista extends Model
         return $this->hasMany('App\Models\ValoracionPsico', 'Deportista_Id');
     }
 
-   /* public function deportistaEtapa(){
-        return $this->hasMany('App\Models\DeportistaEtapa', 'Deportista_Id');
-    }*/
-
     public function deportistaEtapa() {
         return $this->belongsToMany('App\Models\Etapa', 'deportista_etapa', 'Deportista_Id', 'Etapa_Id')->withTimestamps()->withPivot('Smmlv');
+    }
+
+    public function deportistaVisita(){
+        return $this->hasMany('App\Models\VisitaDomiciliaria', 'Deportista_Id');
     }
 }

@@ -168,7 +168,7 @@ class VisitaController extends Controller
 	       		$PMiembros->save();
 	       	}
 
-			return response()->json(["Mensaje" => "Visita demiciliaria registrada con éxito!"]);
+			return response()->json(["Mensaje" => "Visita domiciliaria registrada con éxito!"]);
 			
 		}else{
 			return response()->json(["Sin acceso"]);

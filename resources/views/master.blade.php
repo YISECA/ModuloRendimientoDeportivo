@@ -75,6 +75,7 @@
                   <li><a href="rud">Registro único de deportistas</a></li>
                   <li><a href="psico">Valoración psicosocial</a></li>
                   <li><a href="domicilio">Visita domiciliaria</a></li>
+                  <li><a href="actividad">Actividades de intervención</a></li>
                 </ul>
               </li>
               <li>

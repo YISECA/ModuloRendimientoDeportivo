@@ -10,8 +10,6 @@
 <!-- ------------------------------------------------------------------------------------ -->
 <center><h3>REGISTRO ÚNICO DE DEPORTISTAS (RUD)</h3></center>
  <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"/>
- <input type="hidden" name="persona" id="persona" value=""/>
- <input type="hidden" name="deportista" id="deportista" value=""/>
     <div id="main_persona" class="row" data-url="{{ url(config('usuarios.prefijo_ruta')) }}">  
         <div class="content">
             <div class="panel panel-primary">
@@ -52,6 +50,8 @@
         </div>
 <!-- ------------------------------------------------------------------------------------ -->
 <form id="registro" name="registro">
+    <input type="hidden" name="persona" id="persona" value=""/>
+    <input type="hidden" name="deportista" id="deportista" value=""/>
     <div class="container" id="loading" style="display:none;">
         <center><button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Espere...</button></center>
     </div>
@@ -72,6 +72,18 @@
                     </div>
                 </div>                 
                 <ul class="list-group" id="seccion_uno" name="seccion_uno" style="display: none">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="inputEmail" class="control-label">Fotografía del deportista</label>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="file" id ="FotografiaDep" name="FotografiaDep">
+                                <p class="help-block">Imagen en formato jpeg,jpg,png,bmp.</p>
+                                <img id="Fotografia" src="" alt="" class="img-thumbnail">
+                             </div>
+                         </div>
+                    </li>
                     <div class="panel-body">
                         <p>DATOS DEPORTIVOS</p>
                     </div>
@@ -235,7 +247,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <div class="input-group date form-control" id="FechaExpedicionDate" style="border: none;">
-                                    <input id="FechaExpedicion" class="form-control " type="text" value="" name="FechaExpedicionL" default="" data-date="" data-behavior="FechaExpedicion">
+                                    <input id="FechaExpedicion" class="form-control " type="text" value="" name="FechaExpedicion" default="" data-date="" data-behavior="FechaExpedicion">
                                 <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
                                 </div>    
                             </div>    
@@ -255,7 +267,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <div class="input-group date form-control" id="FechaVigenciaPasaporteDate" style="border: none;">
-                                    <input id="FechaVigenciaPasaporte" class="form-control " type="text" value="" name="FechaVigenciaPasaporteL" default="" data-date="" data-behavior="FechaVigenciaPasaporte">
+                                    <input id="FechaVigenciaPasaporte" class="form-control " type="text" value="" name="FechaVigenciaPasaporte" default="" data-date="" data-behavior="FechaVigenciaPasaporte">
                                 <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
                                 </div>    
                             </div>
@@ -307,7 +319,7 @@
                                 <label for="inputEmail" class="control-label" id="DepartamentoNacL">Departamento nacimiento:</label>
                             </div>
                             <div class="form-group col-md-3">
-                                <select name="DepartamentoNacL" id="DepartamentoNac" class="form-control">
+                                <select name="DepartamentoNac" id="DepartamentoNac" class="form-control">
                                     <option value="">Seleccionar</option>
                                     @foreach($Departamento as $DepartamentoNac)
                                             <option value="{{ $DepartamentoNac['Id_Departamento'] }}">{{ $DepartamentoNac['Nombre_Departamento'] }}</option>
@@ -615,7 +627,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <div class="input-group date form-control" id="FechaAfiliacionDate" style="border: none;">
-                                <input id="FechaAfiliacion" class="form-control " type="text" value="" name="FechaAfiliacionL" default="" data-date="" data-behavior="FechaAfiliacion">
+                                <input id="FechaAfiliacion" class="form-control " type="text" value="" name="FechaAfiliacion" default="" data-date="" data-behavior="FechaAfiliacion">
                             <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
                             </div>    
                         </div>

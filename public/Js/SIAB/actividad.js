@@ -175,8 +175,15 @@ $(function(e){
 
   }
 
+  /*$('#TablaActividades').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );*/
+
 });
-/*
+
 $(document).ready(function () {
     TablaActividades();
 });
@@ -192,4 +199,4 @@ function TablaActividades() {
             searchPlaceholder: "Buscar"
         }
     });
-}*/
+}

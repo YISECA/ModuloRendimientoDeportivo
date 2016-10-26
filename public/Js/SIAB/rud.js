@@ -21,7 +21,7 @@ $(function(e){
 		if($("#Deberes").is(":checked") == true){
 			var Deberes = 1;
 		}
-		var Deportista =  $("#deportista").val();
+		/*var Deportista =  $("#deportista").val();
 		var Persona = $("#persona").val();
 		var Pertenece = $("#Pertenece").val();
 		var EtapaNacional = $("#EtapaNacional").val();
@@ -157,7 +157,8 @@ $(function(e){
 			 TiempoMedicamento:TiempoMedicamento,
 			 OtroMedicoPreg:OtroMedicoPreg,
 			 OtroMedico:OtroMedico,			 
-        }
+        }*/
+        var formData = new FormData($("#registro")[0]);
 
         var token = $("#token").val();		
 
@@ -165,8 +166,12 @@ $(function(e){
             type: 'POST',
             url: url,
             headers: {'X-CSRF-TOKEN': token},
-            dataType: 'json',
-            data: datos, 
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            //data: datos, 
+            data: formData,
             beforeSend: function(){
             	$("#camposRegistro").hide('slow');
 				$("#seccion_uno").hide("slow");
@@ -177,12 +182,25 @@ $(function(e){
 				$("#seccion_compromiso").hide("slow");
             	$("#loading").show('slow');
             }, 
-            success: function (xhr) {  
+            success: function (xhr) {              	
             	$("#loading").hide('slow');
-            	$('#alert_actividad').html('<div class="alert alert-dismissible alert-success" ><strong>Exito!</strong>'+xhr.Mensaje+'</div>');
-				$('#mensaje_actividad').show(60);
-				$('#mensaje_actividad').delay(2000).hide(600);				
-				Reset_campos();
+            	$('#FotografiaDep').removeClass('imagen-error');
+            	if(xhr.status == 'error')
+				{
+					$("#camposRegistro").show('slow');
+	            	$("#loading").hide('slow');
+					validador_errores(xhr.errors);
+					$('#FotografiaDep').addClass('imagen-error');
+					return false;
+				}
+				else 
+				{
+					$('#alert_actividad').html('<div class="alert alert-dismissible alert-success" ><strong>Exito!</strong>'+xhr.Mensaje+'</div>');
+					$('#mensaje_actividad').show(60);
+					$('#mensaje_actividad').delay(2000).hide(600);				
+					Reset_campos();
+				}
+            	
             },
             error: function (xhr){            	
             	$("#camposRegistro").show('slow');

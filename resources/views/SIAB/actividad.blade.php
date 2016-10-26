@@ -20,26 +20,36 @@
                 </button>
             </div>
             <br><br>
-            <table id="TablaActividades" class="display" cellspacing="0" width="100%">
-                <th><center>TIPO DE ACTIVIDAD</center></th>
-                <th><center>FECHA PROGRAMADA</center></th>
-                <th><center>OPCIÓN</center></th>
-                @foreach($ActividadIntervencion as $ActividadIntervencion)
-                    <tr>
-                        <td>{{ $ActividadIntervencion->tipoActividad['Nombre_TipoActividad'] }}</td>
-                        <td>
-                            <center>{{ $ActividadIntervencion['Fecha_Programada'] }}</center>
-                        </td>
-                        <td>
-                            <center>
-                                <button type="button" class="btn btn-success ver" value="{{$ActividadIntervencion['Id']}}" name="Ver" id="Ver" >
-                                    <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Ver actividad
-                                </button>
-                            </center>
-                        </td>
-                    </tr>
-                @endforeach   
-            </table>
+            <div class="panel-body">
+                <table id="TablaActividades" class="display nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th><center>TIPO DE ACTIVIDAD</center></th>
+                            <th><center>FECHA PROGRAMADA</center></th>
+                            <th><center>OPCIÓN</center></th>
+                        </tr>
+                    </thead>
+                    <tbody>                    
+                    @foreach($ActividadIntervencion as $ActividadIntervencion)
+
+                        <tr>
+                            <td>{{ $ActividadIntervencion->tipoActividad['Nombre_TipoActividad'] }}</td>
+                            <td>
+                                <center>{{ $ActividadIntervencion['Fecha_Programada'] }}</center>
+                            </td>
+                            <td>
+                                <center>
+                                    <button type="button" class="btn btn-success ver" value="{{$ActividadIntervencion['Id']}}" name="Ver" id="Ver" >
+                                        <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Ver actividad
+                                    </button>
+                                </center>
+                            </td>
+                        </tr>
+                    @endforeach  
+                    </tbody> 
+                </table>
+            </div>
+
 
             <form id="actividad" name="actividad" style ="display:none;" >       
                 <input type="hidden" id="ActividadId" name="ActividadId">
@@ -47,7 +57,7 @@
                     <div class="content">
                         <div class="content">
                             <div style="text-align:center;">
-                                <h3>Registro de actividad de intervención cultura y de cohesión</h3>
+                                <h3>Actividad de intervención cultura y de cohesión</h3>
                             </div>  
                             <!-- ---------------------------PASO 1--------------------------- -->
                             <div class="panel">                            

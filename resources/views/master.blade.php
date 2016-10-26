@@ -30,6 +30,12 @@
                   from { -webkit-transform: rotate(0deg);}
                   to { -webkit-transform: rotate(360deg);}
               }
+              .imagen-error{
+                border-radius:5px;
+                border: solid;
+                border-color: #b94a48;
+                border-width: 1px;
+              }
           </style>
            <style type="text/css">
               .glyphicon-refresh-animate {

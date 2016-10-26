@@ -23,10 +23,10 @@ class RegistroDeportista extends Request
      */
     public function rules()
     {
-        $validaciones = [
+        $validaciones = [          
              'Resolucion' => array('required_if:Pertenece,1'),
              'Deberes' => array('required_if:Pertenece,1'),
-             'Persona' => 'required',
+             'persona' => 'required',
              'Pertenece' => 'required',
              'EtapaNacional' => array('required_if:Pertenece,1'),
              'EtapaInternacional' => array('required_if:Pertenece,1'),
@@ -84,6 +84,7 @@ class RegistroDeportista extends Request
              'TiempoMedicamento' => array('required_if:Medicamento,1'),
              'OtroMedicoPreg' => 'required',
              'OtroMedico' => array('required_if:OtroMedicoPreg,1'),
+
             ];
        
         return $validaciones;

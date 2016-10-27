@@ -73,21 +73,27 @@
                 </div>                 
                 <ul class="list-group" id="seccion_uno" name="seccion_uno" style="display: none">
                     <li class="list-group-item">
-                        <div class="row">
-                            <div class="form-group col-md-12">
-                                <label for="inputEmail" class="control-label">Fotografía del deportista</label>
+                        <div class="row" id="FotografiaRegistro">
+                             <div class="form-group col-md-12">
+                                <div class="form-group col-md-4"></div>
+                                <div class="col-md-4 text-center">
+                                    <label for="inputEmail" class="control-label">Fotografía del deportista</label>
+                                    <br>
+                                    <span id="SImagen">
+                                        <img id="Fotografia" src="" alt="" class="img-thumbnail img-responsive"><br>         
+                                    </span>
+                                    <br>                                    
+                                    <input type="file" id ="FotografiaDep" name="FotografiaDep">
+                                    <p class="help-block">Imagen en formato jpeg,jpg,png,bmp.</p> 
+                                </div>
+                                <div class="form-group col-md-4 "></div>
                             </div>
-                            <div class="form-group col-md-12">
-                                <input type="file" id ="FotografiaDep" name="FotografiaDep">
-                                <p class="help-block">Imagen en formato jpeg,jpg,png,bmp.</p>
-                                <img id="Fotografia" src="" alt="" class="img-thumbnail">
-                             </div>
-                         </div>
-                    </li>
-                    <div class="panel-body">
-                        <p>DATOS DEPORTIVOS</p>
-                    </div>
+                        </div>
+                    </li>                    
                     <li class="list-group-item">
+                        <div class="panel-body">
+                            <p>DATOS DEPORTIVOS</p>
+                        </div>
                         <div class="row">
                             <div class="form-group col-md-2">
                                 <label for="inputEmail" class="control-label"  id="PerteneceL" >El deportista pertence al promgrama de rendimiento deportivo?</label>

@@ -24,10 +24,10 @@ class CrearTablaValoracionRiesgo extends Migration
             $table->string('Autorizado');
             $table->string('Seguimiento');
             $table->string('Observacion');
-            $table->string('Anexo1');
-            $table->string('Anexo2');
-            $table->string('Anexo3');
-            $table->string('Anexo4');
+            $table->string('Anexo1')->nullable();
+            $table->string('Anexo2')->nullable();
+            $table->string('Anexo3')->nullable();
+            $table->string('Anexo4')->nullable();
             $table->timestamps();
 
             $table->foreign('Valoracion_Id')->references('Id')->on('valoracion_psicosocial');

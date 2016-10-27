@@ -19,10 +19,14 @@ $(function(e){
             processData: false,
             dataType: "json",
             success: function (xhr) {
-            	$('#alert_actividad').html('<div class="alert alert-dismissible alert-success" ><strong>Exito!</strong>'+xhr.Mensaje+'</div>');
-      				$('#mensaje_actividad').show(60);
-      				$('#mensaje_actividad').delay(2000).hide(600);				
-      				Reset_campos();
+              if(xhr.status == 'error'){
+                validador_errores(xhr.errors);
+              }else{
+                $('#alert_actividad').html('<div class="alert alert-dismissible alert-success" ><strong>Exito!</strong>'+xhr.Mensaje+'</div>');
+                $('#mensaje_actividad').show(60);
+                $('#mensaje_actividad').delay(2000).hide(600);        
+                Reset_campos();
+              }            	
             },
             error: function (xhr){
               validador_errores(xhr.responseJSON);
@@ -32,6 +36,13 @@ $(function(e){
 
 	var validador_errores = function(data){
     $('#visitaF .form-group').removeClass('has-error');
+    $('#GenogramaDep').removeClass('imagen-error');
+    if(i == 'Imagen1Dep'){ $('#Imagen1Dep').removeClass('imagen-error'); }
+    if(i == 'Imagen2Dep'){ $('#Imagen2Dep').removeClass('imagen-error'); }
+    if(i == 'Imagen3Dep'){ $('#Imagen3Dep').removeClass('imagen-error'); }
+    if(i == 'Imagen4Dep'){ $('#Imagen4Dep').removeClass('imagen-error'); }
+    if(i == 'Imagen5Dep'){ $('#Imagen5Dep').removeClass('imagen-error'); }
+    if(i == 'Imagen6Dep'){ $('#Imagen6Dep').removeClass('imagen-error'); } 
     VerCampos();
 
     $.each(data, function(i, e){
@@ -41,6 +52,13 @@ $(function(e){
          if(i == 'op5'){ $("#p5o1").closest('.form-group').addClass('has-error'); }
          if(i == 'op6'){ $("#p6o1").closest('.form-group').addClass('has-error'); }
          if(i == 'op7'){ $("#p7o1").closest('.form-group').addClass('has-error'); }
+         if(i == 'GenogramaDep'){ $('#GenogramaDep').addClass('imagen-error'); }
+         if(i == 'Imagen1Dep'){ $('#Imagen1Dep').addClass('imagen-error'); }
+         if(i == 'Imagen2Dep'){ $('#Imagen2Dep').addClass('imagen-error'); }
+         if(i == 'Imagen3Dep'){ $('#Imagen3Dep').addClass('imagen-error'); }
+         if(i == 'Imagen4Dep'){ $('#Imagen4Dep').addClass('imagen-error'); }
+         if(i == 'Imagen5Dep'){ $('#Imagen5Dep').addClass('imagen-error'); }
+         if(i == 'Imagen6Dep'){ $('#Imagen6Dep').addClass('imagen-error'); }         
       });
 
     if(miembros.length == 0){
@@ -163,8 +181,6 @@ function Buscar(e){
 
             if(responseDep.deportista){//Existe Deportista
               Deportista(responseDep.deportista, data[0]);
-              console.log(responseDep);
-
               if(((responseDep.deportista.deportista_visita).length) != 0 ){//Existe visita
                 VisitaCampos(responseDep.deportista.deportista_visita[0]);
                 $("#camposRegistro").show('slow');
@@ -217,6 +233,64 @@ function Deportista (Deportista, Persona){
 }
 
 function VisitaCampos (VisitaInfo){
+
+  if(VisitaInfo['Genograma_Url'] != ''){
+    $("#SImagenGenograma").empty();
+    $("#SImagenGenograma").append("<img id='Genograma' src='' alt='' class='img-thumbnail'>");
+    $("#Genograma").attr('src',$("#Genograma").attr('src')+'public/Img/Genograma/'+VisitaInfo['Genograma_Url']+'?' + (new Date()).getTime());
+  }else{
+    $("#Genograma").hide();
+  }
+
+  if(VisitaInfo['Imagen1_Url'] != ''){
+    $("#SImagenImagen1").empty();
+    $("#SImagenImagen1").append("<img id='Imagen1' src='' alt='' class='img-thumbnail'>");
+    $("#Imagen1").attr('src',$("#Imagen1").attr('src')+'public/Img/Visita/'+VisitaInfo['Imagen1_Url']+'?' + (new Date()).getTime());
+  }else{
+    $("#Imagen1").hide();
+  }
+
+  if(VisitaInfo['Imagen2_Url'] != ''){
+    $("#SImagenImagen2").empty();
+    $("#SImagenImagen2").append("<img id='Imagen2' src='' alt='' class='img-thumbnail'>");
+    $("#Imagen2").attr('src',$("#Imagen2").attr('src')+'public/Img/Visita/'+VisitaInfo['Imagen2_Url']+'?' + (new Date()).getTime());
+  }else{
+    $("#Imagen2").hide();
+  }
+
+  if(VisitaInfo['Imagen3_Url'] != ''){
+    $("#SImagenImagen3").empty();
+    $("#SImagenImagen3").append("<img id='Imagen3' src='' alt='' class='img-thumbnail'>");
+    $("#Imagen3").attr('src',$("#Imagen3").attr('src')+'public/Img/Visita/'+VisitaInfo['Imagen3_Url']+'?' + (new Date()).getTime());
+  }else{
+    $("#Imagen3").hide();
+  }
+
+  if(VisitaInfo['Imagen4_Url'] != ''){
+    $("#SImagenImagen4").empty();
+    $("#SImagenImagen4").append("<img id='Imagen4' src='' alt='' class='img-thumbnail'>");
+    $("#Imagen4").attr('src',$("#Imagen4").attr('src')+'public/Img/Visita/'+VisitaInfo['Imagen4_Url']+'?' + (new Date()).getTime());
+  }else{
+    $("#Imagen4").hide();
+  }
+
+  if(VisitaInfo['Imagen5_Url'] != ''){
+    $("#SImagenImagen5").empty();
+    $("#SImagenImagen5").append('<a class="btn-lg" href="" id="Imagen5D" name="Imagen5D" download="Imagen5D"><span class="glyphicon glyphicon glyphicon-download large" aria-hidden="true"></span></a>');
+    $("#Imagen5D").attr('href','public/Img/Visita/'+VisitaInfo['Imagen5_Url']);
+  }else{
+    $("#Imagen5D").hide();
+  }
+
+  if(VisitaInfo['Imagen6_Url'] != ''){
+    $("#SImagenImagen6").empty();
+    $("#SImagenImagen6").append('<a class="btn-lg" href="" id="Imagen6D" name="Imagen6D" download="Imagen6D"><span class="glyphicon glyphicon glyphicon-download large" aria-hidden="true"></span></a>');
+    $("#Imagen6D").attr('href',$("#Imagen6D").attr('href')+'public/Img/Visita/'+VisitaInfo['Imagen6_Url']+'?' + (new Date()).getTime());
+  }else{
+    $("#Imagen6D").hide();
+  }
+
+  $("#Genograma_Observacion").val(VisitaInfo["Genograma_Observacion"]);
   $("#FechaIntervencion").val(VisitaInfo["Fecha_Intervencion"]);
   $("#NombresAtiende").val(VisitaInfo["Nombres_Receptor"]);
   $("#ApellidosAtiende").val(VisitaInfo["Apellidos_Receptor"]);
@@ -351,6 +425,7 @@ function Reset_campos(e){
 	$("#camposRegistro").hide('slow');
 	$('#registro .form-group').removeClass('has-error');
 
+  $("#Genograma_Observacion").val('');
 	$('#FechaIntervencion').val('');
     $('#NombresAtiende').val('');
     $('#ApellidosAtiende').val('');
@@ -433,6 +508,8 @@ function OcultarCampos(){
   $("#seccion_seis").hide("slow");
   $("#seccion_siete").hide("slow");
   $("#seccion_ocho").hide("slow");
+  $("#seccion_nueve").hide("slow");
+  $("#seccion_diez").hide("slow");
 }
 
 function VerCampos(){
@@ -444,4 +521,6 @@ function VerCampos(){
   $("#seccion_seis").show("slow");
   $("#seccion_siete").show("slow");
   $("#seccion_ocho").show("slow");
+  $("#seccion_nueve").show("slow");
+  $("#seccion_diez").show("slow");
 }

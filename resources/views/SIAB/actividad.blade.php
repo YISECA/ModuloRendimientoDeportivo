@@ -271,6 +271,64 @@
                                             </div>                                            
                                         </div>
                                     </li>
+
+                                    <li class="list-group-item" id="AnexosD">     
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <div class="row" id="Anexo1Registro">
+                                                    <div class="form-group col-md-6 text-center">
+                                                        <label for="inputEmail" class="control-label">Anexo 1</label>
+                                                        <br>
+                                                        <span id="SAnexo1">
+                                                        </span>
+                                                        <br>                                    
+                                                        <input type="file" id ="Anexo1Dep" name="Anexo1Dep">
+                                                        <p class="help-block">Anexo en formato jpeg,jpg,png,bmp,pdf.</p>                                                         
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="row" id="Anexo2Registro">
+                                                    <div class="form-group col-md-6 text-center">
+                                                        <label for="inputEmail" class="control-label">Anexo 2</label>
+                                                        <br>
+                                                        <span id="SAnexo2">
+                                                        </span>
+                                                        <br>                                    
+                                                        <input type="file" id ="Anexo2Dep" name="Anexo2Dep">
+                                                        <p class="help-block">Anexo en formato jpeg,jpg,png,bmp,pdf.</p> 
+                                                    </div>
+                                                </div>
+                                            </div>   
+                                            <div class="form-group col-md-12"></div>
+                                            <div class="form-group col-md-6">
+                                                <div class="row" id="Anexo3Registro">
+                                                    <div class="form-group col-md-6 text-center">
+                                                    <label for="inputEmail" class="control-label">Anexo 3</label>
+                                                    <br>
+                                                    <span id="SAnexo3">
+                                                    </span>
+                                                    <br>                                    
+                                                    <input type="file" id ="Anexo3Dep" name="Anexo3Dep">
+                                                    <p class="help-block">Anexo en formato jpeg,jpg,png,bmp,pdf.</p>                                                         
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                            <div class="form-group col-md-6">
+                                                <div class="row" id="Anexo4Registro">
+                                                    <div class="form-group col-md-6 text-center">
+                                                        <label for="inputEmail" class="control-label">Anexo 4</label>
+                                                        <br>
+                                                        <span id="SAnexo4">
+                                                        </span>
+                                                        <br>                                    
+                                                        <input type="file" id ="Anexo4Dep" name="Anexo4Dep">
+                                                        <p class="help-block">Anexo en formato jpeg,jpg,png,bmp,pdf.</p>                                                         
+                                                    </div>
+                                                </div>
+                                            </div>                                        
+                                        </div>
+                                   </li>
                                     <li class="list-group-item">
                                         <!-- ----------------------BOTONERA------------------- -->
                                         <div id="Botonera" >

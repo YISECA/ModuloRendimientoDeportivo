@@ -466,16 +466,55 @@
                                 </li>   
                             </ul>                            
                         </div>
+
                         <!-- ---------------------------PASO 4--------------------------- -->
+                        <div class="panel">                            
+                            <div class="panel-heading">                
+                                <div class="bs-callout bs-callout-info">                    
+                                    <span class="glyphicon glyphicon-th " aria-hidden="true"></span>
+                                    <label><p>GENOGRAMA</p></label>                         
+                                    <span data-role="ver" id="seccion_cuatro_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
+                                </div>
+                            </div>                 
+                            <ul class="list-group" id="seccion_cuatro" name="seccion_cuatro">
+                               <li class="list-group-item">
+                                     <div class="row" id="GenogramaRegistro">
+                                         <div class="form-group col-md-12">
+                                            <div class="form-group col-md-4"></div>
+                                            <div class="col-md-4 text-center">
+                                                <label for="inputEmail" class="control-label">Genograma</label>
+                                                <br>
+                                                <span id="SImagenGenograma">
+                                                    <img id="Genograma" src="" alt="" class="img-thumbnail img-responsive"><br>         
+                                                </span>
+                                                <br>                                    
+                                                <input type="file" id ="GenogramaDep" name="GenogramaDep">
+                                                <p class="help-block">Imagen en formato jpeg,jpg,png,bmp,pdf.</p> 
+                                            </div>
+                                            <div class="form-group col-md-4 "></div>
+                                        </div>
+                                        <div clas="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="inputEmail" class="control-label">Observaciones del genograma</label>
+                                            </div>
+                                            <div class="form-group col-md-12">                                                
+                                                <textarea class="form-control" placeholder="Agregue las observaciones necesarias para la descripción del genograma que corresponde al archivo adjunto" type="text" name="Genograma_Observacion" id="Genograma_Observacion"></textarea>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                               </li>
+                           </ul>
+                       </div>
+                        <!-- ---------------------------PASO 5--------------------------- -->
                         <div class="panel">                            
                             <div class="panel-heading">                
                                 <div class="bs-callout bs-callout-info">                    
                                     <span class="glyphicon glyphicon-heart-empty " aria-hidden="true"></span>
                                     <label><p>SALUD FAMILIAR</p></label>                         
-                                    <span data-role="ver" id="seccion_cuatro_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
+                                    <span data-role="ver" id="seccion_cinco_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
                                 </div>
                             </div>                 
-                            <ul class="list-group" id="seccion_cuatro" name="seccion_cuatro">
+                            <ul class="list-group" id="seccion_cinco" name="seccion_cinco">
                                <li class="list-group-item" id="MiembrosLi">
                                 <div class="row" id="Li1">
                                         <div class="form-group col-md-2">
@@ -538,16 +577,16 @@
                                </li>
                            </ul>
                        </div>
-                       <!-- ---------------------------PASO  5--------------------------- -->
+                       <!-- ---------------------------PASO  6--------------------------- -->
                         <div class="panel">                            
                             <div class="panel-heading">                
                                 <div class="bs-callout bs-callout-info">                    
                                     <span class="glyphicon glyphicon-usd " aria-hidden="true"></span>
                                     <label><p>ASPECTO ECONÓMICO (Opcional)</p></label>                         
-                                    <span data-role="ver" id="seccion_cinco_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
+                                    <span data-role="ver" id="seccion_seis_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
                                 </div>
                             </div>                 
-                            <ul class="list-group" id="seccion_cinco" name="seccion_cinco">
+                            <ul class="list-group" id="seccion_seis" name="seccion_seis">
                                <li class="list-group-item">
                                     <div class="row">
                                         <div class="form-group col-md-2">
@@ -691,16 +730,16 @@
                                </li>
                            </ul>
                        </div>
-                       <!-- ---------------------------PASO  6--------------------------- -->
+                       <!-- ---------------------------PASO  7--------------------------- -->
                         <div class="panel">                            
                             <div class="panel-heading">                
                                 <div class="bs-callout bs-callout-info">                    
                                     <span class="glyphicon glyphicon-picture " aria-hidden="true"></span>
                                     <label><p>TIEMPO LIBRE/RECREACIÓN</p></label>                         
-                                    <span data-role="ver" id="seccion_seis_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
+                                    <span data-role="ver" id="seccion_siete_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
                                 </div>
                             </div>                 
-                            <ul class="list-group" id="seccion_seis" name="seccion_seis">
+                            <ul class="list-group" id="seccion_siete" name="seccion_siete">
                                <li class="list-group-item">
                                     <div class="row">
                                         <div class="form-group col-md-12">
@@ -765,16 +804,16 @@
                                </li>
                            </ul>
                        </div>  
-                       <!-- ---------------------------PASO  7--------------------------- -->
+                       <!-- ---------------------------PASO  8--------------------------- -->
                         <div class="panel">                            
                             <div class="panel-heading">                
                                 <div class="bs-callout bs-callout-info">                    
                                     <span class="glyphicon glyphicon-heart " aria-hidden="true"></span>
                                     <label><p>RELACIONES FAMILIARES</p></label>                         
-                                    <span data-role="ver" id="seccion_siete_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
+                                    <span data-role="ver" id="seccion_ocho_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
                                 </div>
                             </div>                 
-                            <ul class="list-group" id="seccion_siete" name="seccion_siete">
+                            <ul class="list-group" id="seccion_ocho" name="seccion_ocho">
                                <li class="list-group-item">     
                                     <div class="row">
                                         <div class="form-group col-md-12">
@@ -827,16 +866,16 @@
                                </li>
                            </ul>
                        </div>
-                       <!-- ---------------------------PASO  8--------------------------- -->
+                       <!-- ---------------------------PASO  9--------------------------- -->
                         <div class="panel">                            
                             <div class="panel-heading">                
                                 <div class="bs-callout bs-callout-info">                    
                                     <span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span>
                                     <label><p>CONCEPTO PROFESIONAL</p></label>                         
-                                    <span data-role="ver" id="seccion_ocho_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
+                                    <span data-role="ver" id="seccion_nueve_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
                                 </div>
                             </div>                 
-                            <ul class="list-group" id="seccion_ocho" name="seccion_ocho">
+                            <ul class="list-group" id="seccion_nueve" name="seccion_nueve">
                                <li class="list-group-item">     
                                     <div class="row">
                                         <div class="form-group col-md-12">
@@ -844,6 +883,105 @@
                                         </div>
                                         <div class="form-group col-md-12">
                                             <textarea class="form-control" placeholder="Describa" type="text" name="Preg22" id="Preg22"></textarea>
+                                        </div>                                        
+                                    </div>
+                               </li>
+                           </ul>
+                       </div>
+                    </div>
+                     <!-- ---------------------------PASO  10--------------------------- -->
+                        <div class="panel">                            
+                            <div class="panel-heading">                
+                                <div class="bs-callout bs-callout-info">                    
+                                    <span class="glyphicon glyphicon-eye-open " aria-hidden="true"></span>
+                                    <label><p>ARCHIVOS DIGITALES</p></label>                         
+                                    <span data-role="ver" id="seccion_diez_ver" class="glyphicon glyphicon-resize-full btn-lg btn-lg" aria-hidden="true"></span>
+                                </div>
+                            </div>                 
+                            <ul class="list-group" id="seccion_diez" name="seccion_diez">
+                               <li class="list-group-item">     
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <div class="row" id="Imagen1Registro">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail" class="control-label">Registro fotográfico digital 1</label>
+                                                    <br>
+                                                    <span id="SImagenImagen1">
+                                                        <img id="Imagen1" src="" alt="" class="img-thumbnail img-responsive"><br>         
+                                                    </span>
+                                                    <br>                                    
+                                                    <input type="file" id ="Imagen1Dep" name="Imagen1Dep">
+                                                    <p class="help-block">Imagen en formato jpeg,jpg,png,bmp.</p>                                                     
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="row" id="Imagen2Registro">
+                                                <div class="form-group col-md-6 text-center">
+                                                    <label for="inputEmail" class="control-label">Registro fotográfico digital 2</label>
+                                                    <br>
+                                                    <span id="SImagenImagen2">
+                                                        <img id="Imagen2" src="" alt="" class="img-thumbnail img-responsive"><br>         
+                                                    </span>
+                                                    <br>                                    
+                                                    <input type="file" id ="Imagen2Dep" name="Imagen2Dep">
+                                                    <p class="help-block">Imagen en formato jpeg,jpg,png,bmp.</p>                                                     
+                                                </div>
+                                            </div>
+                                        </div>   
+                                        <div class="form-group col-md-6">
+                                            <div class="row" id="Imagen3Registro">
+                                                <div class="form-group col-md-6 text-center">
+                                                    <label for="inputEmail" class="control-label">Registro fotográfico digital 3</label>
+                                                    <br>
+                                                    <span id="SImagenImagen3">
+                                                        <img id="Imagen3" src="" alt="" class="img-thumbnail img-responsive"><br>         
+                                                    </span>
+                                                    <br>                                    
+                                                    <input type="file" id ="Imagen3Dep" name="Imagen3Dep">
+                                                    <p class="help-block">Imagen en formato jpeg,jpg,png,bmp.</p> 
+                                                </div>
+                                            </div>
+                                        </div>  
+                                        <div class="form-group col-md-6">
+                                            <div class="row" id="Imagen4Registro">
+                                                <div class="form-group col-md-6 text-center">
+                                                    <label for="inputEmail" class="control-label">Registro fotográfico digital 4</label>
+                                                    <br>
+                                                    <span id="SImagenImagen4">
+                                                        <img id="Imagen4" src="" alt="" class="img-thumbnail img-responsive"><br>         
+                                                    </span>
+                                                    <br>                                    
+                                                    <input type="file" id ="Imagen4Dep" name="Imagen4Dep">
+                                                    <p class="help-block">Imagen en formato jpeg,jpg,png,bmp.</p> 
+                                                </div>
+                                            </div>
+                                        </div>             
+                                        <div class="form-group col-md-6">
+                                            <div class="row" id="Imagen5Registro">
+                                                <div class="form-group col-md-6 text-center">
+                                                    <label for="inputEmail" class="control-label">Registro fotográfico digital 5 (Opcional)</label>
+                                                    <br>
+                                                    <span id="SImagenImagen5">
+                                                    </span>
+                                                    <br>                                    
+                                                    <input type="file" id ="Imagen5Dep" name="Imagen5Dep">
+                                                    <p class="help-block">Imagen en formato jpeg,jpg,png,bmp,pdf.</p> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <div class="row" id="Imagen6Registro">
+                                                <div class="form-group col-md-6 text-center">
+                                                    <label for="inputEmail" class="control-label">Registro fotográfico digital 6 (Opcional)</label>
+                                                    <br>
+                                                    <span id="SImagenImagen6">
+                                                    </span>
+                                                    <br>                                    
+                                                    <input type="file" id ="Imagen6Dep" name="Imagen6Dep">
+                                                    <p class="help-block">Imagen en formato jpeg,jpg,png,bmp,pdf.</p> 
+                                                </div>
+                                            </div>
                                         </div>                                        
                                     </div>
                                </li>

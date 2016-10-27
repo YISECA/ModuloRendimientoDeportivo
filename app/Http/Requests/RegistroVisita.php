@@ -24,6 +24,7 @@ class RegistroVisita extends Request
     public function rules()
     {   
         $validaciones = [
+            'Genograma_Observacion'=> 'required|min:3|regex:/^[(a-zA-Z\s)]+$/u',
             'FechaIntervencion' => 'required|date',
             'NombresAtiende' => 'required|min:3|regex:/^[(a-zA-Z\s)]+$/u',
             'ApellidosAtiende' => 'required|min:3|regex:/^[(a-zA-Z\s)]+$/u',

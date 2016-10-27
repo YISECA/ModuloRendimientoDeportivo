@@ -19,10 +19,16 @@ $(function(e){
           processData: false,
           dataType: "json",
           success: function (xhr) {
-            $('#alert_actividad').html('<div class="alert alert-dismissible alert-success" ><strong>Exito!</strong>'+xhr.Mensaje+'</div>');
-            $('#mensaje_actividad').show(60);
-            $('#mensaje_actividad').delay(2000).hide(600);        
-            Reset_campos();
+            if(xhr.status == 'error'){
+              validador_errores(xhr.errors);
+            }
+            else 
+            {
+              $('#alert_actividad').html('<div class="alert alert-dismissible alert-success" ><strong>Exito!</strong>'+xhr.Mensaje+'</div>');
+              $('#mensaje_actividad').show(60);
+              $('#mensaje_actividad').delay(2000).hide(600);        
+              Reset_campos();
+            }
           },
           error: function (xhr){
             validador_errores(xhr.responseJSON);
@@ -94,18 +100,52 @@ $(function(e){
       $("#Total_EvaluadoresL").hide('slow');
       $("#RegistrarActividad").show('slow');
       $("#ModificarActividad").hide('slow');
+      $("#AnexosD").hide('slow');
       $("#ActividadId").val('');
     });
 
     $(".ver").click(function(e){
+      $("#AnexosD").show('slow');
 
       $('#actividad .form-group').removeClass('has-error');
       $("#actividad").val($(this).val());
       var id = $(this).val();
       $.get("TraeActividad/"+id, function (actividad) {
 
+        if(actividad['Anexo1_Url'] != ''){
+          $("#SAnexo1").empty();
+          $("#SAnexo1").append('<a class="btn-lg" href="" id="Anexo1D" name="Anexo1D" download="Anexo1D"><span class="glyphicon glyphicon glyphicon-download large" aria-hidden="true"></span></a>');
+          $("#Anexo1D").attr('href',$("#Anexo1D").attr('href')+'public/Img/AnexosActividad/'+actividad['Anexo1_Url']+'?' + (new Date()).getTime());
+        }else{
+          $("#Anexo1D").hide();
+        }
+
+        if(actividad['Anexo2_Url'] != ''){
+          $("#SAnexo2").empty();
+          $("#SAnexo2").append('<a class="btn-lg" href="" id="Anexo2D" name="Anexo2D" download="Anexo2D"><span class="glyphicon glyphicon glyphicon-download large" aria-hidden="true"></span></a>');
+          $("#Anexo2D").attr('href',$("#Anexo2D").attr('href')+'public/Img/AnexosActividad/'+actividad['Anexo2_Url']+'?' + (new Date()).getTime());
+        }else{
+          $("#Anexo2D").hide();
+        }
+
+        if(actividad['Anexo3_Url'] != ''){
+          $("#SAnexo3").empty();
+          $("#SAnexo3").append('<a class="btn-lg" href="" id="Anexo3D" name="Anexo3D" download="Anexo3D"><span class="glyphicon glyphicon glyphicon-download large" aria-hidden="true"></span></a>');
+          $("#Anexo3D").attr('href',$("#Anexo3D").attr('href')+'public/Img/AnexosActividad/'+actividad['Anexo3_Url']+'?' + (new Date()).getTime());
+        }else{
+          $("#Anexo3D").hide();
+        }
+
+        if(actividad['Anexo4_Url'] != ''){
+          $("#SAnexo4").empty();
+          $("#SAnexo4").append('<a class="btn-lg" href="" id="Anexo4D" name="Anexo4D" download="Anexo4D"><span class="glyphicon glyphicon glyphicon-download large" aria-hidden="true"></span></a>');
+          $("#Anexo4D").attr('href',$("#Anexo4D").attr('href')+'public/Img/AnexosActividad/'+actividad['Anexo4_Url']+'?' + (new Date()).getTime());
+        }else{
+          $("#Anexo4D").hide();
+        }
+
         $("#actividad").hide('slow');
-        $("#actividad").show('slow');
+        $("#actividad").show('slow');        
         $("#ActividadId").val(actividad['Id']);        
         $("#Actividad").val(actividad['Tipo_Actividad_Id']).change();
         $("#Otro_Actividad").val(actividad['Otro_Actividad']);

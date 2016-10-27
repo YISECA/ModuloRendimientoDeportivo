@@ -36,6 +36,10 @@ class CrearTablaActividadIntervencion extends Migration
             $table->string('Total_Evaluadores')->nullable(); 
             $table->string('Nombre_Gestor')->nullable(); 
             $table->string('Nombre_Coordinador')->nullable(); 
+            $table->string('Anexo1_Url')->nullable(); 
+            $table->string('Anexo2_Url')->nullable(); 
+            $table->string('Anexo3_Url')->nullable(); 
+            $table->string('Anexo4_Url')->nullable(); 
             $table->timestamps();
             
             $table->foreign('Tipo_Actividad_Id')->references('Id')->on('tipo_actividad');                  

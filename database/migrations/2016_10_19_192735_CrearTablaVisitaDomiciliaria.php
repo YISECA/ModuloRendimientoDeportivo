@@ -72,7 +72,14 @@ class CrearTablaVisitaDomiciliaria extends Migration
             $table->string('P20');
             $table->string('P21');
             $table->string('Concepto_Profesional');
-            
+            $table->string('Genograma_Url');            
+            $table->string('Genograma_Observacion');
+            $table->string('Imagen1_Url');
+            $table->string('Imagen2_Url');
+            $table->string('Imagen3_Url');
+            $table->string('Imagen4_Url');
+            $table->string('Imagen5_Url')->nullable();
+            $table->string('Imagen6_Url')->nullable();            
             $table->timestamps();
 
             $table->foreign('Deportista_Id')->references('Id')->on('deportista');

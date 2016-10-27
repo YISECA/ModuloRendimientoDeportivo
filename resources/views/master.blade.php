@@ -105,7 +105,7 @@
               <li>
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">SIAB <span class="caret"></span></a>
                 <ul class="dropdown-menu" aria-labelledby="themes">
-                  <li><a href="#" style="color:#1995dc">Gestor de entrenadores</a></li>
+                  <li><a href="#" style="color:#1995dc">Gestor de SIAB</a></li>
                   <li class="divider"></li>
                   <li><a href="rud">Registro único de deportistas</a></li>
                   <li><a href="psico">Valoración psicosocial</a></li>

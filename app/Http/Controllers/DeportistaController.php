@@ -124,7 +124,7 @@ class DeportistaController extends Controller
     	
     	if ($request->ajax()) { 
 
-    		$validator = Validator::make($request->all(), ['FotografiaDep' => 'required|mimes:jpeg,jpg,png,bmp',]);
+    		$validator = Validator::make($request->all(), ['FotografiaDep' => 'mimes:jpeg,jpg,png,bmp',]);
 
 	        if ($validator->fails()){
 	            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
@@ -183,13 +183,17 @@ class DeportistaController extends Controller
 			 	$deportista->Resolucion_Vigente = $request->Resolucion;
 			 	$deportista->Deber_Obligacion = $request->Deberes;
 
-			 	if($deportista->save()){
-
-			 		$file1=$request->file('FotografiaDep');
+			 	if(isset($request->FotografiaDep)){
+				 	$file1=$request->file('FotografiaDep');
 		            $extension1=$file1->getClientOriginalExtension();
-		            $Nom_imagen1 = date('Y-m-d-H:i:s')."-FotografiaDep-".$deportista->Id.'.'.$extension1;
+		            $Nom_imagen1 = "FotografiaDep-".$request->persona.'.'.$extension1;
 		            $file1->move(public_path().'/Img/Fotografias/', $Nom_imagen1);
+		            $deportista->Archivo1_Url = $Nom_imagen1;
+		        }else{
+		        	$deportista->Archivo1_Url = '';
+		        }
 
+			 	if($deportista->save()){
 
 			 		$deportistaDeporte = new DeportistaDeporte;
 				 	$deportistaDeporte->Deportista_Id = $deportista->Id;
@@ -224,7 +228,7 @@ class DeportistaController extends Controller
     	}
     }
 
-    public function ModificarDeportista(RegistroDeportista $request){    
+    public function ModificarDeportista(RegistroDeportista $request){
     	if ($request->ajax()) { 
 
 
@@ -241,8 +245,8 @@ class DeportistaController extends Controller
 			 	$deportistaDeporte->save();
 	    	}
 
-    		$deportista = Deportista::find($request->Deportista);
-    		$deportista->Persona_Id = $request->Persona;
+    		$deportista = Deportista::find($request->deportista);
+    		$deportista->Persona_Id = $request->persona;
     		$deportista->Pertenece = $request->Pertenece;
     		$deportista->Lugar_Expedicion_Id = $request->LugarExpedicion;
     		$deportista->Clasificacion_Deportista_Id = $request->ClasificacionDeportista;
@@ -292,6 +296,15 @@ class DeportistaController extends Controller
 		 	$deportista->Tipo_Cuenta_Id = $request->TipoCuenta;
 		 	$deportista->Banco_Id = $request->Banco;
 		 	$deportista->Arl_Id = $request->Arl;
+
+		 	if(isset($request->FotografiaDep)){
+			 	$file1=$request->file('FotografiaDep');
+	            $extension1=$file1->getClientOriginalExtension();
+	            $Nom_imagen1 = "FotografiaDep-".$request->persona.'.'.$extension1;
+	            $file1->move(public_path().'/Img/Fotografias/', $Nom_imagen1);
+	            $deportista->Archivo1_Url = $Nom_imagen1;
+	        }
+
 		 	$deportista->save();
 
 		 	if($request->Pertenece == 1 ){		 		

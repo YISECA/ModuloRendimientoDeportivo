@@ -21,145 +21,8 @@ $(function(e){
 		if($("#Deberes").is(":checked") == true){
 			var Deberes = 1;
 		}
-		/*var Deportista =  $("#deportista").val();
-		var Persona = $("#persona").val();
-		var Pertenece = $("#Pertenece").val();
-		var EtapaNacional = $("#EtapaNacional").val();
-		var EtapaInternacional = $("#EtapaInternacional").val();
-		var EtapaNacionalT = $("#EtapaNacionalT").val();
-		var EtapaInternacionalT = $("#EtapaInternacionalT").val();
-		var Smmlv = $("#Smmlv").val();
-		var ClasificacionDeportista = $("#ClasificacionDeportista").val();
-		var Agrupacion = $("#Agrupacion").val();
-		var Deporte = $("#Deporte").val();
-		var Modalidad = $("#Modalidad").val();
-		var Club = $("#Club").val();
-		var Nombres = $("#Nombres").val();
-		var Apellidos = $("#Apellidos").val();
-		var TipoDocumento = $("#TipoDocumento").val();
-		var NumeroDocumento = $("#NumeroDocumento").val();
-		var LugarExpedicion = $("#LugarExpedicion").val();
-		var FechaExpedicion = $("#FechaExpedicion").val();
-		var Pasaporte = $("#Pasaporte").val();
-		var FechaVigenciaPasaporte = $("#FechaVigenciaPasaporte").val();
-		var Genero = $("#Genero").val();
-		var fechaNac = $("#fechaNac").val();
-		var PaisNac = $("#PaisNac").val();
-		var EstadoCivil = $("#EstadoCivil").val();
-		var Estrato = $("#Estrato").val();
-		var DepartamentoNac = $("#DepartamentoNac").val();
-		var MunicipioNac = $("#MunicipioNac").val();
-		var LibretaPreg = $("#LibretaPreg").val();
-		var Libreta = $("#Libreta").val();
-		var Distrito = $("#Distrito").val();
-		var NombreContacto = $("#NombreContacto").val();
-		var Parentesco = $("#Parentesco").val();
-		var FijoContacto = $("#FijoContacto").val();
-		var CelularContacto = $("#CelularContacto").val();
-		var TipoCuenta = $("#TipoCuenta").val();
-		var Banco = $("#Banco").val();
-		var NumeroCuenta = $("#NumeroCuenta").val();
-		var NumeroHijos = $("#NumeroHijos").val();
-		var DepartamentoLoc = $("#DepartamentoLoc").val();
-		var MunicipioLoc = $("#MunicipioLoc").val();
-		var Direccion = $("#Direccion").val();
-		var Barrio = $("#Barrio").val();
-		var Localidad = $("#Localidad").val();
-		var FijoLoc = $("#FijoLoc").val();
-		var CelularLoc = $("#CelularLoc").val();
-		var Correo = $("#Correo").val();
-		var Regimen = $("#Regimen").val();
-		var FechaAfiliacion = $("#FechaAfiliacion").val();
-		var FechaAfiliacion = $("#FechaAfiliacion").val();
-		var TipoAfiliacion = $("#TipoAfiliacion").val();
-		var MedicinaPrepago = $("#MedicinaPrepago").val();
-		var NombreMedicinaPrepago = $("#NombreMedicinaPrepago").val();
-		var Eps = $("#Eps").val();
-		var NivelRegimen = $("#NivelRegimen").val();
-		var RiesgosLaborales = $("#RiesgosLaborales").val();
-		var Arl = $("#Arl").val();
-		var FondoPensionPreg = $("#FondoPensionPreg").val();
-		var FondoPension = $("#FondoPension").val();
-		var NombrePensiones = $("#NombrePensiones").val();
-		var Sudadera = $("#Sudadera").val();
-		var Camiseta = $("#Camiseta").val();
-		var Pantaloneta = $("#Pantaloneta").val();
-		var Tenis = $("#Tenis").val();
-		var GrupoSanguineo = $("#GrupoSanguineo").val();
-		var Medicamento = $("#Medicamento").val();
-		var CualMedicamento = $("#CualMedicamento").val();
-		var TiempoMedicamento = $("#TiempoMedicamento").val();		
-		var OtroMedicoPreg = $("#OtroMedicoPreg").val();
-		var OtroMedico = $("#OtroMedico").val();
-		var token = $("#token").val();
-
-		var datos = {
-			 Resolucion: Resolucion,
-			 Deberes: Deberes,
-		     Deportista:Deportista,
-			 Persona:Persona,
-			 Pertenece: Pertenece,
-			 EtapaNacional: EtapaNacional,
-			 EtapaInternacional: EtapaInternacional,
-			 EtapaNacionalT: EtapaNacionalT,
-		     EtapaInternacionalT: EtapaInternacionalT,
-			 Smmlv: Smmlv,
-			 ClasificacionDeportista:ClasificacionDeportista,
-			 Agrupacion: Agrupacion,
-			 Deporte:Deporte,
-			 Modalidad: Modalidad,
-			 Club: Club,
-			 LugarExpedicion:LugarExpedicion,
-			 FechaExpedicion:FechaExpedicion,
-			 Pasaporte:Pasaporte,
-			 FechaVigenciaPasaporte:FechaVigenciaPasaporte,
-			 EstadoCivil:EstadoCivil,
-			 Estrato:Estrato,
-			 DepartamentoNac:DepartamentoNac,
-			 LibretaPreg:LibretaPreg,
-			 Libreta:Libreta,
-			 Distrito:Distrito,
-			 NombreContacto:NombreContacto,
-			 Parentesco:Parentesco,
-			 FijoContacto:FijoContacto,
-			 CelularContacto:CelularContacto,
-			 TipoCuenta:TipoCuenta,
-			 Banco:Banco,
-			 NumeroCuenta:NumeroCuenta,
-			 NumeroHijos:NumeroHijos,
-			 DepartamentoLoc:DepartamentoLoc,
-			 MunicipioLoc:MunicipioLoc,
-			 Direccion:Direccion,
-			 Barrio:Barrio,
-			 Localidad:Localidad,
-			 FijoLoc:FijoLoc,
-			 CelularLoc:CelularLoc,
-			 Correo:Correo,
-			 Regimen:Regimen,
-			 FechaAfiliacion:FechaAfiliacion,
-			 FechaAfiliacion:FechaAfiliacion,
-			 TipoAfiliacion:TipoAfiliacion,
-			 MedicinaPrepago:MedicinaPrepago,
-			 NombreMedicinaPrepago:NombreMedicinaPrepago,
-			 Eps:Eps,
-			 NivelRegimen:NivelRegimen,
-			 RiesgosLaborales:RiesgosLaborales,
-			 Arl:Arl,
-			 FondoPensionPreg:FondoPensionPreg,
-			 FondoPension:FondoPension,
-			 Sudadera:Sudadera,
-			 Camiseta:Camiseta,
-			 Pantaloneta:Pantaloneta,
-			 Tenis:Tenis,
-			 GrupoSanguineo:GrupoSanguineo,
-			 Medicamento:Medicamento,
-			 CualMedicamento:CualMedicamento,
-			 TiempoMedicamento:TiempoMedicamento,
-			 OtroMedicoPreg:OtroMedicoPreg,
-			 OtroMedico:OtroMedico,			 
-        }*/
+		
         var formData = new FormData($("#registro")[0]);
-
         var token = $("#token").val();		
 
          $.ajax({
@@ -170,7 +33,6 @@ $(function(e){
             contentType: false,
             processData: false,
             dataType: "json",
-            //data: datos, 
             data: formData,
             beforeSend: function(){
             	$("#camposRegistro").hide('slow');
@@ -414,7 +276,7 @@ function Buscar(e){
           	$.each(data, function(i, e){
 
               	$.get("deportista/" + e['Id_Persona'] + "", function (responseDep) {              		
-              		if(responseDep.deportista){  
+              		if(responseDep.deportista){  //Cuando Hay deportista    
 
               			$.get("getDeportistaDeporte/" + responseDep.deportista['Id'] + "", function (DeportistaDeporte) {     
               				agrupacionT = DeportistaDeporte['Agrupacion_Id'];
@@ -432,14 +294,20 @@ function Buscar(e){
 								$("#Smmlv").val(DeportistaEtapa.Internacional.pivot['Smmlv']);								
 	          				});
 	          			} 
-              			
-          			//Cuando Hay deportista    
+
           				ShowRopa(data[0]['Id_Genero'], 1, responseDep.deportista['Sudadera_Talla_Id'], responseDep.deportista['Camiseta_Talla_Id'], responseDep.deportista['Pantaloneta_Talla_Id']);
 						ShowZapatos(data[0]['Id_Genero'], 2, responseDep.deportista['Tenis_Talla_Id']);
 
 						$("#Resolucion").prop('checked', true);
 						$("#Deberes").prop('checked', true);
-
+						
+						if(responseDep.deportista['Archivo1_Url'] != ''){
+							$("#SImagen").empty();
+							$("#SImagen").append("<img id='Fotografia' src='' alt='' class='img-thumbnail'>");
+                			$("#Fotografia").attr('src',$("#Fotografia").attr('src')+'public/Img/Fotografias/'+responseDep.deportista['Archivo1_Url']+'?' + (new Date()).getTime());
+						}else{
+							$("#Fotografia").hide();
+						}
 						$("#Pertenece").val(responseDep.deportista['Pertenece']).change();		
           				$("#deportista").val(responseDep.deportista['Id']);						
 						$("#LugarExpedicion").val(responseDep.deportista['Lugar_Expedicion_Id']);
@@ -494,13 +362,11 @@ function Buscar(e){
 						$("#seccion_cinco").show("slow");
 						$("#seccion_compromiso").show("slow");
 
-
-						$("#Modficar").show();
+						$("#Modificar").show();
               			$("#Registrar").hide();
 
-              			//$("#registro").show();
-
-              		}else{
+              		}else{              			
+              			$("#Fotografia").hide();
               			$("#Modificar").hide();
               			$("#Registrar").show();
               			
@@ -561,7 +427,6 @@ function ShowZapatos(id_genero, id_tipo, tenis){
 function Reset_campos(e){
 	$('#personas').html( '');
 	$("#camposRegistro").hide('slow');
-
 	$("#seccion_uno").hide("slow");
 	$("#seccion_dos").hide("slow");
 	$("#seccion_tres").hide("slow");

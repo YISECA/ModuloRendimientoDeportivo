@@ -9,7 +9,9 @@
         "laravel/framework": "5.2.*",
         "idrd/usuarios": "dev-master",
         "laravelcollective/html": "5.2.*",
-        "guzzlehttp/guzzle": "~4.0"
+        "guzzlehttp/guzzle": "~4.0",
+        "mikehaertl/phpwkhtmltopdf": "^2.2",
+        "wemersonjanuario/wkhtmltopdf-windows":"0.12.2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -6,10 +6,12 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Idrd\Usuarios\Repo\PersonaInterface;
 use Validator;
+use Exception;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\RegistroDeportista;
 use Mail;
+use mikehaertl\wkhtmlto\Pdf;
 
 use App\Models\Banco;
 use App\Models\Ciudad;
@@ -231,7 +233,6 @@ class DeportistaController extends Controller
     public function ModificarDeportista(RegistroDeportista $request){
     	if ($request->ajax()) { 
 
-
     		$DeportistaDeporte = Deportista::with('deportistaDeporte')->find($request->deportista);
 	    	$dep = $DeportistaDeporte->deportistaDeporte[count($DeportistaDeporte->deportistaDeporte)-1];
 
@@ -379,4 +380,64 @@ class DeportistaController extends Controller
 		    $message->to($datos[0], 'IDRD')->subject('Registro de deportista exitoso!');
 		});
     }   
+
+    /*public function Descarga(Request $request, $id)
+    {    	
+    	//dd('http://localhost/ModuloRendimientoDeportivo/rudPDF/'.$id);
+    	$pdf = new Pdf(curl_init('http://localhost/ModuloRendimientoDeportivo/rudPDF/'.$id));
+    	//$pdf->addPage(');
+    	//$pdf = new Pdf('http://localhost/ModuloRendimientoDeportivo/rudPDF');
+    	//$pdf = new Pdf($id);
+
+		$pdf->binary = 'vendor/wemersonjanuario/wkhtmltopdf-windows/bin/64bit/wkhtmltopdf.exe';		
+		if (!$pdf->send()) {
+		    throw new Exception('Could not create PDF: '.$pdf->getError());
+		}
+		$pdf->send("rudPDF.pdf");
+    }
+
+    public function RudPdf(Request $request, $id){
+    	$Banco = Banco::all();
+		$Ciudad = Ciudad::all();
+		$ClasificacionDeportista = ClasificacionDeportista::all();
+		$Departamento = Departamento::all();
+		$EstadoCivil = EstadoCivil::all();
+		$Estrato = Estrato::all();
+		$GrupoSanguineo = GrupoSanguineo::all();
+		$Localidad = Localidad::all();
+		$NivelRegimenSub = NivelRegimenSub::all();
+		$Parentesco = Parentesco::all();
+		$RegimenSalud = RegimenSalud::all();
+		$TipoAfiliacion = TipoAfiliacion::all();
+		$TipoCuenta = TipoCuenta::all();
+		$Eps = Eps::all();
+		$deportista = array();
+		$Pais = Pais::all();
+		$Genero = Genero::all();
+		$Arl = Arl::all();
+		$FondoPension = FondoPension::all();
+		$Club = Club::all();
+
+		return view('SIAB/pdf/deportistaPDF',['deportista' => $deportista])
+		->with(compact('Banco'))
+		->with(compact('Ciudad'))
+		->with(compact('ClasificacionDeportista'))
+		->with(compact('Departamento'))
+		->with(compact('EstadoCivil'))
+		->with(compact('Estrato'))
+		->with(compact('Localidad'))
+		->with(compact('GrupoSanguineo'))
+		->with(compact('NivelRegimenSub'))
+		->with(compact('Parentesco'))
+		->with(compact('RegimenSalud'))
+		->with(compact('TipoAfiliacion'))
+		->with(compact('TipoCuenta'))
+		->with(compact('Eps'))
+		->with(compact('Pais'))
+		->with(compact('Genero'))		
+		->with(compact('Arl'))		
+		->with(compact('FondoPension'))		
+		->with(compact('Club'))
+		;
+    }*/
 }

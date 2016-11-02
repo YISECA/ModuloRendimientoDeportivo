@@ -41,13 +41,17 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('getTallas/{id_genero}/{id_tipo}', 'DeportistaController@Tallas');  
 	Route::get('deportista/{id}','DeportistaController@datos');
 	Route::post('AddDeportista', 'DeportistaController@RegistrarDeportista');
-	Route::post('EditDeportista', 'DeportistaController@ModificarDeportista');
+	Route::post('EditDeportista', 'DeportistaController@ModificarDeportista');	
 	Route::get('getAgrupacion/{id}', 'DeportistaController@Agrupaciones');
 	Route::get('getDeporte/{id}', 'DeportistaController@Deportes');
 	Route::get('getModalidad/{id}', 'DeportistaController@Modalidades');
 	Route::get('getDeportistaDeporte/{id}', 'DeportistaController@DeportistaDeporte');
 	Route::get('getEtapas/{id}', 'DeportistaController@Etapas');
 	Route::get('getEtapasD/{id}', 'DeportistaController@getDeportistaEtapas');	
+
+	/***********PDF*************/
+	Route::any('Descarga/{id}', 'DeportistaController@Descarga');
+	Route::get('rudPDF/{id}','DeportistaController@RudPdf');
 
 	/****Valoracion Psico****/
 	Route::get('psico','ValoracionPsicoController@index');
@@ -67,8 +71,26 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('AddActividad', 'ActividadController@RegistrarActividad');
 	Route::post('EditActividad', 'ActividadController@ModificarActividad');	
 	Route::get('TraeActividad/{id}','ActividadController@ActividadTraer');		
-
 	/*************************************************/
+
+
+	/****Suministros, apoyos y servicios****/
+	Route::get('suministros','SuministrosController@index');	
+
+	Route::post('AddComplemento', 'SuministrosController@RegistrarComplemento');
+	Route::get('complemento/{id}','SuministrosController@Complemento_Datos');	
+	Route::get('ValorComplemento/{id}','SuministrosController@ValorComplemento_Datos');			
+	Route::get('ListaComplemento/{id}','SuministrosController@Lista_Complemento_Datos');	
+
+	Route::post('AddApoyo', 'SuministrosController@RegistrarApoyo');
+	Route::get('ListaApoyos/{id}','SuministrosController@Lista_Apoyos_Datos');	
+
+	Route::post('AddAlimentacion', 'SuministrosController@RegistrarAlimentacion');
+	Route::get('alimentacion/{id}','SuministrosController@Alimentacion_Datos');
+	Route::get('ValorAlimentacion/{id}','SuministrosController@ValorAlimentacion_Datos');		
+	Route::get('ListaAlimentacion/{id}','SuministrosController@Lista_Alimentacion_Datos');	
+	/*************************************************/
+	
 
 	/********************Tecnico****************************/
 	Route::get('configuracion','configuracion@inicio');

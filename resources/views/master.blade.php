@@ -111,6 +111,7 @@
                   <li><a href="psico">Valoración psicosocial</a></li>
                   <li><a href="domicilio">Visita domiciliaria</a></li>
                   <li><a href="actividad">Actividades de intervención</a></li>
+                  <li><a href="suministros">Suministros, apoyos y servicios</a></li>
                 </ul>
               </li>
               <li>

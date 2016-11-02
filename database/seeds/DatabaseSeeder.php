@@ -28,5 +28,10 @@ class DatabaseSeeder extends Seeder
          $this->call(TipoEtapa::class);
          $this->call(Etapa::class);
          $this->call(TipoActividad::class);
+         $this->call(TipoComplemento::class);
+         $this->call(Complemento::class);
+         $this->call(Apoyo::class);
+         $this->call(TipoAlimentacion::class);
+         $this->call(Alimentacion::class);
     }
 }

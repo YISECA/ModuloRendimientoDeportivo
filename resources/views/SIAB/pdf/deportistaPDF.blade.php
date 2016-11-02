@@ -1,72 +1,22 @@
-@extends('master')
+<!--@extends('master')
 @section('script')
   @parent
-    <script src="{{ asset('public/Js/buscar_personas.js') }}"></script>     
-    <script src="{{ asset('public/Js/SIAB/rud.js') }}"></script>   
     <script src="{{ asset('public/Js/bootstrap-datepicker.js') }}"></script>   
     {{Html::style('public/Css/bootstrap-datepicker3.css')}}      
 @stop  
 @section('content')
-<!-- ------------------------------------------------------------------------------------ -->
-<center><h3>REGISTRO ÚNICO DE DEPORTISTAS (RUD)</h3></center>
- <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"/>
-    <div id="main_persona" class="row" data-url="{{ url(config('usuarios.prefijo_ruta')) }}">  
-        <div class="content">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Buscar persona</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div id="main_persona" class="row" data-url="{{ url(config('usuarios.prefijo_ruta')) }}">
-                            <div id="alerta" class="col-xs-12" style="display:none;">
-                              <div class="alert alert-success alert-dismissible" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                Datos actualizados satisfactoriamente.
-                              </div>
-                            </div>
-                            <div class="col-xs-12">
-                                <div class="input-group">                                        
-                                    <input id="buscador" name="buscador" type="text" class="form-control" placeholder="Buscar" value="1032455961" onkeypress="return ValidaCampo(event);">
-                                    <span class="input-group-btn">
-                                        <button id="buscar" data-role="buscar" data-buscador="buscar-rud" class="btn btn-default" type="button">
-                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                        </button>
-                                    </span>
-                                </div>
-                                <div tabindex="-1" id="mensaje-incorrectoB" class=" text-left alert alert-success alert-danger" role="alert" style="display: none; margin-top: 10px;">                                    
-                                    <strong>Error </strong> <span id="mensajeIncorrectoB"></span>
-                                </div>
-                            </div>
-                            <div class="col-xs-12"><br></div>
-                                <div class="col-xs-12">
-                                    <ul id="personas"></ul>
-                                </div>
-                                <div id="paginador" class="col-xs-12"></div>                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-<!-- ------------------------------------------------------------------------------------ -->
 <form id="registro" name="registro">
-        <!--<a id="DescargaH" href="" target="blank">
-            DESCARGA
-        </a>-->
-    
+    <button id="Descarga" name="Descarga" >Descarga</button>
+
     <input type="hidden" name="persona" id="persona" value=""/>
     <input type="hidden" name="deportista" id="deportista" value=""/>
-    <div class="container" id="loading" style="display:none;">
-        <center><button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Espere...</button></center>
-    </div>
-    <div id="camposRegistro" style="display:none;">
-     <div class="content" id="RUD" style="display: none;">
+    <div id="camposRegistro" >
+     <div class="content" id="RUD" >
         <div class="content">
             <div style="text-align:center;">
                 <h3>Registro Único de Deportistas (RUD)</h3>
             </div>  
             <div class="panel">
-                <!-- Default panel contents -->
                 <div class="panel-heading">                
                     <div class="bs-callout bs-callout-info">                    
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -75,7 +25,7 @@
                         <span data-role="ver" id="seccion_uno_ver" class="glyphicon glyphicon-resize-full btn-lg" aria-hidden="true"></span>
                     </div>
                 </div>                 
-                <ul class="list-group" id="seccion_uno" name="seccion_uno" style="display: none">
+                <ul class="list-group" id="seccion_uno" name="seccion_uno">
                     <li class="list-group-item">
                         <div class="row" id="FotografiaRegistro">
                              <div class="form-group col-md-12">
@@ -173,7 +123,7 @@
                         </div>
                         <br>
                     </li>
-                    <li class="list-group-item" id="DeportistaEtapas" style="display:none;">
+                    <li class="list-group-item" id="DeportistaEtapas" >
                         <div class="row">
                             <div class="form-group col-md-2">
                                 <label for="inputEmail" class="control-label"  id="EtapaNacionalL" >Etapa nacional:</label>
@@ -387,7 +337,7 @@
                                     <option value="2">No</option>                  
                                 </select>
                             </div>
-                            <div id="militares" style="display:none;">
+                            <div id="militares" >
                                 <div class="form-group col-md-1">
                                     <label for="inputEmail" class="control-label" id="LibretaL" >Número de libreta militar:</label>
                                 </div>
@@ -501,9 +451,9 @@
                     </li> 
                 </ul>
             </div>
-            <!-- ------------------------------------------SECCION DOS---------------------------------------- -->
+            
             <div class="panel">
-                <!-- Default panel contents -->
+                
                 <div class="panel-heading">
                     <div class="bs-callout bs-callout-info">
                         <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
@@ -512,7 +462,7 @@
                         <span data-role="ver" id="seccion_dos_ver" class="glyphicon glyphicon-resize-full btn-lg" aria-hidden="true"></span>
                     </div>
                 </div>                
-                <ul class="list-group" id="seccion_dos" name="seccion_dos" style="display: none">
+                <ul class="list-group" id="seccion_dos" name="seccion_dos">
                     <div class="panel-body">
                         <p>DATOS DE LOCALIZACIÓN</p>
                     </div> 
@@ -600,9 +550,9 @@
                     </li>  
                 </ul>
         </div>
-        <!-- ------------------------------------------SECCION TRES---------------------------------------- -->
+        
         <div class="panel">
-            <!-- Default panel contents -->
+            
             <div class="panel-heading">
                 <div class="bs-callout bs-callout-info">
                     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
@@ -611,7 +561,7 @@
                     <span data-role="ver" id="seccion_tres_ver" class="glyphicon glyphicon-resize-full btn-lg" aria-hidden="true"></span>
                 </div>
             </div>                
-            <ul class="list-group" id="seccion_tres" name="seccion_tres" style="display: none">
+            <ul class="list-group" id="seccion_tres" name="seccion_tres">
                 <div class="panel-body">
                     <p>DATOS DE SEGURIDAD SOCIAL</p>
                 </div> 
@@ -667,7 +617,7 @@
                                 <option value="2">No</option> 
                             </select>
                         </div>
-                        <div id="MedicinaPrepagoD" style="display:none;">
+                        <div id="MedicinaPrepagoD" >
                             <div class="form-group col-md-2">
                                 <label for="inputEmail" class="control-label" id="NombreMedicinaPrepagoL" >Nombre de la entidad :</label>
                             </div>
@@ -675,7 +625,7 @@
                                 <input class="form-control" placeholder="Nombre de la entidad prepago" type="text" name="NombreMedicinaPrepago" id="NombreMedicinaPrepago">
                             </div>
                         </div>
-                        <div id="MedicinaPrepagoE" style="display:none;">
+                        <div id="MedicinaPrepagoE" >
                             <div class="form-group col-md-2">
                                 <label for="inputEmail" class="control-label" id="EpsL">Eps:</label>
                             </div>
@@ -743,7 +693,7 @@
                     <br>
                 </li>
                 <li class="list-group-item">
-                    <div class="row" id="FondoPensionD" style="display:none;">
+                    <div class="row" id="FondoPensionD" >
                         <div class="form-group col-md-2" >
                             <label for="inputEmail" class="control-label" id="FondoPensionL" >Nombre del fondo de pensiones:</label>
                         </div>
@@ -759,9 +709,9 @@
                 </li>
             </ul>
         </div>
-        <!-- ------------------------------------------SECCION CUATRO---------------------------------------- -->
+        
         <div class="panel">
-            <!-- Default panel contents -->
+            
             <div class="panel-heading">
                 <div class="bs-callout bs-callout-info">
                     <span class="glyphicon glyphicon-knight" aria-hidden="true"></span>
@@ -770,7 +720,7 @@
                     <span data-role="ver" id="seccion_cuatro_ver" class="glyphicon glyphicon-resize-full btn-lg" aria-hidden="true"></span>
                 </div>
             </div>                
-            <ul class="list-group" id="seccion_cuatro" name="seccion_cuatro" style="display: none">
+            <ul class="list-group" id="seccion_cuatro" name="seccion_cuatro">
                 <div class="panel-body">
                     <p>TALLAS ATLETA</p>
                 </div> 
@@ -813,9 +763,9 @@
                 </li>
             </ul>
         </div>
-        <!-- ------------------------------------------SECCION CINCO---------------------------------------- -->
+        
         <div class="panel">
-            <!-- Default panel contents -->
+            
             <div class="panel-heading">
                 <div class="bs-callout bs-callout-info">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -824,7 +774,7 @@
                     <span data-role="ver" id="seccion_cinco_ver" class="glyphicon glyphicon-resize-full btn-lg" aria-hidden="true"></span>
                 </div>
             </div>                 
-            <ul class="list-group" id="seccion_cinco" name="seccion_cinco" style="display: none">
+            <ul class="list-group" id="seccion_cinco" name="seccion_cinco">
 
                 <li class="list-group-item">
                     <div class="row">
@@ -854,7 +804,7 @@
                                 <option value="2">No</option>
                             </select>
                         </div>
-                        <div id="MedicamentoD" style="display:none;">
+                        <div id="MedicamentoD" >
                             <div class="form-group col-md-1">
                                 <label for="inputEmail" class="control-label" id="CualMedicamentoL">Cual?:</label>
                             </div>
@@ -883,7 +833,7 @@
                                 <option value="2">No</option>
                             </select>
                         </div>
-                        <div id="OtroMedicoD" style="display:none;">
+                        <div id="OtroMedicoD" >
                             <div class="form-group col-md-2">
                                 <label for="inputEmail" class="control-label" id="OtroMedicoL">Especifique:</label>
                             </div>
@@ -896,7 +846,7 @@
                 </li>
             </ul>
         </div>
-        <!-- ------------------------------------------SECCION ACUERDOS---------------------------------------- -->
+        
         <div class="panel">
             <div class="panel-heading">
                 <div class="bs-callout bs-callout-info">
@@ -905,7 +855,7 @@
                     <span data-role="ver" id="seccion_compromiso_ver" class="glyphicon glyphicon-resize-full btn-lg" aria-hidden="true"></span>
                 </div>
             </div>            
-            <ul class="list-group" id="seccion_compromiso" name="seccion_compromiso" style="display: none">
+            <ul class="list-group" id="seccion_compromiso" name="seccion_compromiso">
                 <div class="panel-body">
                     <p>YO <label id="NombresCompromiso"></label> DEPORTISTA DE LA LIGA DE <label id="Liga"></label> Y COMO ATLETA DEL PROGRAMA DE RENDIMIENTO DEPORTIVO DE BOGOTÁ, ME COMPROMETO A CUMPLIR CON LA REGLAMENTACIÓN ESTABLECIDA POR EL IDRD Y EN CONSTANCIA RECIBO INFORMACIÓN DE:
                    </p>
@@ -941,7 +891,7 @@
         </div>
     </div>
   </div>   
-  <div class="form-group"  id="mensaje_actividad" style="display: none;">
+  <div class="form-group"  id="mensaje_actividad" >
     <div id="alert_actividad"></div>
   </div> 
 </form>       

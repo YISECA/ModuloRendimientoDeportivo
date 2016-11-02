@@ -2,7 +2,14 @@ var agrupacionT = '';
 var deporteT = '';
 var modalidadT = '';
 
-$(function(e){ 	
+$(function(e){ 
+
+/*$("#Descarga").on('click', function(){
+		registro('Descarga');
+
+		return false;
+
+	});   */ 	
 
 	$("#Registrar").on('click', function(){				
 		registro('AddDeportista');
@@ -310,6 +317,10 @@ function Buscar(e){
 						}
 						$("#Pertenece").val(responseDep.deportista['Pertenece']).change();		
           				$("#deportista").val(responseDep.deportista['Id']);						
+          				//$("#DescargaH").val(responseDep.deportista['Id']);						
+          				//$("#DescargaH").attr("href", "Descarga/"+responseDep.deportista['Id'])
+          				//$("#DescargaH").attr("href", "rudPDF")          				
+          				//$("#DescargaH").attr("href", "Descarga/"+responseDep.deportista['Id']);
 						$("#LugarExpedicion").val(responseDep.deportista['Lugar_Expedicion_Id']);
 						$("#FechaExpedicion").val(responseDep.deportista['Fecha_Expedicion']);
 						$("#Pasaporte").val(responseDep.deportista['Numero_Pasaporte']);

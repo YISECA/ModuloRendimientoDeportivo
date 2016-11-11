@@ -48,6 +48,7 @@ class SuministrosController extends Controller{
     		$validator = Validator::make($request->all(), [
     			'TipoComplemento' => 'required',
     			'Complemento' => 'required',
+    			'PrecioOtro' => array('required_if:Complemento,25'),
     			'Cantidad' => 'required|numeric',
     			'FechaComplemento' => 'required|date'
     			]);
@@ -59,7 +60,11 @@ class SuministrosController extends Controller{
 	        	$DeportistaComplemento->Deportista_Id = $request->deportista1;
 	        	$DeportistaComplemento->Complemento_Id = $request->Complemento;
 	        	$DeportistaComplemento->Cantidad = $request->Cantidad;
-	        	$DeportistaComplemento->Valor = $request->ValorComplemento;
+	        	if($request->Complemento == 25){
+	        		$DeportistaComplemento->Valor = $request->PrecioOtro;
+	        	}else{
+	        		$DeportistaComplemento->Valor = $request->ValorComplemento;
+	        	}
 	        	$DeportistaComplemento->Fecha = $request->FechaComplemento ;
 
 	        	if($DeportistaComplemento->save()){

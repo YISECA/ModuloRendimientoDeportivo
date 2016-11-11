@@ -20,6 +20,7 @@ class CrearTablaVisitaDomiciliaria extends Migration
             $table->string('Apellidos_Receptor');
             $table->string('Documento_Receptor');
             $table->string('Vivienda');
+            $table->string('Area_Vivienda');         
             $table->string('Tipo_Vivienda');         
             $table->string('Tipo_Vivienda_Propia')->nullable();
             $table->string('Tiempo_Vivienda');

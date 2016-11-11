@@ -1,8 +1,77 @@
 var miembros = new Array();
 $(function(e){
 
+  $(document).ready(function () {
+    TablaVisitas();
+  });
+  function TablaVisitas() {
+      $('#TablaVisitas').DataTable({
+          retrieve: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+        dom: 'Bfrtip',
+        select: true,
+        "responsive": true,
+        "ordering": true,
+        "info": true,
+        "language": {
+            url: 'public/DataTables/Spanish.json',
+            searchPlaceholder: "Buscar"
+        }
+      });
+  }
+
+  $("#TablaVisitas").delegate('.VerVisita', 'click', function(e){
+    miembros = new Array();
+    $("#FormularioAddVisista").hide('slow');
+    $.get("TraerVisita/" +$(this).val()+ "", function (VisitaDatos) { 
+      if(VisitaDatos){
+        LimpiaCampos();
+        $("#Registrar").hide('slow');
+        $("#Cerrar").show('slow');
+        $("#Titulo").empty();
+        $("#Titulo").append('<h3>Visita domiciliaria de la fecha '+VisitaDatos['Fecha_Intervencion']+'</h3>');
+        $("#Add_Salud").hide('slow');
+        $("#Li1").hide('slow');
+        $("#Li2").hide('slow');
+        $("#MiembrosT").show('slow');
+        VisitaCampos(VisitaDatos);
+        $("#FormularioAddVisista").show('slow');
+      }
+      OcultarCampos();
+    });
+    return false;
+  });
+
+  $("#Agregar_Visista").on('click', function(e){
+    miembros = new Array();
+    $("#Registrar").show('slow');
+    $("#Cerrar").hide('slow');
+    $("#Titulo").empty();
+    $("#Titulo").append('<h3>Registar nueva visita domiciliaria</h3>');
+    $("#FormularioAddVisista").hide('slow');
+    $("#Add_Salud").show('slow');
+    $("#Li1").show('slow');
+    $("#Li2").show('slow');
+    $("#MiembrosT").hide();
+    LimpiaCampos();
+    $("#FormularioAddVisista").show('slow');
+    VerCampos();
+  });
+
+  $("#Cerrar").on('click', function(e){
+    $("#Registrar").hide('slow');
+    $("#Cerrar").hide('slow');
+    $("#Titulo").empty();
+    $("#FormularioAddVisista").hide('slow');
+    LimpiaCampos();
+    return false;
+  });
+
 	$("#Registrar").on('click', function(){		
 		registro('AddVisita');
+    return false;
 	});   
 
 	function registro (url){	
@@ -37,12 +106,12 @@ $(function(e){
 	var validador_errores = function(data){
     $('#visitaF .form-group').removeClass('has-error');
     $('#GenogramaDep').removeClass('imagen-error');
-    if(i == 'Imagen1Dep'){ $('#Imagen1Dep').removeClass('imagen-error'); }
-    if(i == 'Imagen2Dep'){ $('#Imagen2Dep').removeClass('imagen-error'); }
-    if(i == 'Imagen3Dep'){ $('#Imagen3Dep').removeClass('imagen-error'); }
-    if(i == 'Imagen4Dep'){ $('#Imagen4Dep').removeClass('imagen-error'); }
-    if(i == 'Imagen5Dep'){ $('#Imagen5Dep').removeClass('imagen-error'); }
-    if(i == 'Imagen6Dep'){ $('#Imagen6Dep').removeClass('imagen-error'); } 
+    $('#Imagen1Dep').removeClass('imagen-error'); 
+    $('#Imagen2Dep').removeClass('imagen-error'); 
+    $('#Imagen3Dep').removeClass('imagen-error'); 
+    $('#Imagen4Dep').removeClass('imagen-error'); 
+    $('#Imagen5Dep').removeClass('imagen-error'); 
+    $('#Imagen6Dep').removeClass('imagen-error');
     VerCampos();
 
     $.each(data, function(i, e){
@@ -73,7 +142,7 @@ $(function(e){
     }
 	}
 
-  $("#Add_Salud").on('click', function(){
+  $("#Add_Salud").on('click', function(){    
     $("input[name=NombreMiembro]").css({'border-color': '#CCCCCC'});
     $("input[name=ParentescoMiembro]").css({'border-color': '#CCCCCC'});
     $("input[name=NombreSubsidiado]").css({'border-color': '#CCCCCC'});
@@ -138,6 +207,7 @@ $(function(e){
     });
     tabla += '</table>';
     $("#MiembrosT").append(tabla);
+    $("#MiembrosT").show('slow');
   });
 
 	$("input[name='op2']").on('change', function(){
@@ -169,6 +239,88 @@ $(function(e){
 		if(valor == true){ $("#"+otro).show('slow'); }else{ $("#"+otro).hide('slow');}
 	}
 
+  function LimpiaCampos(){
+    $("#Genograma_Observacion").val('');
+    $('#FechaIntervencion').val('');
+    $('#NombresAtiende').val('');
+    $('#ApellidosAtiende').val('');
+    $('#DocumentoAtiende').val('');
+    $('input[name="op1"]').prop('checked', false);
+    $('input[name="op2"]').prop('checked', false).change();
+    $('input[name="op2o1"]').prop('checked', false);
+    $('#visitaF').find(':checkbox[name^="op4"]').prop("checked", false).change();
+    $('#visitaF').find(':checkbox[name^="op5"]').prop("checked", false).change();
+    $('#visitaF').find(':checkbox[name^="op6"]').prop("checked", false).change();    
+    $('#visitaF').find(':checkbox[name^="op7"]').prop("checked", false).change();
+    $('input[name="op8"]').prop('checked', false);
+    $('input[name="op9"]').prop('checked', false);
+    $('input[name="op10"]').prop('checked', false);
+    $('input[name="op11"]').prop('checked', false);
+    $('input[name="op12"]').prop('checked', false);
+    $('input[name="op13"]').prop('checked', false);
+    $('input[name="op14"]').prop('checked', false);
+    $('#pn3').val('');
+    $('#p3').val('');
+    $('#otro6o6').val('');
+    $('#Habitacion').val('');
+    $('#Bano').val('');
+    $('#Cocina').val('');
+    $('#Sala').val('');
+    $('#Comedor').val('');
+    $('#ZRopas').val('');
+    $('#OtrosDistribucion').val('');
+    $('#Camas').val('');
+    $('#Closets').val('');
+    $('#Televisor').val('');
+    $('#Nevera').val('');
+    $('#Estufa').val('');
+    $('#OtrosMuebles').val('');
+    $('#NombreMiembro').val('');
+    $('#ParentescoMiembro').val('');
+    $('#NombreSubsidiado').val('');
+    $('#NombreContributivo').val('');
+    $('#NumAfiliados').val('');
+    $('#Enfermedades').val('');
+    $('#Discapacidades').val('');
+    $('#op13').val('');
+    $('#otro13o4').val('');
+    $('#TotalIngreso').val('');
+    $('#Alimentacion').val('');
+    $('#Arriendo').val('');
+    $('#Educacion').val('');
+    $('#CuotaV').val('');
+    $('#Salud').val('');
+    $('#Recreacion').val('');
+    $('#Servicios').val('');
+    $('#Transporte').val('');
+    $('#p14o1').val('');
+    $('#Adeudan').val('');
+    $('#MontoEgresos').val('');
+    $('#MontoDeudas').val('');
+    $('#op15').val('');
+    $('#PracticasDeportivas').val('');
+    $('#JuegosFamiliares').val('');
+    $('#SalidasPublicos').val('');
+    $('#Quehaceres').val('');
+    $('#ActividadesLibre').val('');
+    $('#Television').val('');
+    $('#ActividadesAcademicas').val('');
+    $('#Internet').val('');
+    $('#Preg16').val('');
+    $('#Preg17').val('');
+    $('#Preg18').val('');
+    $('#Preg19').val('');
+    $('#Preg20').val('');
+    $('#Preg21').val('');
+    $('#Preg22').val(''); 
+    $("#SImagenImagen1").empty();
+    $("#SImagenImagen2").empty();
+    $("#SImagenImagen3").empty();
+    $("#SImagenImagen4").empty();
+    $("#SImagenImagen5").empty();
+    $("#SImagenImagen6").empty();
+  }
+
 });
 
 
@@ -178,25 +330,13 @@ function Buscar(e){
       if(data.length > 0){ //Existe la persona       	        
       	$.each(data, function(i, e){
         	$.get("deportista/" + e['Id_Persona'] + "", function (responseDep) { 
-
             if(responseDep.deportista){//Existe Deportista
               Deportista(responseDep.deportista, data[0]);
               if(((responseDep.deportista.deportista_visita).length) != 0 ){//Existe visita
-                VisitaCampos(responseDep.deportista.deportista_visita[0]);
+                  VisitaCamposLista(responseDep.deportista.deportista_visita);
                 $("#camposRegistro").show('slow');
-                $("#Registrar").hide('slow');
-                $("#Add_Salud").hide('slow');
-                $('#Li1').hide('slow');
-                $('#Li2').hide('slow');
-                VerCampos();
-                
               }else{        
                 $("#camposRegistro").show('slow');
-                $("#Registrar").show('slow'); 
-                $("#Add_Salud").show('slow');
-                $('#Li1').show('slow');
-                $('#Li2').show('slow');
-                OcultarCampos();                  
               }
             }else{
               $('#buscar span').removeClass('glyphicon-refresh glyphicon-refresh-animate').addClass('glyphicon-remove');
@@ -230,6 +370,17 @@ function Deportista (Deportista, Persona){
   $.get("getDeportistaDeporte/" + Deportista['Id'] + "", function (DeportistaDeporte) {  
     $("#Deporte").val(DeportistaDeporte['Deporte_Id']);
   });
+}
+
+function VisitaCamposLista (VisitaInfo){
+    var t = $('#TablaVisitas').DataTable(); 
+    $.each(VisitaInfo, function(i, e){
+      t.row.add( [
+        e['Id'],
+        e['Fecha_Intervencion'],
+        '<button class="btn btn-primary VerVisita" name="VerVisita" id="VerVisita" value="'+e['Id']+'">Ver visita domiciliaria</button>',
+    ] ).draw( false );
+    });    
 }
 
 function VisitaCampos (VisitaInfo){
@@ -298,6 +449,7 @@ function VisitaCampos (VisitaInfo){
   $('[name=op1][value="'+VisitaInfo["Vivienda"]+'"]').prop('checked',true).change();
   $('[name=op2][value="'+VisitaInfo["Tipo_Vivienda"]+'"]').prop('checked',true).change();
   $('[name=op2o1][value="'+VisitaInfo["Tipo_Vivienda_Propia"]+'"]').prop('checked',true).change();  
+  $("#pn3").val(VisitaInfo["Area_Vivienda"]);
   $("#p3").val(VisitaInfo["Tiempo_Vivienda"]);
   $("#Habitacion").val(VisitaInfo["Total_Habitaciones"]);
   $("#Bano").val(VisitaInfo["Total_Banos"]);
@@ -444,6 +596,7 @@ function Reset_campos(e){
     $('input[name="op12"]').prop('checked', false);
     $('input[name="op13"]').prop('checked', false);
     $('input[name="op14"]').prop('checked', false);
+    $('#pn3').val('');
     $('#p3').val('');
     $('#otro6o6').val('');
     $('#Habitacion').val('');
@@ -497,6 +650,12 @@ function Reset_campos(e){
     $('#Preg20').val('');
     $('#Preg21').val('');
     $('#Preg22').val('');	
+    $("#SImagenImagen1").empty();
+    $("#SImagenImagen2").empty();
+    $("#SImagenImagen3").empty();
+    $("#SImagenImagen4").empty();
+    $("#SImagenImagen5").empty();
+    $("#SImagenImagen6").empty();
 }
 
 function OcultarCampos(){

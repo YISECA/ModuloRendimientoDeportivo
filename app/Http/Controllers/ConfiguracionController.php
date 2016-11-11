@@ -11,21 +11,21 @@ use App\Models\Modalidad;
 use App\Models\Rama;
 use App\Models\Categoria;
 use App\Models\ClasificacionDeportista;
+use App\Models\TipoEvaluacion;
+use App\Models\Division;
 
-class configuracion extends Controller
+class ConfiguracionController extends Controller
 {
     //----------------------AGRUPACIÓN--------------------------------------
     public function inicio()
 	{
-
         $Agrupacion =  Agrupacion::with('ClasificacionDeportista')->get();
         $clasificacion_deportista =  ClasificacionDeportista::all();
-
     	$datos = [
             'agrupacion_datos' => $Agrupacion,
             'clasificacion_deportista' => $clasificacion_deportista,
 		];
-	    return view('agrupacion', $datos);
+	    return view('TECNICO/agrupacion', $datos);
 	}
 
 	public function guardar(Request $input)
@@ -34,9 +34,9 @@ class configuracion extends Controller
 		return $this->crear_agrupacion($model_A, $input);
 	}
 
+
 	public function crear_agrupacion($model_A, $input)
 	{
-
 		$validator = Validator::make($input->all(),
 		    [
 				'Id_Clase' => 'required',
@@ -57,50 +57,41 @@ class configuracion extends Controller
 
 	public function agrupacion(Request $input , $id)
 	{
-
 		$model_A = Agrupacion::find($id);
 		return $model_A;
 	}
 
+
 	public function agrupacionDeporte(Request $input , $id)
 	{
-
 		$model_A = Agrupacion::find($id);
-
 		if($model_A->delete()){
 			return response()->json(array('status' => 'True'));
 		}else{
 			return response()->json(array('status' => 'False'));
-		}
-		
+		}		
 	}
 
 
 	public function agrupacionEliminar(Request $input , $id)
 	{
-
 		$model_A = Agrupacion::find($id);
-
 		if($model_A->delete()){
 			return response()->json(array('status' => 'True'));
 		}else{
 			return response()->json(array('status' => 'False'));
-		}
-		
+		}		
 	}
-
-
 
 	public function modificar(Request $input)
 	{
 		$modelo=Agrupacion::find($input["id_agrup"]);
-
 		return $this->modificar_agrupacion($modelo, $input);
 	}
 
+
 	public function modificar_agrupacion($modelo, $input)
 	{
-
 		$validator = Validator::make($input->all(),
 		    [
 				'Id_cla' => 'required',
@@ -133,7 +124,7 @@ class configuracion extends Controller
             'agrupacion' => $Agrupacion->all(),
             'clasificacion_deportista' => $clasificacion_deportista->all(),
 		];
-	    return view('deporte', $datos);
+	    return view('TECNICO/deporte', $datos);
 	}
 
 	public function crear_dpt(Request $input)
@@ -187,7 +178,7 @@ class configuracion extends Controller
 	public function ver_deporte(Request $input , $id)
 	{
 
-		$model_A = Deporte::find($id);
+		$model_A = Deporte::with('agrupacion','agrupacion.ClasificacionDeportista')->find($id);
 		return $model_A;
 	}
 
@@ -221,15 +212,6 @@ class configuracion extends Controller
 	}
 
 
-
-
-
-
-
-
-
-
-
 	//----------------------MODALIDAD--------------------------------------
 
     public function modalidad()
@@ -237,12 +219,14 @@ class configuracion extends Controller
 
 		$Deporte =  Deporte::with('agrupacion','agrupacion.ClasificacionDeportista')->get();
         $Modalidad = Modalidad::with('deporte','deporte.agrupacion','deporte.agrupacion.ClasificacionDeportista')->get();
+        $clasificacion_deportista = new ClasificacionDeportista;
 
     	$datos = [
     		'deporte'=>$Deporte->all(),
             'modalidad' => $Modalidad->all(),
+            'clasificacion_deportista' => $clasificacion_deportista->all(),
 		];
-	    return view('modalidad', $datos);
+	    return view('TECNICO/modalidad', $datos);
 	}
 
 	public function crear_mdl(Request $input)
@@ -273,8 +257,8 @@ class configuracion extends Controller
 
 	public function ver_modalidad(Request $input , $id)
 	{
-		$model_A = Modalidad::find($id);
-		return $model_A;
+		$Modalidad = Modalidad::with('deporte', 'deporte.agrupacion','deporte.agrupacion.ClasificacionDeportista')->find($id);
+		return $Modalidad;
 	}
 
 
@@ -321,23 +305,12 @@ class configuracion extends Controller
 	}
 
 
-
-
-
-
-
-
 	//----------------------RAMA--------------------------------------
 
     public function rama()
 	{
-
-		$Rama = new Rama;
-
-    	$datos = [
-    		'rama'=>$Rama->all(),
-		];
-	    return view('rama', $datos);
+		$Rama = Rama::all();
+		return view('TECNICO/rama')->with(compact('Rama'));
 	}
 
 	public function crear_rm(Request $input)
@@ -421,7 +394,7 @@ class configuracion extends Controller
     	$datos = [
     		'categoria'=>$Categoria->all(),
 		];
-	    return view('categoria', $datos);
+	    return view('TECNICO/categoria', $datos);
 	}
 
 	public function crear_ct(Request $input)
@@ -497,7 +470,65 @@ class configuracion extends Controller
 	}
 
 
+	//----------------------DIVISION--------------------------------------
 
+    public function division()
+	{
+		$TipoEvaluacion = TipoEvaluacion::all();
+		$Division = Division::with('tipoEvaluacion')->get();
+		//dd($Division);
+		return view('TECNICO/division')
+			   ->with(compact('TipoEvaluacion'))
+			   ->with(compact('Division'))
+			   ;
+	}
 
+	public function ver_division(Request $input , $id)
+	{
+		$Division = Division::with('tipoEvaluacion')->find($id);
+		return $Division;
+	}
 
+	public function modificar_division(request $request)
+	{
+		$validator = Validator::make($request->all(),
+		    ['nom_division' => 'required', 'Tipo_Evaluacion_E' => 'required',]
+        );
+
+        if ($validator->fails()){
+            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+        }else{
+        	$Division = Division::find($request['Id_division']);
+			$Division->Nombre_Division = $request['nom_division'];
+			$Division->Tipo_Evaluacion_Id = $request['Tipo_Evaluacion_E'];		
+			$Division->save();
+			return $Division;
+		}
+	}
+
+	public function eliminarDivision(Request $input , $id){
+		$Division = Division::find($id);
+		if($Division->delete()){
+			return response()->json(array('status' => 'True'));
+		}else{
+			return response()->json(array('status' => 'False'));
+		}		
+	}
+
+	public function crear_division(Request $request)
+	{
+		$validator = Validator::make($request->all(),
+		    ['Nom_Division' => 'required', 'Tipo_Evaluacion' => 'required',]
+        );
+
+        if ($validator->fails()){
+            return response()->json(array('status' => 'error', 'errors' => $validator->errors()));
+        }else{
+        	$Division = new Division;
+			$Division['Nombre_Division'] = $request['Nom_Division'];	
+			$Division['Tipo_Evaluacion_Id'] = $request['Tipo_Evaluacion'];	
+			$Division->save();
+			return $Division;
+		}
+	}
 }

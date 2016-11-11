@@ -194,12 +194,22 @@ $(function()
     }); 
 
 
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
+    $('#example').DataTable({
+        retrieve: true,
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    } );
+        ],
+        dom: 'Bfrtip',
+        select: true,
+        "responsive": true,
+        "ordering": true,
+        "info": true,
+        "language": {
+            url: 'public/DataTables/Spanish.json',
+            searchPlaceholder: "Buscar"
+        }
+    });   
+
 
 
 });

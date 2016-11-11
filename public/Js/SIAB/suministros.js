@@ -31,13 +31,9 @@ $(function(e){
     $.get("ListaComplemento/" + id+ "", function (respListaComplemento){
       $("#ListaComplemento").empty();      
       $.each(respListaComplemento.deportista_complemento, function(i, e){
-        $("#ListaComplemento").append('<tr>');
-        $("#ListaComplemento").append('<td>'+e['Nombre_Complemento']+'</td>');
-        $("#ListaComplemento").append('<td><center>'+e.pivot['Cantidad']+'</center></td>');
-        $("#ListaComplemento").append('<td><center>'+e.pivot['Valor']+'</center></td>');
-        $("#ListaComplemento").append('<td><center>'+(e.pivot['Cantidad'])*(e.pivot['Valor'])+'</center></td>');
-        $("#ListaComplemento").append('<td><center>'+e.pivot['Fecha']+'</center></td>');
-        $("#ListaComplemento").append('</tr>');
+        /*$("#ListaComplemento").append('');*/
+        $("#ListaComplemento").append('<tr><td>'+e['Nombre_Complemento']+'</td><td><center>'+e.pivot['Cantidad']+'</center></td><td><center>'+e.pivot['Valor']+'</center></td><td><center>'+(e.pivot['Cantidad'])*(e.pivot['Valor'])+'</center></td><td><center>'+e.pivot['Fecha']+'</center></td></tr>');
+        /*$("#ListaComplemento").append('</tr>');*/
       });
     });
   }
@@ -46,11 +42,7 @@ $(function(e){
     $.get("ListaApoyos/" + id+ "", function (respListaApoyos){
       $("#ListaApoyos").empty();      
       $.each(respListaApoyos.deportista_apoyo, function(i, e){
-        $("#ListaApoyos").append('<tr>');
-        $("#ListaApoyos").append('<td>'+e['Nombre_Apoyo']+'</td>');
-        $("#ListaApoyos").append('<td><center>'+e.pivot['Valor']+'</center></td>');
-        $("#ListaApoyos").append('<td><center>'+e.pivot['Fecha']+'</center></td>');
-        $("#ListaApoyos").append('</tr>');
+        $("#ListaApoyos").append('<tr><td>'+e['Nombre_Apoyo']+'</td><td><center>'+e.pivot['Valor']+'</center></td><td><center>'+e.pivot['Fecha']+'</center></td></tr>');
       });
     });
   }
@@ -59,21 +51,14 @@ $(function(e){
     $.get("ListaAlimentacion/" + id+ "", function (respListaAlimentacion){
       $("#ListaAlimentacion").empty();      
       $.each(respListaAlimentacion.deportista_alimentacion, function(i, e){
-        $("#ListaAlimentacion").append('<tr>');
-        $("#ListaAlimentacion").append('<td>'+e.tipo_alimentacion['Nombre_Tipo_Alimentacion']+'</td>');
-        $("#ListaAlimentacion").append('<td>'+e['Nombre_Alimentacion']+'</td>');
-        $("#ListaAlimentacion").append('<td><center>'+(e.pivot['Cantidad'])+'</center></td>');
-        $("#ListaAlimentacion").append('<td><center>$ '+(e.pivot['Valor'])+'</center></td>');
-        $("#ListaAlimentacion").append('<td><center>$ '+(e.pivot['Cantidad'])*(e.pivot['Valor'])+'</center></td>');
-        $("#ListaAlimentacion").append('<td><center>'+e.pivot['Fecha']+'</center></td>');
-        $("#ListaAlimentacion").append('</tr>');
+        $("#ListaAlimentacion").append('<tr><td>'+e.tipo_alimentacion['Nombre_Tipo_Alimentacion']+'</td><td>'+e['Nombre_Alimentacion']+'</td><td><center>'+(e.pivot['Cantidad'])+'</center></td><td><center>$ '+(e.pivot['Valor'])+'</center></td><td><center>$ '+(e.pivot['Cantidad'])*(e.pivot['Valor'])+'</center></td><td><center>'+e.pivot['Fecha']+'</center></td></tr>');
       });
     });
   }
 
   function TablaComplementos() {
     $('#TablaComplementos').DataTable({
-        retrieve: true,
+        retrieve: true, 
         select: true,
         "responsive": true,
         "ordering": true,
@@ -212,9 +197,14 @@ $(function(e){
     }
   });
 
-   $("#Complemento").on('change', function(){
+   $("#Complemento").on('change', function(e){
     $.get("ValorComplemento/" + $("#Complemento").val() + "", function (respValorComplemento){
           $("#ValorComplemento").val(respValorComplemento['Valor_Complemento']);
+          if($("#Complemento").val() == 25){
+            $("#PrecioOtroD").show('slow');
+          }else{
+            $("#PrecioOtroD").hide('slow');
+          }
     });
   });
 

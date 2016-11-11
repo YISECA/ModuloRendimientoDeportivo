@@ -1,39 +1,35 @@
-$(function()
-{
+var agrupacionT = '';
+$(function(){
+	$('#a_edicar').on('click', function(e){			
+		var Id_Deporte=$('select[name="Id_Deporte"]').val();
+		if(Id_Deporte==""){
+			$('#div_mensaje').fadeIn(20);
+			$('#div_editar').fadeOut(20);
+			$('#div_eliminar').fadeOut(20);
+			$('#div_nuevo').fadeOut(20);
+		}else{
 
+			$.get(
+	            'configuracion/ver_deporte/'+Id_Deporte,
+	            {},
+	            function(data){
+	                if(data){
+	                   $('#Id_Clase').val(data.agrupacion.clasificacion_deportista['Id']).change();
+	                   $('#Id_Agrupa').val(data.Agrupacion_Id);
+	                   $('#nom_depot').val(data.Nombre_Deporte);
+	                   $('#id_Dpt').val(data.Id);
+	                   agrupacionT = data.agrupacion['Id'];
+	                }
+	            },
+	            'json'
+	        );
 
-	$('#a_edicar').on('click', function(e)
-	{
-			
-			var Id_Deporte=$('select[name="Id_Deporte"]').val();
-			if(Id_Deporte==""){
-				$('#div_mensaje').fadeIn(20);
-				$('#div_editar').fadeOut(20);
-				$('#div_eliminar').fadeOut(20);
-				$('#div_nuevo').fadeOut(20);
-			}else{
-
-				$.get(
-		            'configuracion/ver_deporte/'+Id_Deporte,
-		            {},
-		            function(data)
-		            {
-		                if(data)
-		                {
-		                   $('#Id_Agrupa').val(data.Agrupacion_Id);
-		                   $('#nom_depot').val(data.Nombre_Deporte);
-		                   $('#id_Dpt').val(data.Id);
-		                }
-		            },
-		            'json'
-		        );
-
-				$('#div_mensaje').fadeOut(20);
-				$('#div_editar').show(20);
-				$('#div_eliminar').fadeOut(20);
-				$('#div_nuevo').fadeOut(20);
-			}
-			return false;
+			$('#div_mensaje').fadeOut(20);
+			$('#div_editar').show(20);
+			$('#div_eliminar').fadeOut(20);
+			$('#div_nuevo').fadeOut(20);
+		}
+		return false;
 	});
 
 	$('#a_eliminar').on('click', function(e)
@@ -50,10 +46,8 @@ $(function()
 				$.get(
 		            'configuracion/ver_deporte/'+Id_Deporte,
 		            {},
-		            function(data)
-		            {
-		                if(data)
-		                {
+		            function(data){
+		                if(data){
 		                   $('#id_deport').val(data.Id);
 		                   $('#label_eliminar').html("¿Desea eliminar el deporte <ins>"+data.Nombre_Deporte+"</ins> de forma permanente del sistema?. <br>Tenga en cuenta que si elimina un deporte se eliminara por defecto todos los datos relacionados ha este deporte. Si no esta seguro de este cambio por favor diríjase al administrador del sistema.");
 		                }
@@ -190,12 +184,22 @@ $(function()
 	});
 
 
-	$('#example').DataTable( {
-        dom: 'Bfrtip',
+	$('#example').DataTable({
+        retrieve: true,
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    } );
+        ],
+        dom: 'Bfrtip',
+        select: true,
+        "responsive": true,
+        "ordering": true,
+        "info": true,
+        "language": {
+            url: 'public/DataTables/Spanish.json',
+            searchPlaceholder: "Buscar"
+        }
+    });   
+
 
     
 
@@ -204,6 +208,38 @@ $(function()
         vector_datos_actividades.length=0;
 		vector_acompañantes.length=0;
     }); 
+
+    $('#Id_Clase').on('change', function(){
+    	$('#Id_Agrupa').empty();
+    	$('#Id_Agrupa').append("<option value=''>Seleccionar</option>");
+    	var id = $("#Id_Clase").val();
+		if(id != ''){
+			$.get("getAgrupacion/" + id, function (agrupacion) {
+				$.each(agrupacion.agrupacion, function(i, e){
+					$("#Id_Agrupa").append("<option value='" +e.Id + "'>" + e.Nombre_Agrupacion + "</option>");
+				});				
+			}).done(function(){
+				$("#Id_Agrupa").val(agrupacionT).change();
+				agrupacionT = '';
+			});
+		}	
+    });
+    
+    $('#Id_Clasificacion').on('change', function(){
+    	$('#Id_Agrupacion').empty();
+    	$('#Id_Agrupacion').append("<option value=''>Seleccionar</option>");
+    	var id = $("#Id_Clasificacion").val();
+		if(id != ''){
+			$.get("getAgrupacion/" + id, function (agrupacion) {
+				$.each(agrupacion.agrupacion, function(i, e){
+					$("#Id_Agrupacion").append("<option value='" +e.Id + "'>" + e.Nombre_Agrupacion + "</option>");
+				});				
+			}).done(function(){
+				$("#Id_Agrupacion").val(agrupacionT).change();
+				agrupacionT = '';
+			});
+		}	
+    });
 
 
 });

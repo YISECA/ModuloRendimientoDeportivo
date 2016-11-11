@@ -16,6 +16,7 @@ class TipoComplemento extends Seeder
             ['Nombre_Tipo_Complemento' => 'Ayudas ergogénicas'],
             ['Nombre_Tipo_Complemento' => 'Complementos'],
             ['Nombre_Tipo_Complemento' => 'Hidratantes'],
+            ['Nombre_Tipo_Complemento' => 'Otros'],
         ]);
     }
 }

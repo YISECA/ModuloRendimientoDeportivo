@@ -54,10 +54,31 @@
                 <input type="hidden" name="persona" id="persona" value=""/>
                 <input type="hidden" name="deportista" id="deportista" value=""/>
                 <input type="hidden" name="visita" id="visita" value=""/>
+                <br><br>
                 <div class="content">
+                    <div align="right">
+                        <button type="button" class="btn btn-info" name="Enviar" id="Agregar_Visista">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Agregar visita domiciliaria
+                        </button>
+                    </div>
+                    <br><br>
+                    <div class="panel-body">
+                        <table id="TablaVisitas" class="display nowrap" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th><center>N°</center></th>
+                                    <th><center>FECHA DE LA VISITA</center></th>
+                                    <th><center>OPCIÓN</center></th>
+                                </tr>
+                            </thead>
+                            <tbody>                                                
+                            </tbody> 
+                        </table>
+                    </div>
+                </div>
+                <div class="content panel panel-default" id="FormularioAddVisista" style="display:none">
                     <div class="content">
-                        <div style="text-align:center;">
-                            <h3>Visita domiciliaria</h3>
+                        <div style="text-align:center;" id="Titulo">                            
                         </div>  
                         <!-- ---------------------------PASO 1--------------------------- -->
                         <div class="panel">                            
@@ -188,9 +209,15 @@
                                             <h4>Área de la vivienda</h4>
                                         </div>
                                         <div class="form-group col-md-2">
+                                            <label for="inputEmail" class="control-label">Área de la vivienda</label>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <input class="form-control" placeholder="Área de la vivienda" type="text" name="pn3" id="pn3">
+                                        </div>                                        
+                                        <div class="form-group col-md-2">
                                             <label for="inputEmail" class="control-label">Tiempo de permanencia en la vivienda</label>
                                         </div>
-                                        <div class="form-group col-md-8">
+                                        <div class="form-group col-md-3">
                                             <input class="form-control" placeholder="Tiempo de permanencia en la vivienda" type="text" name="p3" id="p3">
                                         </div>                                        
                                 </li>
@@ -516,10 +543,10 @@
                             </div>                 
                             <ul class="list-group" id="seccion_cinco" name="seccion_cinco">
                                <li class="list-group-item" id="MiembrosLi">
-                                <div class="row" id="Li1">
-                                        <div class="form-group col-md-2">
-                                            <label for="inputEmail" class="control-label">Miembro de la familia afiliado a salud</label>
-                                        </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label">Miembro de la familia afiliado a salud</label>
+                                    </div>
+                                    <div class="row" id="Li1">
                                         <div class="form-group col-md-4">
                                             <input class="form-control" placeholder="Nombre del familiar" type="text" name="NombreMiembro" id="NombreMiembro">
                                             <input class="form-control" placeholder="Parentesco" type="text" name="ParentescoMiembro" id="ParentescoMiembro">
@@ -531,7 +558,7 @@
                                             <input class="form-control" placeholder="Nombre el régimen subsidiado" type="text" name="NombreSubsidiado" id="NombreSubsidiado">
                                         </div>
                                     </div>
-                                    <div class="row"  id="Li2">
+                                    <div class="row"  id="Li2">                                       
                                         <div class="form-group col-md-2">
                                             <label for="inputEmail" class="control-label">Régimen contributivo</label>
                                         </div>
@@ -987,15 +1014,19 @@
                                </li>
                            </ul>
                        </div>
-                    </div>
-                    <!-- ----------------------BOTONERA------------------- -->
-                    <div id="Botonera" >
-                        <center>
-                            <button type="button" class="btn btn-primary" name="Enviar" id="Registrar">Registrar vista domiciliaria</button>
-                        </center>
-                    </div>
-                    <!-- ----------------------FIN DE BOTONERA------------------- -->
-                    <br><br><br><br><br> 
+                       <!-- ----------------------BOTONERA------------------- -->
+                        <div id="Botonera">
+                            <center>
+                                <button style="display:none;" class="btn btn-primary" name="Enviar" id="Registrar">Registrar vista domiciliaria</button>
+                            </center>
+                            <center>
+                                <button style="display:none;" class="btn btn-default" name="Enviar" id="Cerrar">Cerrar</button>
+                            </center>
+                        </div>
+                        <!-- ----------------------FIN DE BOTONERA------------------- -->
+                        <br><br><br> 
+                    </div>                    
+                    <br><br>
                 </div>
             </div>
             <div class="form-group"  id="mensaje_actividad" style="display: none;">

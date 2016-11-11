@@ -37,6 +37,7 @@ class Complemento extends Seeder
             ['Tipo_Complemento_Id' => '3', 'Nombre_Complemento' => 'Proteina Fuxion 908 gr', 'Valor_Complemento' => '203489'],            
             ['Tipo_Complemento_Id' => '3', 'Nombre_Complemento' => 'Prowhey Tarro 275 gr', 'Valor_Complemento' => '83000'],
             ['Tipo_Complemento_Id' => '3', 'Nombre_Complemento' => 'Proteina líquida New Whey Tubo', 'Valor_Complemento' => '13000'],
+            ['Tipo_Complemento_Id' => '4', 'Nombre_Complemento' => 'Otros', 'Valor_Complemento' => '0'],
         ]);
     }
 }

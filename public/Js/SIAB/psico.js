@@ -4,6 +4,25 @@ var idiomas = new Array();
 $(function(e){ 	
   $('#Fecha_InicioDate').datepicker({format: 'yyyy-mm-dd', autoclose: true,});
   $('#Fecha_FinDate').datepicker({format: 'yyyy-mm-dd', autoclose: true,});
+  $('#Fecha_AnioPDate').datepicker({ minViewMode: 2, format: 'yyyy', autoclose: true, });
+
+  $('#Fecha_AnioPDate').on('change', function(){
+    var fecha = ($("#fechaNac").val()).split("-");
+    var InicioPractica = $('#Fecha_AnioP').val() - fecha[0]
+    //año que inicio la practicaconsole.log($('#Fecha_AnioP').val() - fecha[0]);
+
+    var f = new Date();
+    var anioActual = f.getFullYear();
+    var EdadActual = parseInt(fecha[0] - anioActual);//- $('#Fecha_AnioP').val();
+    var AniosPracticando = ((-1)*EdadActual) - InicioPractica;
+    $("#EdadPreg").val(InicioPractica);
+    $("#PracticaPreg").val(AniosPracticando);
+
+    console.log('InicioPractica->' +InicioPractica);
+    console.log('EdadActual->'+EdadActual);
+    console.log('AniosPracticando->'+AniosPracticando);
+  });
+
 
 	$("#Registrar").on('click', function(){		
 		registro('AddValoracion');
@@ -50,6 +69,7 @@ $(function(e){
         $("input[name="+i+"]").closest('.form-group').addClass('has-error');        
 
         if(i == 'op4'){ $("#p4o1").closest('.form-group').addClass('has-error'); }
+        if(i == 'op26'){ $("#p26o1").closest('.form-group').addClass('has-error'); }
         if(i == 'op7'){ $("#p7o1").closest('.form-group').addClass('has-error'); }
         if(i == 'op41'){ $("#p41o1").closest('.form-group').addClass('has-error'); }
         if(i == 'op472'){ $("#p472o1").closest('.form-group').addClass('has-error'); }
@@ -59,13 +79,13 @@ $(function(e){
 
       });
 
-       if(idiomas.length == 0 || quien.length == 0 || riesgo.length == 0){
-        if(idiomas.length == 0){
+       if(/*idiomas.length == 0 || */quien.length == 0 || riesgo.length == 0){
+      /*  if(idiomas.length == 0){
             $("input[name=Idioma]").closest('.form-group').addClass('has-error');
             $("input[name=Habla]").closest('.form-group').addClass('has-error');
             $("input[name=Lee]").closest('.form-group').addClass('has-error');
             $("input[name=Escribe]").closest('.form-group').addClass('has-error');
-          }
+          }*/
         if(quien.length == 0){
           $("input[name=Quien29]").closest('.form-group').addClass('has-error');
           $("input[name=Razon29]").closest('.form-group').addClass('has-error');          
@@ -100,7 +120,8 @@ $(function(e){
 	}
 
 	$( "#p4o10" ).on( "click",function(){Checkeds('p4o10', 'porqueOP4');});
-	$('input[name="op26"]').change(function(){  Checkeds('p26o8','porqueOP26' ); });
+  $( "#p26o8" ).on( "click",function(){Checkeds('p26o8', 'porqueOP26');});
+	//$('input[name="op26"]').change(function(){  Checkeds('p26o8','porqueOP26' ); });
 	$( "#p41o11" ).on( "click",function(){Checkeds('p41o11', 'porqueOP41');});
 	$( "#p472o5" ).on( "click",function(){Checkeds('p472o5', 'porqueOP472');});
 	$( "#p522o4" ).on( "click",function(){Checkeds('p522o4', 'porqueOP522');});
@@ -435,8 +456,9 @@ function Reset_campos(e){
     $('textarea[name="op23"]').val('');
     $('input[name="op24"]').prop('checked', false);
     $('input[name="op25"]').prop('checked', false);
-    $('input[name="op26"]').prop('checked', false);
-    $('input[name="otro26"]').val('');
+    /*$('input[name="op26"]').prop('checked', false);
+    $('input[name="otro26"]').val('');*/
+    $('#psico').find(':checkbox[name^="op26"]').prop("checked", false).change();
     $('input[name="op27"]').prop('checked', false);
 
     $('input[name="op281"]').prop('checked', false);
@@ -607,6 +629,7 @@ function Deportista (Deportista, Persona){
 
 function Valoracion(Valoracion){  
   var initOP4 = new Array;
+  var initOP26 = new Array;
   var initOP7 = new Array;
   var initOP26 = new Array;
   var initOP41 = new Array;
@@ -678,9 +701,6 @@ function Valoracion(Valoracion){
         $("#porqueOP4").show('slow'); 
       }
     }
-    if(e['PreguntaA_Id'] == 'P7'){
-      initOP7.push(e['Respuesta']);                          
-    }
     if(e['PreguntaA_Id'] == 'P26'){
       initOP26.push(e['Respuesta']);
       if(e['Respuesta'] == 'Otros'){
@@ -688,6 +708,16 @@ function Valoracion(Valoracion){
         $("#porqueOP26").show('slow'); 
       }
     }
+    if(e['PreguntaA_Id'] == 'P7'){
+      initOP7.push(e['Respuesta']);                          
+    }
+   /* if(e['PreguntaA_Id'] == 'P26'){
+      initOP26.push(e['Respuesta']);
+      if(e['Respuesta'] == 'Otros'){
+        $('textarea[name="otro26"]').val(e['Descripcion']); 
+        $("#porqueOP26").show('slow'); 
+      }
+    }*/
     if(e['PreguntaA_Id'] == 'P41'){
       initOP41.push(e['Respuesta']);
       if(e['Respuesta'] == 'Otros'){
@@ -758,7 +788,7 @@ function Valoracion(Valoracion){
     $('#psico').find(':checkbox[name^="op7"][value="' + val + '"]').prop("checked", true).change();
   });
   $.each(initOP26, function (i, val) {
-    $('#psico').find(':radio[name^="op26"][value="' + val + '"]').prop("checked", true).change();
+    $('#psico').find(':checkbox[name^="op26"][value="' + val + '"]').prop("checked", true).change();
   });
   $.each(initOP41, function (i, val) {
     $('#psico').find(':checkbox[name^="op41"][value="' + val + '"]').prop("checked", true).change();
@@ -838,7 +868,7 @@ function Valoracion(Valoracion){
                 '<td>'+e.Observacion+'</td>'+
               '</tr>';                
     riesgo.push({ "Factor": e.Factor, "Objetivo": e.Objetivo, "Intervencion": e.Intervencion, "Fecha_Inicio": e.Fecha_Inicio, 
-       "Fecha_Fin": e.Fecha_Fin, "Responsable": e.Responsable,  "Autorizada": e.Autorizado,  "Seguimiento": e.Seguimiento, "Observacion": e.sObservacion});
+       "Fecha_Fin": e.Fecha_Fin, "Responsable": e.Responsable,  "Autorizada": e.Autorizado,  "Seguimiento": e.Seguimiento, "Observacion": e.Observacion});
 
   });
   tablaR += '</table>';

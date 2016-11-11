@@ -107,11 +107,11 @@
                 <ul class="dropdown-menu" aria-labelledby="themes">
                   <li><a href="#" style="color:#1995dc">Gestor de SIAB</a></li>
                   <li class="divider"></li>
-                  <li><a href="rud">Registro único de deportistas</a></li>
-                  <li><a href="psico">Valoración psicosocial</a></li>
-                  <li><a href="domicilio">Visita domiciliaria</a></li>
-                  <li><a href="actividad">Actividades de intervención</a></li>
-                  <li><a href="suministros">Suministros, apoyos y servicios</a></li>
+                  <li><a href="{{ URL::to( 'rud') }}">Registro único de deportistas</a></li>
+                  <li><a href="{{ URL::to( 'psico') }}">Valoración psicosocial</a></li>
+                  <li><a href="{{ URL::to( 'domicilio') }}">Visita domiciliaria</a></li>
+                  <li><a href="{{ URL::to( 'actividad') }}">Actividades de intervención</a></li>
+                  <li><a href="{{ URL::to( 'suministros') }}">Suministros, apoyos y servicios</a></li>
                 </ul>
               </li>
               <li>
@@ -119,12 +119,15 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">TÉCNICO <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                      <li class="divider"></li>
-                      <li><a href="#">Configuración</a></li>
+                      <li><a href="#" style="color:#1995dc">Gestor técnico</a></li>
                       <li class="divider"></li>
                       <li class=”{{ Request::is( 'configuracion') ? 'active' : '' }}”>
-                        <a href="{{ URL::to( 'configuracion') }}">Agrupación</a>
+                        <a href="{{ URL::to( 'configuracion') }}">Configuración</a>
                       </li>
+                      <!--<li class="divider"></li>
+                      <li class=”{{ Request::is( 'configuracion') ? 'active' : '' }}”>
+                        <a href="{{ URL::to( 'configuracion') }}">Agrupación</a>
+                      </li>                      
                       <li class=”{{ Request::is( 'deporte') ? 'active' : '' }}”>
                         <a href="{{ URL::to( 'deporte') }}">Deporte</a>
                       </li>
@@ -138,7 +141,7 @@
 
                       <li class=”{{ Request::is('categoria') ? 'active' : '' }}”>
                         <a href="{{ URL::to( 'categoria') }}">Categoria</a></li>
-                      <li><a href="#">Prueba/División</a></li>
+                      <li><a href="#">Prueba/División</a></li>-->
                     </ul>
                 </li>
               </li>

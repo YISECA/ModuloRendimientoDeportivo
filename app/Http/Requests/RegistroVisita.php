@@ -32,6 +32,7 @@ class RegistroVisita extends Request
             'op1' => 'required',
             'op2' => 'required',
             'op2o1' => array('required_if:op2,Propia'),
+            'pn3' => 'required',
             'p3' => 'required',
             'op4' => 'required',
             'op5' => 'required',

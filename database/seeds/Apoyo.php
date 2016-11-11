@@ -15,9 +15,9 @@ class Apoyo extends Seeder
         DB::table('apoyo')->insert([
             ['Nombre_Apoyo' => 'Educación'],
             ['Nombre_Apoyo' => 'Estímulo por resultados'],
-            ['Nombre_Apoyo' => 'Alimentación'],
-            ['Nombre_Apoyo' => 'Inversión multi-disciplinaria'],
             ['Nombre_Apoyo' => 'Monitorias'],
+            ['Nombre_Apoyo' => 'Transporte'],
+            ['Nombre_Apoyo' => 'Vivienda'],            
             ]);
     }
 }

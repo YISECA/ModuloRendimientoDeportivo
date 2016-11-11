@@ -33,5 +33,6 @@ class DatabaseSeeder extends Seeder
          $this->call(Apoyo::class);
          $this->call(TipoAlimentacion::class);
          $this->call(Alimentacion::class);
+         $this->call(TipoEvaluacion::class);
     }
 }

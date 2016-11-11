@@ -13,6 +13,7 @@ use App\Models\Deporte;
 use App\Models\VisitaDomiciliaria;
 use App\Models\PreguntaAVisita;
 use App\Models\VisitaMiembros;
+use App\Models\Deportista;
 
 class VisitaController extends Controller
 {
@@ -38,7 +39,7 @@ class VisitaController extends Controller
 		if ($request->ajax()) { 
 
     		$validator = Validator::make($request->all(), [
-    			'GenogramaDep' => 'required|mimes:jpeg,jpg,png,bmp,pdf',
+    			'GenogramaDep' => 'required|mimes:jpeg,jpg,png,bmp',
     			'Imagen1Dep' => 'required|mimes:jpeg,jpg,png,bmp',
     			'Imagen2Dep' => 'required|mimes:jpeg,jpg,png,bmp',
     			'Imagen3Dep' => 'required|mimes:jpeg,jpg,png,bmp',
@@ -52,11 +53,13 @@ class VisitaController extends Controller
 	        }else{
 
 	        	$VisitaDomiciliaria = new VisitaDomiciliaria;
+	        	$contador = count(VisitaDomiciliaria::All());
+	        	$contador = $contador + 1;
 
 	        	if(isset($request->GenogramaDep)){
 				 	$file1=$request->file('GenogramaDep');
 		            $extension1=$file1->getClientOriginalExtension();
-		            $Genograma_Url = "GenogramaDep-".$request->deportista.'.'.$extension1;
+		            $Genograma_Url = "GenogramaDep-".$request->deportista.'-Num-'.$contador.'.'.$extension1;
 		            $file1->move(public_path().'/Img/Genograma/', $Genograma_Url);
 		            $VisitaDomiciliaria->Genograma_Url = $Genograma_Url;
 		        }else{
@@ -66,7 +69,7 @@ class VisitaController extends Controller
 		        if(isset($request->Imagen1Dep)){
 				 	$file1=$request->file('Imagen1Dep');
 		            $extension1=$file1->getClientOriginalExtension();
-		            $Imagen1_Url = "Imagen1Dep-".$request->deportista.'.'.$extension1;
+		            $Imagen1_Url = "Imagen1Dep-".$request->deportista.'-Num-'.$contador.'.'.$extension1;
 		            $file1->move(public_path().'/Img/Visita/', $Imagen1_Url);
 		            $VisitaDomiciliaria->Imagen1_Url = $Imagen1_Url;
 		        }else{
@@ -76,7 +79,7 @@ class VisitaController extends Controller
 		        if(isset($request->Imagen2Dep)){
 				 	$file1=$request->file('Imagen2Dep');
 		            $extension1=$file1->getClientOriginalExtension();
-		            $Imagen2_Url = "Imagen2Dep-".$request->deportista.'.'.$extension1;
+		            $Imagen2_Url = "Imagen2Dep-".$request->deportista.'-Num-'.$contador.'.'.$extension1;
 		            $file1->move(public_path().'/Img/Visita/', $Imagen2_Url);
 		            $VisitaDomiciliaria->Imagen2_Url = $Imagen2_Url;
 		        }else{
@@ -86,7 +89,7 @@ class VisitaController extends Controller
 		        if(isset($request->Imagen3Dep)){
 				 	$file1=$request->file('Imagen3Dep');
 		            $extension1=$file1->getClientOriginalExtension();
-		            $Imagen3_Url = "Imagen3Dep-".$request->deportista.'.'.$extension1;
+		            $Imagen3_Url = "Imagen3Dep-".$request->deportista.'-Num-'.$contador.'.'.$extension1;
 		            $file1->move(public_path().'/Img/Visita/', $Imagen3_Url);
 		            $VisitaDomiciliaria->Imagen3_Url = $Imagen3_Url;
 		        }else{
@@ -96,7 +99,7 @@ class VisitaController extends Controller
 		        if(isset($request->Imagen4Dep)){
 				 	$file1=$request->file('Imagen4Dep');
 		            $extension1=$file1->getClientOriginalExtension();
-		            $Imagen4_Url = "Imagen4Dep-".$request->deportista.'.'.$extension1;
+		            $Imagen4_Url = "Imagen4Dep-".$request->deportista.'-Num-'.$contador.'.'.$extension1;
 		            $file1->move(public_path().'/Img/Visita/', $Imagen4_Url);
 		            $VisitaDomiciliaria->Imagen4_Url = $Imagen4_Url;
 		        }else{
@@ -106,7 +109,7 @@ class VisitaController extends Controller
 		        if(isset($request->Imagen5Dep)){
 				 	$file1=$request->file('Imagen5Dep');
 		            $extension1=$file1->getClientOriginalExtension();
-		            $Imagen5_Url = "Imagen5Dep-".$request->deportista.'.'.$extension1;
+		            $Imagen5_Url = "Imagen5Dep-".$request->deportista.'-Num-'.$contador.'.'.$extension1;
 		            $file1->move(public_path().'/Img/Visita/', $Imagen5_Url);
 		            $VisitaDomiciliaria->Imagen5_Url = $Imagen5_Url;
 		        }else{
@@ -116,7 +119,7 @@ class VisitaController extends Controller
 		        if(isset($request->Imagen6Dep)){
 				 	$file1=$request->file('Imagen6Dep');
 		            $extension1=$file1->getClientOriginalExtension();
-		            $Imagen6_Url = "Imagen6Dep-".$request->deportista.'.'.$extension1;
+		            $Imagen6_Url = "Imagen6Dep-".$request->deportista.'-Num-'.$contador.'.'.$extension1;
 		            $file1->move(public_path().'/Img/Visita/', $Imagen6_Url);
 		            $VisitaDomiciliaria->Imagen6_Url = $Imagen6_Url;
 		        }else{
@@ -132,6 +135,7 @@ class VisitaController extends Controller
 				$VisitaDomiciliaria->Vivienda = $request->op1;
 				$VisitaDomiciliaria->Tipo_Vivienda = $request->op2;
 				$VisitaDomiciliaria->Tipo_Vivienda_Propia = $request->op2o1;
+				$VisitaDomiciliaria->Area_Vivienda = $request->pn3;
 				$VisitaDomiciliaria->Tiempo_Vivienda = $request->p3;
 				$VisitaDomiciliaria->Total_Habitaciones = $request->Habitacion;
 				$VisitaDomiciliaria->Total_Banos = $request->Bano;
@@ -262,4 +266,10 @@ class VisitaController extends Controller
 			return response()->json(["Sin acceso"]);
 		}		
 	}
+
+	public function GetVisita(Request $request, $id){
+		$Visitas = VisitaDomiciliaria::with('preguntaA', 'miembros')->find($id);
+		return $Visitas;
+	}
+
 }

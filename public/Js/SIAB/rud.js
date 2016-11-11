@@ -112,6 +112,31 @@ $(function(e){
 		}				
 	});
 
+	$("#Tenis").on('change',function (e){
+		if($("#Tenis").val() != ''){			
+			$.get("TallaTenis/"+$("#Tenis").val(), function (tallaTenis) { 
+				$("#TallaTenis").show('slow');
+				$("#TUK").empty();
+				$("#TUSA").empty();
+				$("#TUK").append(tallaTenis['Uk']);	        
+				$("#TUSA").append(tallaTenis['Usa']);	        
+		    });
+		}else{
+			$("#TallaTenis").hide('slow');
+			$("#TUK").empty();
+			$("#TUSA").empty();
+		}
+	});
+
+	$("#RiesgosLaborales").on('change',function (e){
+		var id = $("#RiesgosLaborales").val();
+		if(id==1){			
+			$("#ArlD").show("slow");
+		}else if(id == 2){
+			$("#ArlD").hide("slow");
+		}
+	});
+
 	$("#FondoPensionPreg").on('change',function (e){
 		var id = $("#FondoPensionPreg").val();
 		if(id==1){			
@@ -431,7 +456,7 @@ function ShowZapatos(id_genero, id_tipo, tenis){
             $('#Tenis').append('<option value="'+ e.Id +'">'+ e.Eu +'</option>');
         });        
     }).done(function(){
-    	$("#Tenis").val(tenis);
+    	$("#Tenis").val(tenis).change();
     });
 }
 
@@ -495,7 +520,7 @@ function Reset_campos(e){
 	$("#Sudadera").val('');
 	$("#Camiseta").val('');
 	$("#Pantaloneta").val('');
-	$("#Tenis").val('');
+	$("#Tenis").val('').change();
 	$("#GrupoSanguineo").val('');
 	$("#Medicamento").val('').change();
 	$("#CualMedicamento").val('');

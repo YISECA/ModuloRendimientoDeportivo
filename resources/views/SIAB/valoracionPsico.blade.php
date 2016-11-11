@@ -5,6 +5,7 @@
     <script src="{{ asset('public/Js/SIAB/psico.js') }}"></script>   
     <script src="{{ asset('public/Js/bootstrap-datepicker.js') }}"></script>   
     {{Html::style('public/Css/bootstrap-datepicker3.css')}}   
+   
 @stop  
 @section('content')
 <!-- ------------------------------------------------------------------------------------ -->
@@ -326,18 +327,35 @@
                             <li class="list-group-item">
                                 <div class="row">
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail" class="control-label"  id="EdadPregL" >A que edad comenzo a practicar este deporte:</label>
+                                        <label for="inputEmail" class="control-label"  id="Fecha_AnioPL" >Año en el que empezo a practicar este deporte:</label>
                                     </div>
                                     <div class="form-group col-md-8">
-                                        <input class="form-control" placeholder="Edad en la que inicio en el deporte" type="text" name="EdadPreg" id="EdadPreg">
+                                        <div class="input-group date form-control" id="Fecha_AnioPDate" style="border: none;">
+                                            <input id="Fecha_AnioP" class="form-control " type="text" value="" name="Fecha_AnioP" default="" data-date="" data-behavior="Fecha_AnioP">
+                                            <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail" class="control-label"  id="EdadPregL" >A que edad comenzo a practicar este deporte:</label>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <input class="form-control" placeholder="Edad en la que inicio en el deporte" type="text" name="EdadPreg" id="EdadPreg" readonly>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label"  id="EdadPregL" >Año(s):</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-4">
                                         <label for="inputEmail" class="control-label"  id="PracticaPregL" >Cuantos años lleva practicándolo:</label>
                                     </div>
-                                    <div class="form-group col-md-8">
-                                        <input class="form-control" placeholder="Edad en la que inicio en el deporte" type="text" name="PracticaPreg" id="PracticaPreg">
+                                    <div class="form-group col-md-2">
+                                        <input class="form-control" placeholder="Edad en la que inicio en el deporte" type="text" name="PracticaPreg" id="PracticaPreg" readonly>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label"  id="EdadPregL" >Año(s):</label>
                                     </div>
                                 </div>
                             </li>
@@ -811,14 +829,23 @@
                                         <label for="inputEmail" class="control-label">26. las necesidades económicas del atleta para su práctica deportiva son asumidas por:</label>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <div class="radio"><label><input type="radio" name="op26" id="p26o1" value="Atleta">Atleta</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o1" value="Atleta">Atleta</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o2" value="Madre">Madre</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o3" value="Padre">Padre</label></div>                                        
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o4" value="Pareja">Pareja</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o5" value="Otros miembros de la familia">Otros miembros de la familia</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o6" value="Patrocinios deportivos">Patrocinios deportivos</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o7" value="Apoyos ecónomicos dPrograma de rendimiento IDRD">Apoyos ecónomicos dPrograma de rendimiento IDRD</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o8" value="Otros">Otros</label></div>
+
+<!--                                        <div class="radio"><label><input type="radio" name="op26" id="p26o1" value="Atleta">Atleta</label></div>
                                         <div class="radio"><label><input type="radio" name="op26" id="p26o2" value="Madre">Madre</label></div>
                                         <div class="radio"><label><input type="radio" name="op26" id="p26o3" value="Padre">Padre</label></div>                                        
                                         <div class="radio"><label><input type="radio" name="op26" id="p26o4" value="Pareja">Pareja</label></div>
                                         <div class="radio"><label><input type="radio" name="op26" id="p26o5" value="Otros miembros de la familia">Otros miembros de la familia</label></div>
                                         <div class="radio"><label><input type="radio" name="op26" id="p26o6" value="Patrocinios deportivos">Patrocinios deportivos</label></div>
                                         <div class="radio"><label><input type="radio" name="op26" id="p26o7" value="Apoyos ecónomicos dPrograma de rendimiento IDRD">Apoyos ecónomicos dPrograma de rendimiento IDRD</label></div>
-                                        <div class="radio"><label><input type="radio" name="op26" id="p26o8" value="Otros">Otros</label></div>
+                                        <div class="radio"><label><input type="radio" name="op26" id="p26o8" value="Otros">Otros</label></div>-->
                                         <div id="porqueOP26" style="display:none;">
                                             <label for="inputEmail" class="control-label">Otros:</label>
                                             <textarea class="form-control" placeholder="Otros" type="text" name="otro26" id="otro26"></textarea>

@@ -379,7 +379,14 @@ class DeportistaController extends Controller
     	Mail::send($datos[2], ['name' => $datos[1]], function($message) use ($datos){			
 		    $message->to($datos[0], 'IDRD')->subject('Registro de deportista exitoso!');
 		});
-    }   
+    } 
+
+    public function TallaTenis(Request $request, $id){
+        if ($request->ajax()) {
+            $tallas = Talla::find($id);            
+            return($tallas);
+        }
+    }  
 
     /*public function Descarga(Request $request, $id)
     {    	

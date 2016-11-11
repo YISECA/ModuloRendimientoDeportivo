@@ -718,16 +718,18 @@
                                 <option value="2">No</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-1">
-                            <label for="inputEmail" class="control-label" id="ArlL" >Nombre Arl (LEY 1562/12):</label>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <select name="Arl" id="Arl" class="form-control">
-                                <option value="">Seleccionar</option>
-                                @foreach($Arl as $Arl)
-                                        <option value="{{ $Arl['Id'] }}">{{ $Arl['Nombre_Arl'] }}</option>
-                                @endforeach                                                           
-                            </select>
+                        <div id="ArlD" style="display:none;">
+                            <div class="form-group col-md-1">
+                                <label for="inputEmail" class="control-label" id="ArlL" >Nombre Arl (LEY 1562/12):</label>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <select name="Arl" id="Arl" class="form-control">
+                                    <option value="">Seleccionar</option>
+                                    @foreach($Arl as $Arl)
+                                            <option value="{{ $Arl['Id'] }}">{{ $Arl['Nombre_Arl'] }}</option>
+                                    @endforeach                                                           
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group col-md-1">
                             <label for="inputEmail" class="control-label" id="FondoPensionPregL">Fondo pensiones:</label>
@@ -807,6 +809,13 @@
                             <select name="Tenis" id="Tenis" class="form-control">
                                 <option value="">Seleccionar</option>
                             </select>
+                        </div>
+                        <div class="form-group col-md-12" id="TallaTenis" style="display:none;">
+                            <div class="form-group col-md-9"></div>                                
+                            <div class="form-group col-md-3" style="border-radius:5px; border-style:solid;border-width:thin;">                                  
+                                <h5>Talla Reino Unido: <span class="label label-default" id="TUK"></span></h5>
+                                <h5>Talla Estados Unidos:  <span class="label label-default" id="TUSA"></span></h5>
+                            </div>
                         </div>
                     </div>
                     <br>

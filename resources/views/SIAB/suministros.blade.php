@@ -74,6 +74,15 @@
                     <th><center>Fecha</center></th>
                 </tr>
             </thead>
+            <tfoot>
+                <tr>
+                    <th><center>Complemento</center></th>
+                    <th><center>Cantidad</center></th>
+                    <th><center>Valor unitario</center></th>
+                    <th><center>Valor total</center></th>
+                    <th><center>Fecha</center></th>
+                </tr>
+            </tfoot>
             <tbody id="ListaComplemento">                    
             </tbody> 
         </table>
@@ -101,6 +110,14 @@
                         <option value="">Seleccionar</option>                                                 
                     </select>                   
                     <input type="hidden" name="ValorComplemento" id="ValorComplemento"> 
+                </div>
+                <div id="PrecioOtroD" style="display:none;">
+                    <div class="form-group col-md-2">
+                        <label for="inputEmail" class="control-label" >Precio por unidad:</label>
+                    </div>
+                    <div class="form-group col-md-4">
+                       <input class="form-control" placeholder="Precio por unidad" type="text" name="PrecioOtro" id="PrecioOtro">
+                    </div>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputEmail" class="control-label" >Cantidad:</label>
@@ -134,7 +151,7 @@
         <br>
         <h4>Lista de ayudas alimentarias agregadas recientemente</h4>
         <div align="right">
-            <button type="button" class="btn btn-info" name="Agregar_Alimentacion" id="Agregar_Alimentacion">
+            <button type="button" class="btn btn-success" name="Agregar_Alimentacion" id="Agregar_Alimentacion">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Agregar Alimento
             </button>
         </div>
@@ -150,6 +167,16 @@
                     <th><center>Fecha</center></th>
                 </tr>
             </thead>
+            <tfoot>
+                <tr>
+                    <th><center>Tipo de alimentación</center></th>
+                    <th><center>Alimentación</center></th>
+                    <th><center>Cantidad</center></th>
+                    <th><center>Valor unitario</center></th>
+                    <th><center>Valor total</center></th>
+                    <th><center>Fecha</center></th>
+                </tr>
+            </tfoot>
             <tbody id="ListaAlimentacion">                    
             </tbody> 
         </table>
@@ -209,7 +236,7 @@
         <br>
         <h4>Lista de apoyos económicos agregados recientemente</h4>
         <div align="right">
-            <button type="button" class="btn btn-info" name="Agregar_Apoyo" id="Agregar_Apoyo">
+            <button type="button" class="btn btn-success" name="Agregar_Apoyo" id="Agregar_Apoyo">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Agregar Apoyo
             </button>
         </div>
@@ -222,6 +249,13 @@
                     <th><center>Fecha</center></th>
                 </tr>
             </thead>
+            <tfoot>
+                <tr>
+                    <th><center>Apoyo</center></th>
+                    <th><center>Valor</center></th>
+                    <th><center>Fecha</center></th>
+                </tr>
+            </tfoot>
             <tbody id="ListaApoyos">                    
             </tbody> 
         </table>

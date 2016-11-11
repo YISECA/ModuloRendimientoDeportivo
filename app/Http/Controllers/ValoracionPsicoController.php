@@ -130,7 +130,7 @@ class ValoracionPsicoController extends Controller
 			/*****************************************************/
 
 			/*******************PREGUNTA 26***********************/
-			$this->PreguntaA1($ValoracionPsico->Id, 'P26', $request->op26, 'Otros', $request->otro26);
+		//	$this->PreguntaA1($ValoracionPsico->Id, 'P26', $request->op26, 'Otros', $request->otro26);
 			/*****************************************************/
 			/*******************PREGUNTA 32***********************/
 			$this->PreguntaA1($ValoracionPsico->Id, 'P32', $request->op32, 'Si', $request->otro32);
@@ -150,6 +150,23 @@ class ValoracionPsicoController extends Controller
 				$PreguntaA->Respuesta = $request->op4[$i];
 				if($request->op4[$i] == 'Otros'){
 					$PreguntaA->Descripcion = $request->otro4;
+				}			
+				$PreguntaA->save();
+
+				$i++;
+			}
+			/****************************************************/
+
+			/*******************PREGUNTA 26***********************/
+			$contador26 = count($request->op26);
+			$i = 0;
+			while($i < $contador26){
+				$PreguntaA = new PreguntaA;
+				$PreguntaA->ValoracionA_Id = $ValoracionPsico->Id;
+				$PreguntaA->PreguntaA_Id = 'P26';
+				$PreguntaA->Respuesta = $request->op26[$i];
+				if($request->op26[$i] == 'Otros'){
+					$PreguntaA->Descripcion = $request->otro26;
 				}			
 				$PreguntaA->save();
 
@@ -489,7 +506,7 @@ class ValoracionPsicoController extends Controller
 			/*****************************************************/
 
 			/*******************PREGUNTA 26***********************/
-			$this->PreguntaA1($ValoracionPsico->Id, 'P26', $request->op26, 'Otros', $request->otro26);
+			//$this->PreguntaA1($ValoracionPsico->Id, 'P26', $request->op26, 'Otros', $request->otro26);
 			/*****************************************************/
 			/*******************PREGUNTA 32***********************/
 			$this->PreguntaA1($ValoracionPsico->Id, 'P32', $request->op32, 'Si', $request->otro32);
@@ -509,6 +526,23 @@ class ValoracionPsicoController extends Controller
 				$PreguntaA->Respuesta = $request->op4[$i];
 				if($request->op4[$i] == 'Otros'){
 					$PreguntaA->Descripcion = $request->otro4;
+				}			
+				$PreguntaA->save();
+
+				$i++;
+			}
+			/****************************************************/
+
+			/*******************PREGUNTA 4***********************/
+			$contador26 = count($request->op26);
+			$i = 0;
+			while($i < $contador26){
+				$PreguntaA = new PreguntaA;
+				$PreguntaA->ValoracionA_Id = $ValoracionPsico->Id;
+				$PreguntaA->PreguntaA_Id = 'P26';
+				$PreguntaA->Respuesta = $request->op26[$i];
+				if($request->op26[$i] == 'Otros'){
+					$PreguntaA->Descripcion = $request->otro26;
 				}			
 				$PreguntaA->save();
 

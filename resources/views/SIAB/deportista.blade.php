@@ -4,14 +4,12 @@
     <script src="{{ asset('public/Js/buscar_personas.js') }}"></script>     
     <script src="{{ asset('public/Js/SIAB/rud.js') }}"></script>   
     <script src="{{ asset('public/Js/bootstrap-datepicker.js') }}"></script>   
-    {{Html::style('public/Css/bootstrap-datepicker3.css')}}   
+    {{Html::style('public/Css/bootstrap-datepicker3.css')}}      
 @stop  
 @section('content')
 <!-- ------------------------------------------------------------------------------------ -->
 <center><h3>REGISTRO ÚNICO DE DEPORTISTAS (RUD)</h3></center>
  <input type="hidden" name="_token" value="{{csrf_token()}}" id="token"/>
- <input type="hidden" name="persona" id="persona" value=""/>
- <input type="hidden" name="deportista" id="deportista" value=""/>
     <div id="main_persona" class="row" data-url="{{ url(config('usuarios.prefijo_ruta')) }}">  
         <div class="content">
             <div class="panel panel-primary">
@@ -29,7 +27,7 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="input-group">                                        
-                                    <input id="buscador" name="buscador" type="text" class="form-control" placeholder="Buscar" value="1032455961" onkeypress="return ValidaCampo(event);">
+                                    <input id="buscador" name="buscador" type="text" class="form-control" placeholder="Buscar" value="" onkeypress="return ValidaCampo(event);">
                                     <span class="input-group-btn">
                                         <button id="buscar" data-role="buscar" data-buscador="buscar-rud" class="btn btn-default" type="button">
                                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -52,8 +50,17 @@
         </div>
 <!-- ------------------------------------------------------------------------------------ -->
 <form id="registro" name="registro">
-  <div id="camposRegistro" style="display:none;">
-    <div class="content" id="RUD" style="display: none;">
+        <!--<a id="DescargaH" href="" target="blank">
+            DESCARGA
+        </a>-->
+    
+    <input type="hidden" name="persona" id="persona" value=""/>
+    <input type="hidden" name="deportista" id="deportista" value=""/>
+    <div class="container" id="loading" style="display:none;">
+        <center><button class="btn btn-lg btn-default"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Espere...</button></center>
+    </div>
+    <div id="camposRegistro" style="display:none;">
+     <div class="content" id="RUD" style="display: none;">
         <div class="content">
             <div style="text-align:center;">
                 <h3>Registro Único de Deportistas (RUD)</h3>
@@ -69,9 +76,42 @@
                     </div>
                 </div>                 
                 <ul class="list-group" id="seccion_uno" name="seccion_uno" style="display: none">
-                    <div class="panel-body">
-                        <p>DATOS DEPORTIVOS</p>
-                    </div>
+                    <li class="list-group-item">
+                        <div class="row" id="FotografiaRegistro">
+                             <div class="form-group col-md-12">
+                                <div class="form-group col-md-4"></div>
+                                <div class="col-md-4 text-center">
+                                    <label for="inputEmail" class="control-label">Fotografía del deportista</label>
+                                    <br>
+                                    <span id="SImagen">
+                                        <img id="Fotografia" src="" alt="" class="img-thumbnail img-responsive"><br>         
+                                    </span>
+                                    <br>                                    
+                                    <input type="file" id ="FotografiaDep" name="FotografiaDep">
+                                    <p class="help-block">Imagen en formato jpeg,jpg,png,bmp.</p> 
+                                </div>
+                                <div class="form-group col-md-4 "></div>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li class="list-group-item">
+                        <div class="panel-body">
+                            <p>DATOS DEPORTIVOS</p>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail" class="control-label"  id="PerteneceL" >El deportista pertence al promgrama de rendimiento deportivo?</label>
+                            </div>
+                            <div class="form-group col-md-10">
+                                <select name="Pertenece" id="Pertenece" class="form-control">
+                                    <option value="">Seleccionar</option>
+                                    <option value="1">Si</option>
+                                    <option value="2">No</option>           
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                    </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="form-group col-md-2">
@@ -133,6 +173,35 @@
                         </div>
                         <br>
                     </li>
+                    <li class="list-group-item" id="DeportistaEtapas" style="display:none;">
+                        <div class="row">
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail" class="control-label"  id="EtapaNacionalL" >Etapa nacional:</label>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input name="EtapaNacionalT" id="EtapaNacionalT"type="hidden">
+                                <select name="EtapaNacional" id="EtapaNacional" class="form-control">
+                                    <option value="">Seleccionar</option>                                                           
+                                </select>
+                            </div> 
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail" class="control-label"  id="EtapaInternacionalL" >Etapa internacional:</label>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input name="EtapaInternacionalT" id="EtapaInternacionalT"type="hidden">
+                                <select name="EtapaInternacional" id="EtapaInternacional" class="form-control">
+                                    <option value="">Seleccionar</option>                                                           
+                                </select>
+                            </div>                           
+                            <div class="form-group col-md-2">
+                                <label for="inputEmail" class="control-label"  id="SmmlvL" >Salario mínimo actual:</label>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input class="form-control" placeholder="Salario mínimo mensual legal vigente" type="text" name="Smmlv" id="Smmlv">
+                            </div>                           
+                        </div>
+                        <br>
+                    </li>
                     <div class="panel-body">
                         <p>DATOS PERSONALES</p>
                     </div>
@@ -188,7 +257,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <div class="input-group date form-control" id="FechaExpedicionDate" style="border: none;">
-                                    <input id="FechaExpedicion" class="form-control " type="text" value="" name="FechaExpedicionL" default="" data-date="" data-behavior="FechaExpedicion">
+                                    <input id="FechaExpedicion" class="form-control " type="text" value="" name="FechaExpedicion" default="" data-date="" data-behavior="FechaExpedicion">
                                 <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
                                 </div>    
                             </div>    
@@ -208,7 +277,7 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <div class="input-group date form-control" id="FechaVigenciaPasaporteDate" style="border: none;">
-                                    <input id="FechaVigenciaPasaporte" class="form-control " type="text" value="" name="FechaVigenciaPasaporteL" default="" data-date="" data-behavior="FechaVigenciaPasaporte">
+                                    <input id="FechaVigenciaPasaporte" class="form-control " type="text" value="" name="FechaVigenciaPasaporte" default="" data-date="" data-behavior="FechaVigenciaPasaporte">
                                 <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
                                 </div>    
                             </div>
@@ -260,7 +329,7 @@
                                 <label for="inputEmail" class="control-label" id="DepartamentoNacL">Departamento nacimiento:</label>
                             </div>
                             <div class="form-group col-md-3">
-                                <select name="DepartamentoNacL" id="DepartamentoNac" class="form-control">
+                                <select name="DepartamentoNac" id="DepartamentoNac" class="form-control">
                                     <option value="">Seleccionar</option>
                                     @foreach($Departamento as $DepartamentoNac)
                                             <option value="{{ $DepartamentoNac['Id_Departamento'] }}">{{ $DepartamentoNac['Nombre_Departamento'] }}</option>
@@ -568,7 +637,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <div class="input-group date form-control" id="FechaAfiliacionDate" style="border: none;">
-                                <input id="FechaAfiliacion" class="form-control " type="text" value="" name="FechaAfiliacionL" default="" data-date="" data-behavior="FechaAfiliacion">
+                                <input id="FechaAfiliacion" class="form-control " type="text" value="" name="FechaAfiliacion" default="" data-date="" data-behavior="FechaAfiliacion">
                             <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
                             </div>    
                         </div>
@@ -649,16 +718,18 @@
                                 <option value="2">No</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-1">
-                            <label for="inputEmail" class="control-label" id="ArlL" >Nombre Arl (LEY 1562/12):</label>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <select name="Arl" id="Arl" class="form-control">
-                                <option value="">Seleccionar</option>
-                                @foreach($Arl as $Arl)
-                                        <option value="{{ $Arl['Id'] }}">{{ $Arl['Nombre_Arl'] }}</option>
-                                @endforeach                                                           
-                            </select>
+                        <div id="ArlD" style="display:none;">
+                            <div class="form-group col-md-1">
+                                <label for="inputEmail" class="control-label" id="ArlL" >Nombre Arl (LEY 1562/12):</label>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <select name="Arl" id="Arl" class="form-control">
+                                    <option value="">Seleccionar</option>
+                                    @foreach($Arl as $Arl)
+                                            <option value="{{ $Arl['Id'] }}">{{ $Arl['Nombre_Arl'] }}</option>
+                                    @endforeach                                                           
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group col-md-1">
                             <label for="inputEmail" class="control-label" id="FondoPensionPregL">Fondo pensiones:</label>
@@ -738,6 +809,13 @@
                             <select name="Tenis" id="Tenis" class="form-control">
                                 <option value="">Seleccionar</option>
                             </select>
+                        </div>
+                        <div class="form-group col-md-12" id="TallaTenis" style="display:none;">
+                            <div class="form-group col-md-9"></div>                                
+                            <div class="form-group col-md-3" style="border-radius:5px; border-style:solid;border-width:thin;">                                  
+                                <h5>Talla Reino Unido: <span class="label label-default" id="TUK"></span></h5>
+                                <h5>Talla Estados Unidos:  <span class="label label-default" id="TUSA"></span></h5>
+                            </div>
                         </div>
                     </div>
                     <br>

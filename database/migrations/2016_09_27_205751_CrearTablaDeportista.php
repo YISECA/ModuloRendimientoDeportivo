@@ -16,6 +16,7 @@ class CrearTablaDeportista extends Migration
 
             $table->increments('Id');
             $table->integer('Persona_Id')->unsigned();
+            $table->integer('Pertenece');
             $table->integer('Lugar_Expedicion_Id')->unsigned();
             $table->integer('Clasificacion_Deportista_Id')->unsigned();
             $table->integer('Parentesco_Id')->unsigned();
@@ -42,8 +43,8 @@ class CrearTablaDeportista extends Migration
             $table->integer('Departamento_Id_Nac')->unsigned();
             
             $table->date('Fecha_Expedicion');
-            $table->string('Numero_Pasaporte');
-            $table->date('Fecha_Pasaporte');
+            $table->string('Numero_Pasaporte')->nullable();
+            $table->date('Fecha_Pasaporte')->nullable();
             $table->integer('Libreta_Preg');
             $table->string('Numero_Libreta_Mil')->nullable();
             $table->string('Distrito_Libreta_Mil')->nullable();

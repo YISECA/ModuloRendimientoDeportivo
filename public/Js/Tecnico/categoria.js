@@ -14,7 +14,7 @@ $(function()
 			}else{
 
 				$.get(
-		            '/ModuloRendimientoDeportivo/configuracion/ver_categoria/'+Id_ct,
+		            'configuracion/ver_categoria/'+Id_ct,
 		            {},
 		            function(data)
 		            {
@@ -47,7 +47,7 @@ $(function()
 			}else{
 
 				$.get(
-		            '/ModuloRendimientoDeportivo/configuracion/ver_categoria/'+Id_ct,
+		            'configuracion/ver_categoria/'+Id_ct,
 		            {},
 		            function(data)
 		            {
@@ -85,7 +85,7 @@ $(function()
 		
 			$.ajax({
 	            type: 'POST',
-	            url: '/ModuloRendimientoDeportivo/configuracion/crear_ct',
+	            url: 'configuracion/crear_ct',
 	            data: $('#form_nuevo').serialize(),
 	            success: function(data){
 
@@ -122,7 +122,7 @@ $(function()
 	{
 			var id=$('#id_cate').val();
 			    $.get(
-		            '/ModuloRendimientoDeportivo/configuracion/eliminarCategoria/'+id,
+		            'configuracion/eliminarCategoria/'+id,
 		            {},
 		            function(data)
 		            {
@@ -157,7 +157,7 @@ $(function()
 	{
 			$.ajax({
 	            type: 'POST',
-	            url: '/ModuloRendimientoDeportivo/configuracion/modificar_ct',
+	            url: 'configuracion/modificar_ct',
 	            data: $('#form_edit').serialize(),
 	            success: function(data)
 	            {
@@ -195,6 +195,22 @@ $(function()
         vector_datos_actividades.length=0;
 		vector_acompañantes.length=0;
     }); 
+
+    $('#example').DataTable({
+        retrieve: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
+        dom: 'Bfrtip',
+        select: true,
+        "responsive": true,
+        "ordering": true,
+        "info": true,
+        "language": {
+            url: 'public/DataTables/Spanish.json',
+            searchPlaceholder: "Buscar"
+        }
+    });
 
 
 });

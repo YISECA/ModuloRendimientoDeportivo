@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+1019017104
   <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,14 +14,59 @@
           <link rel="stylesheet" href="{{ asset('public/Css/jquery-ui.css') }}" media="screen">    
           <link rel="stylesheet" href="{{ asset('public/Css/bootstrap.min.css') }}" media="screen">   
           <link rel="stylesheet" href="{{ asset('public/Css/sticky-footer.css') }}" media="screen">    
+          <link rel="stylesheet" href="{{ asset('public/Css/jquery.dataTables.min.css') }}" media="screen">    
+          <link rel="stylesheet" href="{{ asset('public/Css/buttons.dataTables.min.css') }}" media="screen">    
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+         
+
+
+           <style type="text/css">
+              .glyphicon-refresh-animate {
+                  -animation: spin .7s infinite linear;
+                  -webkit-animation: spin2 .7s infinite linear;
+              }
+
+              @-webkit-keyframes spin2 {
+                  from { -webkit-transform: rotate(0deg);}
+                  to { -webkit-transform: rotate(360deg);}
+              }
+              .imagen-error{
+                border-radius:5px;
+                border: solid;
+                border-color: #b94a48;
+                border-width: 1px;
+              }
+          </style>
+           <style type="text/css">
+              .glyphicon-refresh-animate {
+                  -animation: spin .7s infinite linear;
+                  -webkit-animation: spin2 .7s infinite linear;
+              }
+
+              @-webkit-keyframes spin2 {
+                  from { -webkit-transform: rotate(0deg);}
+                  to { -webkit-transform: rotate(360deg);}
+              }
+          </style>
       @show
       @section('script')
           <script src="{{ asset('public/Js/jquery.js') }}"></script>
           <script src="{{ asset('public/Js/jquery-ui.js') }}"></script>
+          <script src="{{ asset('public/Js/jquery.dataTables.min.js') }}"></script>
+          <script src="{{ asset('public/Js/dataTables.buttons.min.js') }}"></script>
+          <script src="{{ asset('public/Js/buttons.flash.min.js') }}"></script>
+          <script src="{{ asset('public/Js/jszip.min.js') }}"></script>
+          <script src="{{ asset('public/Js/pdfmake.min.js') }}"></script>
+          <script src="{{ asset('public/Js/vfs_fonts.js') }}"></script>
+          <script src="{{ asset('public/Js/buttons.html5.min.js') }}"></script>
+          <script src="{{ asset('public/Js/buttons.print.min.js') }}"></script>
           <script src="{{ asset('public/Js/bootstrap.min.js') }}"></script>
           <script src="{{ asset('public/Js/main.js') }}"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+        
 
           <meta name="csrf-token" content="{{ csrf_token() }}" />
+
           <script type="text/javascript">
               $.ajaxSetup({
                   headers: {
@@ -59,10 +105,13 @@
               <li>
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">SIAB <span class="caret"></span></a>
                 <ul class="dropdown-menu" aria-labelledby="themes">
-                  <li><a href="#" style="color:#1995dc">Gestor de entrenadores</a></li>
+                  <li><a href="#" style="color:#1995dc">Gestor de SIAB</a></li>
                   <li class="divider"></li>
-                  <li><a href="rud">Registro único de deportistas</a></li>
-                  <li><a href="psico">Valoración psicosocial</a></li>
+                  <li><a href="{{ URL::to( 'rud') }}">Registro único de deportistas</a></li>
+                  <li><a href="{{ URL::to( 'psico') }}">Valoración psicosocial</a></li>
+                  <li><a href="{{ URL::to( 'domicilio') }}">Visita domiciliaria</a></li>
+                  <li><a href="{{ URL::to( 'actividad') }}">Actividades de intervención</a></li>
+                  <li><a href="{{ URL::to( 'suministros') }}">Suministros, apoyos y servicios</a></li>
                 </ul>
               </li>
               <li>
@@ -70,12 +119,15 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">TÉCNICO <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                      <li class="divider"></li>
-                      <li><a href="#">Configuración</a></li>
+                      <li><a href="#" style="color:#1995dc">Gestor técnico</a></li>
                       <li class="divider"></li>
                       <li class=”{{ Request::is( 'configuracion') ? 'active' : '' }}”>
-                        <a href="{{ URL::to( 'configuracion') }}">Agrupación</a>
+                        <a href="{{ URL::to( 'configuracion') }}">Configuración</a>
                       </li>
+                      <!--<li class="divider"></li>
+                      <li class=”{{ Request::is( 'configuracion') ? 'active' : '' }}”>
+                        <a href="{{ URL::to( 'configuracion') }}">Agrupación</a>
+                      </li>                      
                       <li class=”{{ Request::is( 'deporte') ? 'active' : '' }}”>
                         <a href="{{ URL::to( 'deporte') }}">Deporte</a>
                       </li>
@@ -89,7 +141,7 @@
 
                       <li class=”{{ Request::is('categoria') ? 'active' : '' }}”>
                         <a href="{{ URL::to( 'categoria') }}">Categoria</a></li>
-                      <li><a href="#">Prueba/División</a></li>
+                      <li><a href="#">Prueba/División</a></li>-->
                     </ul>
                 </li>
               </li>

@@ -75,4 +75,27 @@ class Deportista extends Model
     public function deportistaValoracion(){
         return $this->hasMany('App\Models\ValoracionPsico', 'Deportista_Id');
     }
+
+    public function deportistaEtapa() {
+        return $this->belongsToMany('App\Models\Etapa', 'deportista_etapa', 'Deportista_Id', 'Etapa_Id')->withTimestamps()->withPivot('Smmlv');
+    }
+
+    public function deportistaVisita(){
+        return $this->hasMany('App\Models\VisitaDomiciliaria', 'Deportista_Id');
+    }
+
+    public function deportistaComplemento() {
+        return $this->belongsToMany('App\Models\Complemento', 'deportista_complemento', 'Deportista_Id', 'Complemento_Id')
+                ->withTimestamps()->withPivot('Cantidad')->withPivot('Fecha')->withPivot('Valor');
+    }
+
+    public function deportistaApoyo() {
+        return $this->belongsToMany('App\Models\Apoyo', 'deportista_apoyo', 'Deportista_Id', 'Apoyo_Id')
+                ->withTimestamps()->withPivot('Valor')->withPivot('Fecha');
+    }
+
+    public function deportistaAlimentacion() {
+        return $this->belongsToMany('App\Models\Alimentacion', 'deportista_alimentacion', 'Deportista_Id', 'Alimentacion_Id')
+                ->withTimestamps()->withPivot('Cantidad')->withPivot('Valor')->withPivot('Fecha');
+    }
 }

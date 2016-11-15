@@ -26,7 +26,7 @@ class ModificarTablaDeportista extends Migration
             $table->foreign('Tenis_Talla_Id')->references('Id')->on('talla');
             $table->foreign('Tipo_Cuenta_Id')->references('Id')->on('tipo_cuenta');
             $table->foreign('Banco_Id')->references('Id')->on('banco');
-            $table->foreign('Arl_Id')->references('Id')->on('arl');            
+       //     $table->foreign('Arl_Id')->references('Id')->on('arl');            
             $table->foreign('Fondo_PensionPreg_Id')->references('Id')->on('fondo_pension');
         });        
         
@@ -53,7 +53,7 @@ class ModificarTablaDeportista extends Migration
             $table->dropForeign('Tenis_Talla_Id');
             $table->dropForeign('Tipo_Cuenta_Id');
             $table->dropForeign('Banco_Id');
-            $table->dropForeign('Arl_Id');
+       //     $table->dropForeign('Arl_Id');
             $table->dropForeign('Fondo_Pension_Id');
         });        
     }

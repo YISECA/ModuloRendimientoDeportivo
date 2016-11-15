@@ -5,6 +5,7 @@
     <script src="{{ asset('public/Js/SIAB/psico.js') }}"></script>   
     <script src="{{ asset('public/Js/bootstrap-datepicker.js') }}"></script>   
     {{Html::style('public/Css/bootstrap-datepicker3.css')}}   
+   
 @stop  
 @section('content')
 <!-- ------------------------------------------------------------------------------------ -->
@@ -27,7 +28,7 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="input-group">                                        
-                                    <input id="buscador" name="buscador" type="text" class="form-control" placeholder="Buscar" value="1032455961" onkeypress="return ValidaCampo(event);">
+                                    <input id="buscador" name="buscador" type="text" class="form-control" placeholder="Buscar" value="" onkeypress="return ValidaCampo(event);">
                                     <span class="input-group-btn">
                                         <button id="buscar" data-role="buscar" data-buscador="buscar" class="btn btn-default" type="button">
                                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -48,11 +49,12 @@
                 </div>
             </div>
         </div>
-<!-- ------------------------------------------------------------------------------------ -->
+        <!-- ------------------------------------------------------------------------------------ -->
         <form id="psico" name="psico" >
             <div id="camposRegistro" style="display:none;">
                 <input type="hidden" name="persona" id="persona" value=""/>
                 <input type="hidden" name="deportista" id="deportista" value=""/>
+                <input type="hidden" name="valoracion" id="valoracion" value=""/>
                 <div class="content">
                     <div class="content">
                         <div style="text-align:center;">
@@ -83,7 +85,6 @@
                                             <input class="form-control" placeholder="Apellidos" type="text" name="Apellidos" id="Apellidos">
                                         </div>
                                     </div>
-                                    <br>
                                     <div class="row">
                                         <div class="form-group col-md-2">
                                             <label for="inputEmail" class="control-label" id="fechaNacL" >Fecha nacimiento:</label>
@@ -307,7 +308,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                <br>
                             </li>
                             <li class="list-group-item">
                                 <div class="row">
@@ -323,23 +323,39 @@
                                         </select>
                                     </div>                           
                                 </div>
-                                <br>
                             </li>
                             <li class="list-group-item">
                                 <div class="row">
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail" class="control-label"  id="EdadPregL" >A que edad comenzo a practicar este deporte:</label>
+                                        <label for="inputEmail" class="control-label"  id="Fecha_AnioPL" >Año en el que empezo a practicar este deporte:</label>
                                     </div>
                                     <div class="form-group col-md-8">
-                                        <input class="form-control" placeholder="Edad en la que inicio en el deporte" type="text" name="EdadPreg" id="EdadPreg">
+                                        <div class="input-group date form-control" id="Fecha_AnioPDate" style="border: none;">
+                                            <input id="Fecha_AnioP" class="form-control " type="text" value="" name="Fecha_AnioP" default="" data-date="" data-behavior="Fecha_AnioP">
+                                            <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputEmail" class="control-label"  id="EdadPregL" >A que edad comenzo a practicar este deporte:</label>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <input class="form-control" placeholder="Edad en la que inicio en el deporte" type="text" name="EdadPreg" id="EdadPreg" readonly>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label"  id="EdadPregL" >Año(s):</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-4">
                                         <label for="inputEmail" class="control-label"  id="PracticaPregL" >Cuantos años lleva practicándolo:</label>
                                     </div>
-                                    <div class="form-group col-md-8">
-                                        <input class="form-control" placeholder="Edad en la que inicio en el deporte" type="text" name="PracticaPreg" id="PracticaPreg">
+                                    <div class="form-group col-md-2">
+                                        <input class="form-control" placeholder="Edad en la que inicio en el deporte" type="text" name="PracticaPreg" id="PracticaPreg" readonly>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputEmail" class="control-label"  id="EdadPregL" >Año(s):</label>
                                     </div>
                                 </div>
                             </li>
@@ -813,14 +829,23 @@
                                         <label for="inputEmail" class="control-label">26. las necesidades económicas del atleta para su práctica deportiva son asumidas por:</label>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <div class="radio"><label><input type="radio" name="op26" id="p26o1" value="Atleta">Atleta</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o1" value="Atleta">Atleta</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o2" value="Madre">Madre</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o3" value="Padre">Padre</label></div>                                        
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o4" value="Pareja">Pareja</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o5" value="Otros miembros de la familia">Otros miembros de la familia</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o6" value="Patrocinios deportivos">Patrocinios deportivos</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o7" value="Apoyos ecónomicos dPrograma de rendimiento IDRD">Apoyos ecónomicos dPrograma de rendimiento IDRD</label></div>
+                                        <div class="radio"><label><input type="checkbox" name="op26[]" id="p26o8" value="Otros">Otros</label></div>
+
+<!--                                        <div class="radio"><label><input type="radio" name="op26" id="p26o1" value="Atleta">Atleta</label></div>
                                         <div class="radio"><label><input type="radio" name="op26" id="p26o2" value="Madre">Madre</label></div>
                                         <div class="radio"><label><input type="radio" name="op26" id="p26o3" value="Padre">Padre</label></div>                                        
                                         <div class="radio"><label><input type="radio" name="op26" id="p26o4" value="Pareja">Pareja</label></div>
                                         <div class="radio"><label><input type="radio" name="op26" id="p26o5" value="Otros miembros de la familia">Otros miembros de la familia</label></div>
                                         <div class="radio"><label><input type="radio" name="op26" id="p26o6" value="Patrocinios deportivos">Patrocinios deportivos</label></div>
                                         <div class="radio"><label><input type="radio" name="op26" id="p26o7" value="Apoyos ecónomicos dPrograma de rendimiento IDRD">Apoyos ecónomicos dPrograma de rendimiento IDRD</label></div>
-                                        <div class="radio"><label><input type="radio" name="op26" id="p26o8" value="Otros">Otros</label></div>
+                                        <div class="radio"><label><input type="radio" name="op26" id="p26o8" value="Otros">Otros</label></div>-->
                                         <div id="porqueOP26" style="display:none;">
                                             <label for="inputEmail" class="control-label">Otros:</label>
                                             <textarea class="form-control" placeholder="Otros" type="text" name="otro26" id="otro26"></textarea>
@@ -1596,23 +1621,113 @@
                         <ul class="list-group" id="seccion_trece" name="seccion_trece">
                             <li class="list-group-item">
                                 <div class="row">
-                                    <li class="list-group-item">
-                                <div class="row">
-                                    
+                                     <div class="form-group col-md-12">
+                                        <label for="inputEmail" class="control-label">FACTORES DE RIESGO PSICOSOCIAL</label>
+                                    </div>       
                                 </div>
-                            </li>
-                        </ul>
+                                <div class="row">
+                                        <div class="form-group col-md-2">
+                                            <label for="inputEmail" class="control-label">Factores de riesgo psicosocial</label>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <input class="form-control" placeholder="Factor de riesgo" type="text" name="Factor" id="Factor">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputEmail" class="control-label">Objetivo</label>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <input class="form-control" placeholder="Objetivo" type="text" name="Objetivo" id="Objetivo">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-2">
+                                            <label for="inputEmail" class="control-label">Intervención</label>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <input class="form-control" placeholder="Intervención" type="text" name="Intervencion" id="Intervencion">
+                                        </div>
+
+                                        <div class="form-group col-md-2">
+                                            <label for="inputEmail" class="control-label">Fecha de inicio</label>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <div class="input-group date form-control" id="Fecha_InicioDate" style="border: none;">
+                                                <input id="Fecha_Inicio" class="form-control " type="text" value="" name="Fecha_Inicio" default="" data-date="" data-behavior="Fecha_Inicio">
+                                                <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
+                                            </div>    
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-2">
+                                            <label for="inputEmail" class="control-label">Fecha de terminación</label>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <div class="input-group date form-control" id="Fecha_FinDate" style="border: none;">
+                                                <input id="Fecha_Fin" class="form-control " type="text" value="" name="Fecha_Fin" default="" data-date="" data-behavior="Fecha_Fin">
+                                                <span class="input-group-addon btn"><i class="glyphicon glyphicon-calendar"></i> </span>
+                                            </div>  
+                                        </div>
+
+                                        <div class="form-group col-md-2">
+                                            <label for="inputEmail" class="control-label">Responsable de la intervención</label>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <input class="form-control" placeholder="Responsable" type="text" name="Responsable" id="Responsable">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-2">
+                                            <label for="inputEmail" class="control-label">Intervención autorizada por:</label>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <input class="form-control" placeholder="Nombre de quién autoriza" type="text" name="Autorizada" id="Autorizada">
+                                        </div>
+
+                                        <div class="form-group col-md-2">
+                                            <label for="inputEmail" class="control-label">Seguimiento</label>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <input class="form-control" placeholder="Seguimiento" type="text" name="Seguimiento" id="Seguimiento">
+                                        </div>
+                                    </div>
+                                     <div class="row">
+                                        <div class="form-group col-md-2">
+                                            <label for="inputEmail" class="control-label">Observaciones:</label>
+                                        </div>
+                                        <div class="form-group col-md-10">
+                                            <textarea class="form-control" placeholder="Observaciones" type="text" name="Observacion" id="Observacion"></textarea>
+                                        </div>
+                                    </div>                                   
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <center><button type="button" class="btn btn-info" name="Add_Riesgo" id="Add_Riesgo">Agregar Riesgo</button></center>
+                                        </div>                                    
+                                        <div id="RiesgoT" class="form-group col-md-12">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <div class="form-group"  id="mensaje_riesgo" style="display: none;">
+                                                <div id="alert_riesgo"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+        
+                <!-- ----------------------BOTONERA------------------- -->
                 <div id="Botonera" >
                     <center>
                         <button type="button" class="btn btn-primary" name="Enviar" id="Registrar">Registrar valoración</button>
+                        <button type="button" class="btn btn-primary" name="Enviar" id="Modificar">Modificar valoración</button>
                     </center>
                 </div>
                 <!-- ----------------------FIN DE BOTONERA------------------- -->
                 <br><br><br><br><br> 
                 </div>
-                <!-- ----------------------BOTONERA------------------- -->
+                
                 <div class="form-group"  id="mensaje_actividad" style="display: none;">
                     <div id="alert_actividad"></div>
                 </div>
